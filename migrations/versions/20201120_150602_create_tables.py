@@ -45,7 +45,7 @@ def upgrade():
     sa.Column('lng', sa.Float(), nullable=False),
     sa.Column('description', sa.String(length=255), nullable=False),
     sa.Column('length', sa.Float(), nullable=False),
-    sa.Column('elevGain', sa.Integer(length=255), nullable=False),
+    sa.Column('elevGain', sa.Integer(), nullable=False),
     sa.Column('routeType', sa.String(length=255), nullable=False),
     sa.Column('image', sa.String(length=255), nullable=False),
     sa.Column('createdAt', sa.DateTime(), server_default=sa.func.current_timestamp(), nullable=False),

@@ -36,8 +36,9 @@ class User(db.Model, UserMixin):
             'email': self.email
         }
 
-    spots_user = db.relationship('Spots', back_populates='user_spot')
-    reviews_user = db.relationship('User', back_populates='user_review')
+    spots = db.relationship('Spot', back_populates="user")
+    reviews = db.relationship('Review', back_populates="user")
+
 
 class Spot(db.Model):
     __tablename__ = 'spots'
@@ -83,8 +84,9 @@ class Spot(db.Model):
             'updatedAt': self.updatedAt,
         }
 
-    user_spot = db.relationship('User', back_populates='spots_user')
-    reviews = db.relationship('Spot', back_populates='spots')
+    user = db.relationship('User', back_populates='spots')
+    review = db.relationship('Review', back_populates='spots')
+
 
 class Review(db.Model):
     __tablename__ = 'reviews'
@@ -111,5 +113,5 @@ class Review(db.Model):
             'updatedAt': self.updatedAt,
         }
 
-    user_review = db.relationship('User', back_populates='reviews_user')
-    spots = db.relationship('Spot', back_populates='reviews')
+    user = db.relationship('User', back_populates='reviews')
+    spots = db.relationship('Spot', back_populates='review')
