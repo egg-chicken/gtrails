@@ -1,3 +1,4 @@
 from .db import db
-from .user import User
+from .model import User, Spot, Review
 from .db import environment, SCHEMA
+from .db import db
