@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify, request
 from app.models import User, Spot, Review, db
 from app.forms.spot_form import SpotForm
+from app.forms.review_form import ReviewForm
 from app.api.auth_routes import validation_errors_to_error_messages
 from flask_login import current_user, login_required, login_user
 
@@ -151,3 +152,41 @@ def deleteSpot(id):
     db.session.commit()
 
     return { "message": 'Successfully deleted', "statusCode": 200}
+
+
+# create a review for a spot based on the spot's id - not complete!!
+@spot_routes.route('/<int:id>/reviews', methods=['POST'])
+@login_required
+def createReview(id):
+
+    spot = Spot.query.get(id)
+
+    if spot is None:
+        return jsonify({'message': "Spot couldn't be found"}), 404
+
+    current_user_id = current_user.id
+
+    existing_review = Review.query.filter_by(userId=current_user_id, spotId=id).first()
+
+    if existing_review:
+        return jsonify({'message': 'User already has a review for this spot'}), 500
+
+
+    form = ReviewForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+        review = Review(
+            stars = form.data['stars'],
+            review = form.data['review'],
+            userId=current_user.id,
+        )
+
+        if not isinstance(review.stars, int) or review.stars < 1 or review.stars > 5:
+            return jsonify({'message': 'Stars must be an integer from 1 to 5', 'errors': {'stars': 'Stars must be an integer from 1 to 5'} }), 400
+
+        db.session.add(review)
+        db.session.commit()
+        return review.to_dict()
+
+    return {"ldfkdffkdsfsdf"}
