@@ -17,7 +17,6 @@ def getSpots():
     return {'spots': [spot.to_dict() for spot in spots]}
 
 
-
 # return all the spots created by the current user
 @spot_routes.route('/created', methods=['GET'])
 @login_required
@@ -44,7 +43,7 @@ def userSpots():
     return {'spots': spotInfo}
 
 
-#return details of a spot by Id
+# return details of a spot by Id
 @spot_routes.route('/<int:id>', methods=['GET'])
 def spotId(id):
 
@@ -136,6 +135,7 @@ def updateSpot(id):
     # return spot.to_dict()
     return {"message": "Validation Error","statusCode": 400,'errors': validation_errors_to_error_messages(form.errors)}, 400
 
+
 # delete a spot
 @spot_routes.route('/<int:id>', methods=['DELETE'])
 @login_required
@@ -154,7 +154,7 @@ def deleteSpot(id):
     return { "message": 'Successfully deleted', "statusCode": 200}
 
 
-# create a review for a spot based on the spot's id - not complete!!
+# create a review for a spot based on the spot's id
 @spot_routes.route('/<int:id>/reviews', methods=['POST'])
 @login_required
 def createReview(id):
@@ -176,10 +176,13 @@ def createReview(id):
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
+        spotId = spot.id
+
         review = Review(
             stars = form.data['stars'],
             review = form.data['review'],
-            userId=current_user.id,
+            userId = current_user.id,
+            spotId = spotId
         )
 
         if not isinstance(review.stars, int) or review.stars < 1 or review.stars > 5:
@@ -189,4 +192,18 @@ def createReview(id):
         db.session.commit()
         return review.to_dict()
 
-    return {"ldfkdffkdsfsdf"}
+    return {"message": "Validation Error","statusCode": 400,'errors': validation_errors_to_error_messages(form.errors)}, 400
+
+
+# get all the reviews by a spot's id
+@spot_routes.route('/<int:id>/reviews', methods=['GET'])
+def spotReviews(id):
+
+    reviews = Review.query.filter_by(spotId=id).all()
+
+    if reviews is None:
+        return {"message": "No reviews found for the spot"}, 404
+
+    reviews_data = [review.to_dict() for review in reviews]
+
+    return {"Reviews": reviews_data}, 200

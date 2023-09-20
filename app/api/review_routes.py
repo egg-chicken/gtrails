@@ -24,7 +24,10 @@ def userReviews():
 
     return {'reviews': reviewInfo}
 
-# get all the reviews by a spot's id
+
+
+
+#get review based on id
 @review_routes.route('/<int:id>', methods=['GET'])
 def idReviews(id):
 
