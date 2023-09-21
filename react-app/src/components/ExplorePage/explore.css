@@ -1,0 +1,17 @@
+.spot-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    max-width: calc(100% - 10%);
+    gap: 10px;
+    width: 60%;
+    padding: 20px;
+    margin-left: 15px;
+}
+
+.image {
+    object-fit: cover;
+    height: 300px;
+    width: 300px;
+    margin-bottom: 4px;
+    border-radius: 8px;
+}

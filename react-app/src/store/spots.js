@@ -1,4 +1,4 @@
-const LOAD_SPOTS = 'spots/LOAD_SPOTS';
+const LOAD_ALL_SPOTS = 'spots/LOAD_SPOTS';
 const LOAD_ONE_SPOT = 'spots/LOAD_ONE_SPOT';
 const LOAD_USER_SPOTS = 'spots/LOAD_USER_SPOTS';
 const UPDATE_SPOT = 'spots/UPDATE_SPOT';
@@ -6,7 +6,7 @@ const DELETE_SPOT = 'spots/DELETE';
 const CREATE_SPOT = 'spots/CREATE';
 
 const loadspots = list => ({
-    type: LOAD_SPOTS,
+    type: LOAD_ALL_SPOTS,
     list
 })
 
@@ -35,7 +35,7 @@ const updateOne = spot => ({
     spot
 });
 
-// get the list of all spots thunk
+// get the list of all spots
 export const getSpots = () => async dispatch => {
     const response = await fetch('/api/spots');
 
@@ -111,7 +111,7 @@ const initialState = {};
 const spotsReducer = (state = initialState, action) => {
     let newState = {...state}
     switch (action.type) {
-        case LOAD_SPOTS:
+        case LOAD_ALL_SPOTS:
             const allSpots = {};
             action.list.spots.forEach((spot) => {
                 allSpots[spot.id] = spot;
