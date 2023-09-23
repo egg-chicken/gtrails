@@ -48,11 +48,12 @@ export const getSpots = () => async dispatch => {
 
 // get all the current user's spots
 export const getCurrentUsersSpots = () => async dispatch => {
-    const response = await fetch('/api/spots/owned');
+    const response = await fetch('/api/spots/created');
 
     if(response.ok){
         const spots = await response.json();
         dispatch(loadUserSpots(spots));
+        return spots
     }
 }
 
@@ -63,13 +64,13 @@ export const getSpotsDetails = (id) => async dispatch => {
     if(response.ok){
         const spot = await response.json();
         dispatch(loadspot(spot));
-
+        return spot
     }
 }
 
 // create a spot
 export const createSpot = (spot) => async (dispatch) => {
-    const response = await fetch('/api/spots/newspot', {
+    const response = await fetch('/api/spots/new', {
         method: "POST",
         body: spot
       });

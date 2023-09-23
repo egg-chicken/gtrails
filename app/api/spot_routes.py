@@ -47,22 +47,29 @@ def userSpots():
 @spot_routes.route('/<int:id>', methods=['GET'])
 def spotId(id):
 
+    # spot = Spot.query.get(id)
     spot = Spot.query.get(id)
-
-    reviews = Review.query.filter_by(spotId=id).all()
 
     if spot is None:
         return {'message': "Spot couldn\'t be found", "statusCode": 404}
 
-    if reviews is None:
-        return {'message': 'No reviews found for this spot', 'statusCode': 404}
-
-    reviewsList = [review.to_dict() for review in reviews]
-
     spot_info = spot.to_dict()
-    spot_info['reviews'] = reviewsList
 
-    return jsonify(spot_info)
+    return spot_info
+    # reviews = Review.query.filter_by(spotId=id).all()
+
+    # if spot is None:
+    #     return {'message': "Spot couldn\'t be found", "statusCode": 404}
+
+    # if reviews is None:
+    #     return {'message': 'No reviews found for this spot', 'statusCode': 404}
+
+    # reviewsList = [review.to_dict() for review in reviews]
+
+    # spot_info = spot.to_dict()
+    # spot_info['reviews'] = reviewsList
+
+    # return jsonify(spot_info)
 
 
 # creates and returns a new spot
@@ -100,7 +107,7 @@ def createSpot():
 
 
 # updates a spot
-@spot_routes.route('/<int:id>', methods=['PUT'])
+@spot_routes.route('/<int:id>/edit', methods=['PUT'])
 @login_required
 def updateSpot(id):
 
