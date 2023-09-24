@@ -10,7 +10,9 @@ function Navigation({ isLoaded }){
 	return (
 		<ul>
 			<li>
-				<NavLink exact to="/">Home</NavLink>
+				<NavLink exact to="/">
+				<img src="./%PUBLIC_URL%/mountain.png" />
+					Home</NavLink>
 			</li>
 			<li>
 				<NavLink exact to="/explore">Explore</NavLink>
