@@ -8,12 +8,16 @@ function Navigation({ isLoaded }){
 	const sessionUser = useSelector(state => state.session.user);
 
 	return (
+		<>
+		<div>
+
+			<NavLink exact to="/">
+			<i class="fas fa-mountain"></i>
+			<i class="fa fa-hiking"></i>
+			<i class="fas fa-solid fa-tree">Home</i>
+			</NavLink>
+		</div>
 		<ul>
-			<li>
-				<NavLink exact to="/">
-				<img src="./%PUBLIC_URL%/mountain.png" />
-					Home</NavLink>
-			</li>
 			<li>
 				<NavLink exact to="/explore">Explore</NavLink>
 			</li>
@@ -29,6 +33,7 @@ function Navigation({ isLoaded }){
 				</li>
 			)}
 		</ul>
+		</>
 	);
 }
 
