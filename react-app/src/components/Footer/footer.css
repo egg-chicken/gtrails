@@ -1,0 +1,40 @@
+footer {
+    background-color: darkgreen;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .footer-links li {
+    display: inline-block;
+    margin-left: 10px;
+  }
+
+  .footer-links li:first-child {
+    margin-left: 0;
+  }
+
+  .footer-links a{
+    text-decoration: none;
+    color: whitesmoke;
+  }
+
+  .footer-links a:hover {
+    text-decoration: underline;
+  }
+
+  .credits {
+    display: flex;
+    flex-direction: row;
+  }

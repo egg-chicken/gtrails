@@ -9,30 +9,30 @@ function Navigation({ isLoaded }){
 
 	return (
 		<>
-		<div>
-
-			<NavLink exact to="/">
-			<i class="fas fa-mountain"></i>
-			<i class="fa fa-hiking"></i>
-			<i class="fas fa-solid fa-tree">Home</i>
-			</NavLink>
-		</div>
-		<ul>
-			<li>
-				<NavLink exact to="/explore">Explore</NavLink>
-			</li>
-			<li>
-				<NavLink exact to="/community">Community</NavLink>
-			</li>
-			<li>
-				<NavLink exact to="/saved">Saved</NavLink>
-			</li>
-			{isLoaded && (
-				<li>
-					<ProfileButton user={sessionUser} />
-				</li>
-			)}
-		</ul>
+			<div className='nav-bar'>
+				<div>
+					<NavLink className="home nav-link" exact to="/">
+						<i class="fas fa-mountain"></i>
+						<i class="fa fa-hiking"></i>
+						<i class="fas fa-solid fa-tree"></i>
+						GTrails
+					</NavLink>
+				</div>
+				<div>
+					<NavLink className="nav-link" exact to="/explore">Explore</NavLink>
+				</div>
+				<div>
+					<NavLink className="nav-link" exact to="/community">Community</NavLink>
+				</div>
+				<div>
+					<NavLink className="nav-link" exact to="/saved">Saved</NavLink>
+				</div>
+				<div>
+					{isLoaded && (
+						<ProfileButton user={sessionUser} />
+					)}
+				</div>
+			</div>
 		</>
 	);
 }
