@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
+import ManageReviewsPage from "./components/Reviews/ManageReview";
 import UpdateSpotForm from "./components/Spots/UpdateSpot";
 import ManageSpotsPage from "./components/Spots/ManageSpots";
 import SpotDetailsPage from "./components/Spots/SpotDetails";
@@ -36,6 +37,9 @@ function App() {
           </Route>
           <Route path="/explore" >
             <ExplorePage />
+          </Route>
+          <Route path='/reviews/created'>
+            <ManageReviewsPage />
           </Route>
           <Route path='/spots/new'>
             <CreateSpotForm />

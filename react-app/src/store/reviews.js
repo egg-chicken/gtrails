@@ -1,9 +1,15 @@
 const LOAD_ALL_REVIEWS = 'reviews/LOAD_ALL_REVIEWS';
+const LOAD_USER_REVIEWS = 'reviews/LOAD_USER_REVIEWS';
 const CREATE_REVIEW = 'reviews/CREATE_REVIEW';
 const DELETE_REVIEW = 'reviews/DELETE_REVIEW';
 
 const loadreviews = reviews => ({
     type: LOAD_ALL_REVIEWS,
+    reviews
+});
+
+const loadUserReviews = reviews => ({
+    type: LOAD_USER_REVIEWS,
     reviews
 });
 
@@ -24,6 +30,18 @@ export const getAllReviews = id => async dispatch => {
     if(response.ok){
         const reviews = await response.json();
         dispatch(loadreviews(reviews));
+        return reviews;
+    }
+}
+
+// get all current user reviews
+export const getCurrentUsersReviews = () => async dispatch => {
+    const response = await fetch('/api/reviews/created')
+
+    if(response.ok){
+        const reviews = await response.json();
+        dispatch(loadUserReviews(reviews));
+        console.log('store review:',reviews)
         return reviews;
     }
 }
@@ -68,6 +86,16 @@ const reviewsReducer = (state = initialState, action) => {
                 mapRev[review.id] = review;
             });
             return mapRev;
+        case LOAD_USER_REVIEWS:
+            const mapRev2 = {}
+            action.reviews.reviews.forEach(review => {
+                mapRev2[review.id] = review;
+            });
+            return mapRev2;
+            // return {
+            //     ...state,
+            //     ...action.reviews
+            // };
         case CREATE_REVIEW:
             newState[action.review.id] = action.review;
             return newState;
