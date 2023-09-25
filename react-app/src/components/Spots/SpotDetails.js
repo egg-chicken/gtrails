@@ -3,15 +3,19 @@ import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import * as spotActions from '../../store/spots';
-
+import * as reviewActions from '../../store/reviews';
+import OpenModalButton from '../OpenModalButton';
+import ReviewModal from '../Reviews/CreateReviewModal';
 
 const SpotDetailsPage = () => {
     const { id } = useParams();
     const dispatch = useDispatch();
     const spot = useSelector((state) => state.spot[id]);
+    const reviews = useSelector((state) => Object.values(state.review));
 
     useEffect(() => {
         dispatch(spotActions.getSpotsDetails(id))
+        dispatch(reviewActions.getAllReviews(id))
     }, [dispatch, id])
 
     if(!spot){
@@ -31,11 +35,26 @@ const SpotDetailsPage = () => {
             <div>Route Type: {spot.routeType}</div>
             <p>fdjkfgkgdflkgjdlfglfgjdfkg lol</p>
             <div>{spot.description}</div>
-            <div>Reviews + num</div>
-            <div>Photos + num</div>
-            <div>average review</div>
-            <div>Write Review button</div>
+            <div>
+                <p>Reviews</p>
+                <p>Photos</p>
+                <p>Average Review</p>
+                <OpenModalButton
+                    modalComponent={<ReviewModal id={spot.id}/>}
+                    buttonText='Write a Review'
+                />
+                {reviews?.map(review => {
+                const year = new Date(review.createdAt).getFullYear();
 
+                return (
+                  <div key={review.id}>
+                    <p className='user-firstname'>{review.User?.firstName}</p>
+                    <p className='date'>{year}</p>
+                    <p className='review-text'>{review.review}</p>
+                  </div>
+                )
+              })}
+            </div>
         </>
     )
 }

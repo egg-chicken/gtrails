@@ -1,0 +1,13 @@
+.main-bar{
+    background-color: green;
+    text-align: center;
+    padding: 20px;
+    margin: 5px;
+}
+
+.main-title {
+    color: white;
+    font-size: 32px;
+    overflow: hidden;
+    margin: 0px;
+}

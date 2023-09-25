@@ -12,9 +12,9 @@ function Navigation({ isLoaded }){
 			<div className='nav-bar'>
 				<div>
 					<NavLink className="home nav-link" exact to="/">
-						<i class="fas fa-mountain"></i>
-						<i class="fa fa-hiking"></i>
-						<i class="fas fa-solid fa-tree"></i>
+						<i className="fas fa-mountain"></i>
+						<i className="fa fa-hiking"></i>
+						<i className="fas fa-solid fa-tree"></i>
 						GTrails
 					</NavLink>
 				</div>
