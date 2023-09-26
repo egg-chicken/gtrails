@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import * as spotActions from '../../store/spots';
 import * as reviewActions from '../../store/reviews';
 import OpenModalButton from '../OpenModalButton';
+import EditReviewModal from '../Reviews/EditReviewModal';
 import ReviewModal from '../Reviews/CreateReviewModal';
 import DeleteReviewModal from '../Reviews/DeleteReviewModal';
 
@@ -76,6 +77,10 @@ const SpotDetailsPage = () => {
                     {review.userId === user?.id && <OpenModalButton
                       modalComponent={<DeleteReviewModal id={review.id} spotId={review.spotId} setIsVisible={setIsVisible}/>}
                       buttonText='Delete'
+                    />}
+                    {review.userId === user?.id && <OpenModalButton
+                        modalComponent={<EditReviewModal id={review.id} spotId={review.spotId} setIsVisible={setIsVisible}/>}
+                        buttonText='Edit'
                     />}
                   </div>
                 )

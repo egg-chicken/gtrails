@@ -1,5 +1,7 @@
 const LOAD_ALL_REVIEWS = 'reviews/LOAD_ALL_REVIEWS';
+const LOAD_ONE_REVIEW = 'reviews/LOAD_ONE_REVIEW'
 const LOAD_USER_REVIEWS = 'reviews/LOAD_USER_REVIEWS';
+const UPDATE_REVIEW = 'reviews/UPDATE_REVIEW';
 const CREATE_REVIEW = 'reviews/CREATE_REVIEW';
 const DELETE_REVIEW = 'reviews/DELETE_REVIEW';
 
@@ -8,9 +10,19 @@ const loadreviews = reviews => ({
     reviews
 });
 
+const loadreview = review => ({
+    type: LOAD_ONE_REVIEW,
+    review
+})
+
 const loadUserReviews = reviews => ({
     type: LOAD_USER_REVIEWS,
     reviews
+});
+
+const updateOne = review => ({
+    type: UPDATE_REVIEW,
+    review
 });
 
 const createOne = review => ({
@@ -46,6 +58,18 @@ export const getCurrentUsersReviews = () => async dispatch => {
     }
 }
 
+// get review details
+export const getReviewsDetails = (id) => async dispatch => {
+    const response = await fetch(`/api/reviews/${id}`);
+
+    if(response.ok){
+        const review = await response.json();
+        dispatch(loadreview(review));
+        return review
+    }
+}
+
+
 // create a review
 export const createReview = (spotId, reviewData) => async (dispatch) => {
     const response = await fetch(`/api/spots/${spotId}/reviews`, {
@@ -75,6 +99,20 @@ export const deleteReview = (id) => async dispatch => {
     }
 };
 
+// edit a review
+export const editReview = (id, formData) => async dispatch => {
+    const response = await fetch(`/api/reviews/${id}/edit`, {
+        method: 'PUT',
+        body: formData
+    });
+
+    if(response.ok) {
+        const updated = await response.json();
+        dispatch(updateOne(updated));
+        return updated;
+    }
+};
+
 const initialState = {}
 
 const reviewsReducer = (state = initialState, action) => {
@@ -92,10 +130,12 @@ const reviewsReducer = (state = initialState, action) => {
                 mapRev2[review.id] = review;
             });
             return mapRev2;
-            // return {
-            //     ...state,
-            //     ...action.reviews
-            // };
+        case LOAD_ONE_REVIEW:
+            newState[action.review.id] = action.review;
+            return newState
+        case UPDATE_REVIEW:
+            newState[action.review.id] = action.review;
+            return newState
         case CREATE_REVIEW:
             newState[action.review.id] = action.review;
             return newState;

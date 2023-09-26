@@ -12,12 +12,15 @@ review_routes = Blueprint('reviews', __name__)
 def userReviews():
     currentUserReviews = Review.query.filter_by(userId = current_user.id).all()
 
+    nameInfo = Spot.query.get(current_user.id)
+
     reviewInfo = []
 
     for review in currentUserReviews:
-
+        nameInfo = review.spots
         reviewInfo.append({
             'id': review.id,
+            'spotName': nameInfo.name,
             'review': review.review,
             'stars': review.stars
         })
@@ -25,9 +28,7 @@ def userReviews():
     return {'reviews': reviewInfo}
 
 
-
-
-#get review based on id
+# return details of a review based on id
 @review_routes.route('/<int:id>', methods=['GET'])
 def idReviews(id):
 
@@ -40,7 +41,7 @@ def idReviews(id):
 
 
 # edit a review
-@review_routes.route('/<int:id>', methods=['PUT'])
+@review_routes.route('/<int:id>/edit', methods=['PUT'])
 @login_required
 def editReview(id):
 
@@ -53,7 +54,6 @@ def editReview(id):
 
     if review.userId != current_user_id:
         return {'message': 'You are not authorized to edit this review'}, 403
-
 
     form = ReviewForm()
     form['csrf_token'].data = request.cookies['csrf_token']
@@ -69,7 +69,7 @@ def editReview(id):
         return review.to_dict()
 
 
-    return {"idk lol"}, 200
+    return {"message": "Validation Error","statusCode": 400,'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 
 # delete a review

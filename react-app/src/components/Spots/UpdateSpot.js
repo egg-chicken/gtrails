@@ -26,16 +26,11 @@ const UpdateSpotForm = () => {
 
     const [errors, setErrors] = useState({});
 
-    // console.log('SPOT', spot)
-    // console.log("SPOT NAME", name)
-
     useEffect(() => {
             dispatch(spotActions.getSpotsDetails(id))
             .then(spotdetail => {
-                // console.log('!!!!spot detail',spotdetail)
                 if(spotdetail){
-                    // console.log('spot detail',spotdetail.name)
-                    setName(spotdetail.name)
+                    setName(spotdetail?.name)
                     setAddress(spotdetail?.address)
                     setCity(spotdetail?.city)
                     setState(spotdetail?.state)
@@ -50,7 +45,7 @@ const UpdateSpotForm = () => {
                 }
             })
             .catch((err) => {
-                console.error('Error fetching song details:', err);
+                console.error('Error fetching spot details:', err);
             });
     }, [dispatch])
 
