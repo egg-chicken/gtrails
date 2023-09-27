@@ -27,9 +27,9 @@ function Navigation({ isLoaded }){
 				<div>
 					<NavLink className="nav-link" exact to="/saved">Saved</NavLink>
 				</div>
-				<div>
+				<div className='right-nav-side'>
 					{isLoaded && (
-						<ProfileButton user={sessionUser} />
+						<ProfileButton user={sessionUser}/>
 					)}
 				</div>
 			</div>

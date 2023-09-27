@@ -1,13 +1,46 @@
+
+.container {
+    display: flex;
+    flex-direction: column;
+    max-width: 90%;
+    padding: 10px;
+    margin: auto;
+    min-height: 100vh;
+}
+
 .main-bar{
-    background-color: green;
+    object-fit: cover;
+    object-position: top;
+    background-image: url(./background.jpeg);
+    background-size: cover;
+    background-position: center center;
+    height: 30vh;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
     text-align: center;
     padding: 20px;
     margin: 5px;
+    color: white;
 }
 
 .main-title {
     color: white;
     font-size: 32px;
-    overflow: hidden;
     margin: 0px;
+}
+
+.image-main-page {
+    object-fit: cover;
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.spot-container-main-page {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(100px, 1fr));
+    gap: 10px;
 }

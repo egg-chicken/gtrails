@@ -40,14 +40,17 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <button onClick={openMenu}>
+      <button className='open-menu' onClick={openMenu}>
         <i className="fas fa-user-circle" />
       </button>
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
           <>
-            <li>{user.username}</li>
-            <li>{user.email}</li>
+            <div className="user-drop">
+              <li>{user.username}</li>
+              <li>{user.email}</li>
+            </div>
+
             <li>
               <NavLink to='/spots/new' className='' onClick={closeMenu}>Add a New Spot</NavLink>
             </li>

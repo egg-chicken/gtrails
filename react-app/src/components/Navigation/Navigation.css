@@ -1,5 +1,6 @@
 .profile-dropdown {
   position: absolute;
+  justify-content: end;
 }
 
 .hidden {
@@ -9,18 +10,65 @@
 .nav-link {
   text-decoration: none;
   color: black;
-  padding: 10px;
+  padding: 10px 15px;
 }
 
-/* change this later  */
 .nav-bar {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   Height: 60px;
   width: 100%;
+  padding: 0 20px;
+  gap: 1px;
 }
 
 .home {
   font-size: 20pt;
+}
+
+.nav-link:hover {
+  /* background-color: #e0e0e0; */
+  /* border-radius: 5px; */
+  text-decoration: underline;
+}
+
+.nav-link:last-child {
+  margin-right: 0;
+}
+
+ul.profile-dropdown {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: white;
+  right: 30px;
+  top: 45px;
+  position: absolute;
+  padding: 10px;
+  border: 2px solid #000000;
+  /* box-shadow: 2px 2px 2px #000000; */
+  font-size: 14px;
+  /* width: 100px; */
+  list-style: none;
+}
+
+ul.profile-dropdown.hidden {
+  display: none;
+}
+
+.open-menu {
+  position: relative;
+  border-radius: 30px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.user-drop {
+  margin-bottom: 5px;
+}
+
+.right-nav-side {
+  display: flex;
+  justify-content: end;
+  padding-right: 10px;
 }
