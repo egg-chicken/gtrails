@@ -27,18 +27,21 @@ def userSpots():
 
     spotInfo = []
 
-    for spot in currentUserSpots:
+    # for spot in currentUserSpots:
 
-        spotInfo.append({
-            'id': spot.id,
-            'name': spot.name,
-            'description': spot.description,
-            'length': spot.length,
-            'elevGain': spot.elevGain,
-            'routeType': spot.routeType,
-            'image': spot.image,
-            # 'stars': review_info.stars
-        })
+    #     spotInfo.append({
+    #         'id': spot.id,
+    #         'name': spot.name,
+    #         'description': spot.description,
+    #         'length': spot.length,
+    #         'elevGain': spot.elevGain,
+    #         'routeType': spot.routeType,
+    #         'image': spot.image,
+    #         # 'stars': review_info.stars
+    #     })
+    for spot in currentUserSpots:
+        spot_info = spot.to_dict()
+        spotInfo.append(spot_info)
 
     return {'spots': spotInfo}
 

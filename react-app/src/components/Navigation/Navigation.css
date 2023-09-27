@@ -17,7 +17,7 @@
   display: flex;
   align-items: center;
   Height: 60px;
-  width: 100%;
+  /* width: 100%; */
   padding: 0 20px;
   gap: 1px;
 }
@@ -71,4 +71,20 @@ ul.profile-dropdown.hidden {
   display: flex;
   justify-content: end;
   padding-right: 10px;
+}
+
+.icon-mount {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  margin-top: 20px;
+}
+
+.icon-title-container {
+  display: flex;
+  align-items: center;
+}
+
+.icon-title {
+  font-size: 20pt;
 }

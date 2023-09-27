@@ -10,12 +10,13 @@ function Navigation({ isLoaded }){
 	return (
 		<>
 			<div className='nav-bar'>
-				<div>
+				<div className='icon-title-container'>
 					<NavLink className="home nav-link" exact to="/">
-						<i className="fas fa-mountain"></i>
+						<img src='./mountain.png' alt='main' className='icon-mount'/>
+						{/* <i className="fas fa-mountain"></i>
 						<i className="fa fa-hiking"></i>
-						<i className="fas fa-solid fa-tree"></i>
-						GTrails
+						<i className="fas fa-solid fa-tree"></i> */}
+						<span className="icon-title">GTrails</span>
 					</NavLink>
 				</div>
 				<div>

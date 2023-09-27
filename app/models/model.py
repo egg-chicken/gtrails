@@ -64,7 +64,17 @@ class Spot(db.Model):
     createdAt = db.Column(db.DateTime, server_default=db.func.now())
     updatedAt = db.Column(db.DateTime, server_default=db.func.now(), server_onupdate=db.func.now())
 
+    def calculate_average_rating(self):
+        if not self.reviews:
+            return None
+
+        total_stars = sum(review.stars for review in self.reviews)
+        avg_rating = total_stars / len(self.reviews)
+        return avg_rating
+
     def to_dict(self):
+        avg_rating = self.calculate_average_rating()
+
         return {
             'id': self.id,
             'name': self.name,
@@ -82,10 +92,12 @@ class Spot(db.Model):
             'image': self.image,
             'createdAt': self.createdAt,
             'updatedAt': self.updatedAt,
+            'avgRating': avg_rating
         }
 
     user = db.relationship('User', back_populates='spots')
-    review = db.relationship('Review', back_populates='spots')
+    # review = db.relationship('Review', back_populates='spots')
+    reviews = db.relationship('Review', back_populates='spot')
 
 
 class Review(db.Model):
@@ -114,4 +126,5 @@ class Review(db.Model):
         }
 
     user = db.relationship('User', back_populates='reviews')
-    spots = db.relationship('Spot', back_populates='review')
+    # spots = db.relationship('Spot', back_populates='review')
+    spot = db.relationship('Spot', back_populates='reviews')
