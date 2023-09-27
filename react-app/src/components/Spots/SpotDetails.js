@@ -47,6 +47,7 @@ const SpotDetailsPage = () => {
     return (
         <>
             <h1>{spot.name}</h1>
+            <img  className='image-id' src={spot.image} alt={spot.image}/>
             <div>spot difficulty + review</div>
             <div>{spot.address}</div>
             <li>

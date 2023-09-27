@@ -25,12 +25,15 @@ const LandingPage = () => {
                 <h2 className="parks-text">Parks worth a look</h2>
                     <div className="spot-container-main-page">
                         {spotsArray.slice(0,4).map((spot) => (
-                            <Link key={spot.id} to={`/spots/${spot.id}`}>
-                                    <a key={spot.id} href="#" className="spot-card">
+                            <Link key={spot.id} to={`/spots/${spot.id}`} className='spot'>
+                                    <a key={spot.id} href="#" className="spot-card spot">
                                     <img src={spot.image} alt='spot' className='image-main-page' title={spot.name}/>
-                                    <p className="">difficulty + review</p>
+                                    <p className='spot-rating'>
+                                        <i className="fa fa-solid fa-star" style={{color:'#2ced39',}}/>
+                                        {spot.avgRating ? (Number.isInteger(spot.avgRating) ? spot.avgRating.toFixed(1) : spot.avgRating.toFixed(1)) : 'New'}
+                                    </p>
                                     <p className='a-details'>{spot.name}</p>
-                                    <p className='b-details'>Length: {spot.length} mi</p>
+                                    <p className='b-details'>Length: {spot.length} mi &#8231; Type: {spot.routeType}</p>
                                     </a>
                             </Link>
                         ))}

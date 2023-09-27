@@ -1,6 +1,6 @@
 .spot-container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     max-width: calc(100% - 10%);
     gap: 10px;
     width: 60%;
@@ -14,4 +14,9 @@
     width: 300px;
     margin-bottom: 4px;
     border-radius: 8px;
+}
+
+.spot {
+    text-decoration: none;
+    color: black;
 }
