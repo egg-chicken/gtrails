@@ -8,6 +8,16 @@
     margin-left: 15px;
 }
 
+.t-detail {
+    font-size: 30px;
+}
+
+.spot {
+    text-decoration: none;
+    color: black;
+}
+
+
 .image {
     object-fit: cover;
     height: 300px;
@@ -16,7 +26,8 @@
     border-radius: 8px;
 }
 
-.spot {
-    text-decoration: none;
-    color: black;
+.spot-details {
+    display: flex;
+    justify-content: flex-start;
+    margin: 0px;
 }
