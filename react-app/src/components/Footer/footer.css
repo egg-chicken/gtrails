@@ -1,6 +1,7 @@
 footer {
-    background-color: darkgreen;
-    padding: 20px;
+    background-color: #2A9134;
+    padding: 40px;
+    height: 200px;
     text-align: center;
   }
 
@@ -37,4 +38,15 @@ footer {
   .credits {
     display: flex;
     flex-direction: row;
+    font-size: 16px;
+  }
+
+  .text {
+    font-size: 16px;
+  }
+
+  .f-icons {
+    display: flex;
+    height: 20px;
+    width: 20px;
   }
