@@ -37,8 +37,11 @@
 }
 
 .parks-text {
-    margin: 10px;
+    margin: 0px;
     font-size: 25px;
+    padding-left: 40px;
+    padding-bottom: 20px;
+    padding-top: 20px;
 }
 
 .spot-images {
@@ -52,9 +55,32 @@
     display: grid;
     grid-template-columns: repeat(4, minmax(100px, 1fr));
     gap: 10px;
+    padding: 0px 40px 40px 40px;
 }
 
 .spot {
     text-decoration: none;
     color: black;
+}
+
+.spot-details{
+    display: flex;
+    justify-content: flex-start;
+    margin: 0px;
+}
+
+.a-detail {
+    /* font-weight: bold; */
+    margin: 0px;
+    padding-top: 5px;
+}
+
+.spot-rating {
+    margin: 0px;
+    padding-top: 5px;
+}
+
+.b-detail {
+    color: gray;
+    margin: 0px;
 }
