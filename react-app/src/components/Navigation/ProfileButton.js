@@ -39,30 +39,25 @@ function ProfileButton({ user }) {
   const closeMenu = () => setShowMenu(false);
 
   return (
-    <>
-      <button className='open-menu' onClick={openMenu}>
-        <i className="fas fa-user-circle" />
+    <div>
+      <button className='open-menu-button' onClick={openMenu}>
+        <i className="fas fa-solid fa-tree" style={{color:'#25d066',}}></i>
       </button>
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
           <>
-            <div className="user-drop">
-              <li>{user.username}</li>
-              <li>{user.email}</li>
-            </div>
-
-            <li>
-              <NavLink to='/spots/new' className='' onClick={closeMenu}>Add a New Spot</NavLink>
-            </li>
-            <li>
-              <NavLink to='/spots/created' className='manage-spots' onClick={closeMenu}>Manage Spots</NavLink>
-            </li>
-            <li>
-              <NavLink to='/reviews/created' className='' onClick={closeMenu}>Reviews</NavLink>
-            </li>
-            <li>
-              <button onClick={handleLogout}>Log Out</button>
-            </li>
+              <div className="user-drop">
+                <li>Welcome, {user.username}</li>
+                <li>{user.email}</li>
+              </div>
+              <div>
+                <li className="drop-link"><NavLink to='/spots/new' className='new-spots-l' onClick={closeMenu}>Add a New Spot</NavLink></li>
+                <li className="drop-link"><NavLink to='/spots/created' className='manage-spots-l' onClick={closeMenu}>Manage Spots</NavLink></li>
+                <li className="drop-link"><NavLink to='/reviews/created' className='reviews-l' onClick={closeMenu}>Reviews</NavLink></li>
+              </div>
+              <li className="drop-link">
+                <button onClick={handleLogout}>Log Out</button>
+              </li>
           </>
         ) : (
           <>
@@ -71,7 +66,6 @@ function ProfileButton({ user }) {
               onItemClick={closeMenu}
               modalComponent={<LoginFormModal />}
             />
-
             <OpenModalButton
               buttonText="Sign Up"
               onItemClick={closeMenu}
@@ -80,7 +74,7 @@ function ProfileButton({ user }) {
           </>
         )}
       </ul>
-    </>
+    </div>
   );
 }
 

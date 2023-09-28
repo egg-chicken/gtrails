@@ -8,27 +8,24 @@ function Navigation({ isLoaded }){
 	const sessionUser = useSelector(state => state.session.user);
 
 	return (
-		<div className='nav-container'>
-			<div className='icon-title-container'>
+		<nav className='nav-container'>
+			<div>
 				<NavLink className="home nav-link" exact to="/">
-					<img src='./mountain.png' alt='main' className='icon-mount'/>
-					{/* <i className="fas fa-mountain"></i>
-					<i className="fa fa-hiking"></i>
-					<i className="fas fa-solid fa-tree"></i> */}
-					<span className="icon-title">GTrails</span>
+					<span>GTrails</span>
+					<i className="fa fa-hiking" style={{color:'#25d066',}}></i>
 				</NavLink>
 			</div>
 			<div>
-				<NavLink className="nav-link" exact to="/explore">Explore</NavLink>
-				<NavLink className="nav-link" exact to="/community">Community</NavLink>
-				<NavLink className="nav-link" exact to="/saved">Saved</NavLink>
+				<NavLink className="nav-link sub-link" exact to="/explore">Explore</NavLink>
+				<NavLink className="nav-link sub-link" exact to="/community">Community</NavLink>
+				<NavLink className="nav-link sub-link" exact to="/saved">Saved</NavLink>
 			</div>
 			<div className='right-nav-side'>
 				{isLoaded && (
 					<ProfileButton user={sessionUser}/>
 				)}
 			</div>
-		</div>
+		</nav>
 	);
 }
 

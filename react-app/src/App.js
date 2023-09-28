@@ -13,6 +13,7 @@ import ExplorePage from "./components/ExplorePage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
+import './App.css'
 
 function App() {
   const dispatch = useDispatch();
@@ -22,41 +23,43 @@ function App() {
   }, [dispatch]);
 
   return (
-    <>
+    <div className="App">
       <Navigation isLoaded={isLoaded} />
-      {isLoaded && (
-        <Switch>
-          <Route exact path="/" >
-            <LandingPage />
-          </Route>
-          <Route path="/login" >
-            <LoginFormPage />
-          </Route>
-          <Route path="/signup">
-            <SignupFormPage />
-          </Route>
-          <Route path="/explore" >
-            <ExplorePage />
-          </Route>
-          <Route path='/reviews/created'>
-            <ManageReviewsPage />
-          </Route>
-          <Route path='/spots/new'>
-            <CreateSpotForm />
-          </Route>
-          <Route path='/spots/created'>
-            <ManageSpotsPage />
-          </Route>
-          <Route path='/spots/:id/edit'>
-            <UpdateSpotForm />
-          </Route>
-          <Route exact path='/spots/:id'>
-            <SpotDetailsPage />
-          </Route>
-        </Switch>
-      )}
+      <div className="bodyContent">
+        {isLoaded && (
+          <Switch>
+            <Route exact path="/" >
+              <LandingPage />
+            </Route>
+            <Route path="/login" >
+              <LoginFormPage />
+            </Route>
+            <Route path="/signup">
+              <SignupFormPage />
+            </Route>
+            <Route path="/explore" >
+              <ExplorePage />
+            </Route>
+            <Route path='/reviews/created'>
+              <ManageReviewsPage />
+            </Route>
+            <Route path='/spots/new'>
+              <CreateSpotForm />
+            </Route>
+            <Route path='/spots/created'>
+              <ManageSpotsPage />
+            </Route>
+            <Route path='/spots/:id/edit'>
+              <UpdateSpotForm />
+            </Route>
+            <Route exact path='/spots/:id'>
+              <SpotDetailsPage />
+            </Route>
+          </Switch>
+        )}
+      </div>
       <Footer isLoaded={isLoaded} />
-    </>
+    </div>
   );
 }
 

@@ -1,10 +1,14 @@
-.profile-dropdown {
-  position: absolute;
-  justify-content: end;
+.nav-container {
+  display: flex;
+  background: white;
+  height: 80px;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
 }
 
-.hidden {
-  display: none;
+.home {
+  font-size: 20pt;
 }
 
 .nav-link {
@@ -13,78 +17,74 @@
   padding: 10px 15px;
 }
 
-.nav-container {
-  display: flex;
-  align-items: center;
-  Height: 60px;
-  /* width: 100%; */
-  padding: 0 20px;
-  gap: 1px;
-}
-
-.home {
-  font-size: 20pt;
-}
-
-.nav-link:hover {
-  /* background-color: #e0e0e0; */
-  /* border-radius: 5px; */
+.sub-link:hover {
   text-decoration: underline;
 }
 
-.nav-link:last-child {
-  margin-right: 0;
+
+/* ProfileButton.js css below */
+
+.profile-dropdown {
+  position: absolute;
+  border: 1px solid grey;
+  background-color: white;
+  color: black;
+  list-style-type: none;
+  border-radius: 10px;
+  font-size: 16px;
+  /* width: 100px; */
+  /* align-items: flex-start */
+  /* justify-content: center; */
 }
 
 ul.profile-dropdown {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  background-color: white;
-  right: 30px;
-  top: 45px;
-  position: absolute;
-  padding: 10px;
-  border: 2px solid #000000;
-  /* box-shadow: 2px 2px 2px #000000; */
-  font-size: 14px;
-  /* width: 100px; */
-  list-style: none;
+  margin: 0px;
+  padding: 0px;
 }
 
-ul.profile-dropdown.hidden {
+.hidden {
   display: none;
 }
 
-.open-menu {
+.open-menu-button {
   position: relative;
-  border-radius: 30px;
-  padding: 5px 10px;
+  border-radius: 50%;
   cursor: pointer;
+  width: 40px;
+  height: 40px;
+  border: none;
+  background-color: #054A29;
+}
+
+.drop-link {
+  padding: 10px;
+}
+
+.drop-link:hover {
+  background-color: lightgray;
 }
 
 .user-drop {
-  margin-bottom: 5px;
+  padding: 10px;
 }
 
-.right-nav-side {
-  display: flex;
-  justify-content: end;
-  padding-right: 10px;
+.manage-spots-l,
+.new-spots-l,
+.reviews-l {
+  text-decoration: none;
+  color: black;
 }
 
+.test {
+  background-color: red;
+}
+
+
+/*
 .icon-mount {
   width: 40px;
   height: 40px;
   margin-right: 10px;
   margin-top: 20px;
 }
-
-.icon-title-container {
-  display: flex;
-  align-items: center;
-}
-
-.icon-title {
-  font-size: 20pt;
-}
+*/
