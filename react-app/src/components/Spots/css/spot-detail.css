@@ -1,0 +1,61 @@
+.spot-detail-container {
+    margin: 20px 20px 20px 150px;
+    padding: 40px;
+}
+
+.spot-border-card {
+    padding: 0px;
+    /* margin: 20px; */
+    /* border: solid 1px black; */
+    border-radius: 40px;
+    background-color: white;
+    width: 90%;
+    box-shadow: 2px 2px 15px 2px grey;
+}
+
+.spot-image-id {
+    overflow: hidden;
+    object-fit: cover;
+    border-radius: 40px 40px 0px 0px;
+    height: 45vh;
+    width: auto;
+}
+
+.cover-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    background-size: cover;
+    background-position: center center;
+    height: 45vh;
+    padding: 0px;
+    margin: 0px;
+    color: black;
+}
+
+.spot-detail-title {
+    display: flex;
+    /* justify-content: center; */
+    font-size: 35px;
+    margin: 0px;
+}
+
+.spot-details-bar {
+    display: flex;
+    justify-content: column;
+    gap: 10px;
+}
+
+.desc-box,
+.rev-box {
+    border-top: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
+    padding: 15px;
+}
+
+.s-review-box {
+    border-top: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
+    padding: 15px;
+}
