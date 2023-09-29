@@ -17,7 +17,7 @@ def userReviews():
     reviewInfo = []
 
     for review in currentUserReviews:
-        nameInfo = review.spots
+        nameInfo = review.spot
         reviewInfo.append({
             'id': review.id,
             'spotName': nameInfo.name,

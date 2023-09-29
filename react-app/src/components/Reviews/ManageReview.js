@@ -7,8 +7,10 @@ import * as reviewActions from '../../store/reviews';
 
 const ManageReviewsPage = () => {
     const dispatch = useDispatch();
-    const reviews = useSelector((state) => state.review);
-    const reviewArray = Object.values(reviews);
+    const reviews = useSelector((state) => Object.values(state.review));
+
+    // console.log('reviews', reviews)
+    // console.log('reviewsArray', reviewArray)
 
     useEffect(() => {
         dispatch(reviewActions.getCurrentUsersReviews())
@@ -18,7 +20,7 @@ const ManageReviewsPage = () => {
     return (
         <>
             <h1>Manage Reviews</h1>
-            {reviewArray.map((review) => (
+            {reviews.map((review) => (
                 <div key={review.id}>
                     <p>{review.stars}</p>
                     <p>{review.spotName}</p>
