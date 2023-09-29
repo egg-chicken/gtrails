@@ -1,33 +1,42 @@
-.spot-container {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    max-width: calc(100% - 10%);
-    gap: 10px;
-    width: 60%;
+.explore-container {
+    margin: 10px;
     padding: 20px;
-    margin-left: 15px;
+}
+
+.spot-grid {
+    display: grid;
+    /* grid-template-columns: repeat(4, 1fr); */
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
 }
 
 .t-detail {
     font-size: 30px;
+    margin: 0px;
+    padding: 0px;
 }
 
 .spot {
+    display: flex;
+    flex-direction: column;
     text-decoration: none;
     color: black;
+    /* justify-content: center */
+    /* height: 400px; */
 }
 
 
 .image {
     object-fit: cover;
-    height: 300px;
-    width: 300px;
-    margin-bottom: 4px;
+    max-width: 100%;
+    /* idk if the height should be 50 or 60% . . . */
+    height: 50%;
     border-radius: 8px;
 }
 
 .spot-details {
     display: flex;
+    flex-direction: column;
     justify-content: flex-start;
     margin: 0px;
 }

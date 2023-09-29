@@ -14,21 +14,24 @@ const ExplorePage = () => {
     }, [dispatch])
 
     return (
-        <div className='spot-container'>
-            <p className='t-detail'>Explore All Locations</p>
-                {spotsArray.map((spot) => (
-                    <Link key={spot.id} to={`/spots/${spot.id}`} className='spot'>
-                            <img src={spot.image} alt='spot prev' className='image' title={spot.name}/>
-                            <div className="spot-details">
-                                <p className='a-details'>{spot.name}</p>
-                                <p className='spot-rating'>
-                                    <i className="fa fa-solid fa-star" style={{color:'#2ced39',}}/>
-                                    {spot.avgRating ? (Number.isInteger(spot.avgRating) ? spot.avgRating.toFixed(1) : spot.avgRating.toFixed(1)) : 'No Reviews'}
-                                </p>
-                            </div>
-                            <p className='b-details'>Length: {spot.length} mi &#8231; Type: {spot.routeType}</p>
-                    </Link>
-                ))}
+        <div className='explore-container'>
+            <h1 className='parks-text'>Explore All Locations</h1>
+                <div className='spot-grid'>
+                    {spotsArray.map((spot) => (
+                        <Link key={spot.id} to={`/spots/${spot.id}`} className='spot'>
+                                    <img src={spot.image} alt='spot prev' className='image' title={spot.name}/>
+                                <div className="spot-details">
+                                    <p className='a-detail'>{spot.name}</p>
+                                    <p className='spot-rating'>
+                                        <i className="fa fa-solid fa-star" style={{color:'#2ced39',}}/>
+                                        {spot.avgRating ? (Number.isInteger(spot.avgRating) ? spot.avgRating.toFixed(1) : spot.avgRating.toFixed(1)) : 'No Reviews'}
+                                    </p>
+                                </div>
+                                <p className="b-detail">{spot.city}, {spot.state}</p>
+                                <p className='b-detail'>Length: {spot.length} mi &#8231; Type: {spot.routeType}</p>
+                        </Link>
+                    ))}
+                </div>
         </div>
     )
 }
