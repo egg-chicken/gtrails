@@ -147,10 +147,12 @@ def updateSpot(id):
 
 
 # delete a spot
-@spot_routes.route('/<int:id>', methods=['DELETE'])
+@spot_routes.route('/<int:id>/del', methods=['DELETE'])
 @login_required
-def deleteSpot(id):
+def delete(id):
     spot = Spot.query.get(id)
+
+    # user = spot.user
 
     if spot is None:
         return {'message': "Spot couldn\'t be found", "statusCode": 404}
@@ -158,6 +160,10 @@ def deleteSpot(id):
     if spot.userId != current_user.id:
         return {'errors': ['Forbidden: You don\'t have permission']}, 403
 
+    if spot:
+        for review in spot.reviews:
+            db.session.delete(review)
+    # user.spots.remove(spot)
     db.session.delete(spot)
     db.session.commit()
 

@@ -4,27 +4,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import * as reviewActions from '../../store/reviews';
 import './css/create-edit-review.css';
 
-function ReviewModal({id, setIsVisible, spotId}) {
+function ReviewModal({id}) {
     const dispatch = useDispatch();
     const [review, setReview] = useState('');
     const [stars, setStars] = useState(0);
     const [hover, setHover] = useState(0);
     const [errors, setErrors] = useState('');
     const { closeModal } = useModal();
-    const spot = useSelector((state) => state.spot[id]);
-    const previousReview = useSelector((state) => state.review[id]);
-
-    console.log('bruhhh', previousReview)
-    console.log('spottt', spot)
-
-    // useEffect(() => {
-    //   console.log('Previous review:', previousReview);
-    //     if (previousReview) {
-    //       setErrors({ review: 'You already made a review for this spot! Only one review per spot' });
-    //     } else {
-    //       setErrors('');
-    //     }
-    // }, [previousReview]);
+    // const spot = useSelector((state) => state.spot[id]);
 
     const handleSubmit = async(e) => {
         e.preventDefault();

@@ -85,7 +85,7 @@ export const createSpot = (spot) => async (dispatch) => {
 
 // delete a spot
 export const deleteSpot = (id) => async dispatch => {
-    const response = await fetch(`/api/spots/${id}`, {
+    const response = await fetch(`/api/spots/${id}/del`, {
         method: 'DELETE'
     });
 
