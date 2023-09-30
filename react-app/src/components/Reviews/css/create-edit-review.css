@@ -49,10 +49,11 @@
 .review-submit-button {
     /* border-radius: 20% / 50%; */
     border-radius: 40% / 80%;
-    background-color: green;
+    background-color: #137547;
     color: white;
     display: block;
     font-size: 30px;
+    border: none;
 }
 
 .review-submit-button-placement {

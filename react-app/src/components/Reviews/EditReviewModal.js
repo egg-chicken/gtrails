@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useModal } from '../../context/Modal';
 import { useDispatch, useSelector } from 'react-redux';
 import * as reviewActions from '../../store/reviews';
+import './css/create-edit-review.css';
 
 function EditReviewModal({id}) {
     const dispatch = useDispatch();
@@ -56,46 +57,52 @@ function EditReviewModal({id}) {
     }
 
     return (
-        <>
+        <div className='create-review-container'>
             <div>
-                <h2>Edit Review</h2>
-                {errors && errors.review && <p className="error">{errors.review}</p>}
-                {errors && errors.stars && <p className="error">{errors.stars}</p>}
-                <form onSubmit={handleSubmit}>
+              <p className='review-title'>Edit your review</p>
+            </div>
+            {errors && errors.review && <p className="error">{errors.review}</p>}
+            {errors && errors.stars && <p className="error">{errors.stars}</p>}
+            <form onSubmit={handleSubmit}>
+                <div className='star-rating-container'>
+                    <p className='rating-text'>Rating</p>
+                    {[...Array(5)].map((star, index) => {
+                        index += 1;
+                        return (
+                            <button
+                                type = 'button'
+                                key={index}
+                                id={`star-${index}`}
+                                className={`star-button ${index <= (hover || stars) ? 'on' : 'off'}`}
+                                onClick={() => setStars(index)}
+                                onMouseEnter={() => setHover(index)}
+                                onMouseLeave={() => setHover(stars)}
+                            >
+                                <i className="fa fa-solid fa-star" />
+                            </button>
+                        )
+                    })}
+                </div>
+                <div className='review-rating-container'>
+                    <p className='rating-text'>Review</p>
                     <input
                         className='review-input'
                         value={review}
-                        placeholder='Leave your review here . . .'
+                        placeholder='Update your review here . . .'
                         onChange={(e) => setReview(e.target.value)}
                     />
-                    <div className='star-rating-container'>
-                        {[1, 2, 3, 4, 5].map((star, index) => {
-                            index += 1
-                            return (
-                                <button
-                                    type = 'button'
-                                    key={index}
-                                    id={`star-${index}`}
-                                    className={index <= (hover || stars) ? 'star-button on' : 'star-button off'}
-                                    onClick={() => setStars(index)}
-                                    onMouseEnter={() => setHover(index)}
-                                    onMouseLeave={() => setHover(index)}
-                                >
-                                    <span className='star-symbol'>&#9733;</span>
-                                </button>
-                            )
-                        })}
-                        <label htmlFor='star-ratings' className='star-name'>Stars</label>
-                    </div>
+                </div>
+                <div className='review-submit-button-placement'>
                     <button type='submit'
                             onClick={handleSubmit}
-                            // disabled={review.length < 10 || stars === 0}
+                            className='review-submit-button'
+                            disabled={review.length < 10 || stars === 0}
                     >
-                        Update Your Review
+                        <p className='post-text'>Update Your Review</p>
                     </button>
+                </div>
             </form>
-          </div>
-        </>
+        </div>
     )
 }
 

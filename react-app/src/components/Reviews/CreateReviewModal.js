@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useModal } from '../../context/Modal';
 import { useDispatch, useSelector } from 'react-redux';
 import * as reviewActions from '../../store/reviews';
-import './css/create-review.css';
+import './css/create-edit-review.css';
 
 function ReviewModal({id}) {
     const dispatch = useDispatch();
