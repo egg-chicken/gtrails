@@ -96,7 +96,7 @@ const SpotDetailsPage = () => {
                 return (
                   <div key={review.id}>
                     <button className='open-menu-button' onClick={handleClick}>
-                      <i class="far fa-smile" style={{color:'#25d066',}}></i>
+                      <i className="far fa-smile" style={{color:'#25d066',}}></i>
                     </button>
                     <p className='user-firstname'>{review.User?.firstName}</p>
                     <p className='date'>{reviewMonth} {day}, {year}</p>
