@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import * as reviewActions from '../../store/reviews';
 import './css/create-edit-review.css';
 
-function ReviewModal({id}) {
+function ReviewModal({id, setIsVisible, spotId}) {
     const dispatch = useDispatch();
     const [review, setReview] = useState('');
     const [stars, setStars] = useState(0);
@@ -14,33 +14,42 @@ function ReviewModal({id}) {
     const spot = useSelector((state) => state.spot[id]);
     const previousReview = useSelector((state) => state.review[id]);
 
-    useEffect(() => {
-        if (previousReview) {
-          setErrors({ review: 'You already made a review for this spot! Only one review per spot' });
-        } else {
-          setErrors('');
-        }
-    }, [previousReview]);
+    console.log('bruhhh', previousReview)
+    console.log('spottt', spot)
+
+    // useEffect(() => {
+    //   console.log('Previous review:', previousReview);
+    //     if (previousReview) {
+    //       setErrors({ review: 'You already made a review for this spot! Only one review per spot' });
+    //     } else {
+    //       setErrors('');
+    //     }
+    // }, [previousReview]);
 
     const handleSubmit = async(e) => {
         e.preventDefault();
 
         const errors = {};
 
-        if (review && review.length < 10) errors.review = 'Please enter a comment with at least 10 characters.';
+        if (review.length < 10) errors.review = 'Please enter a comment with at least 10 characters.';
         if (stars === 0 ) errors.stars = 'Select a rating';
 
         setErrors(errors);
 
-        if (Object.keys(errors).length === 0 && !previousReview) {
+        if (Object.keys(errors).length === 0) {
             const reviewData = {
               stars,
               review,
             };
+          // const reviewData = {
+            //   stars,
+            //   review,
+            // };
 
             try {
               dispatch(reviewActions.createReview(id, reviewData)).then(() => {
                 closeModal();
+                // setIsVisible(false);
               });
             } catch (err) {
               setErrors({});
@@ -52,7 +61,8 @@ function ReviewModal({id}) {
     return (
         <div className='create-review-container'>
             <div>
-              <p className='review-title'>{spot.name}</p>
+            <p className='review-title'>Update Review</p>
+              {/* <p className='review-title'>{spot.name}</p> */}
             </div>
               <div>{errors && errors.review && <p className="error">{errors.review}</p>}</div>
               <div>{errors && errors.stars && <p className="error">{errors.stars}</p>}</div>
@@ -88,7 +98,7 @@ function ReviewModal({id}) {
                     <button type='submit'
                         onClick={handleSubmit}
                         className='review-submit-button'
-                        disabled={review.length < 10 || stars === 0 || !!previousReview}
+                        // disabled={review.length < 10 || stars === 0 || !!previousReview}
                     >
                         <p className='post-text'>Post</p>
                     </button>

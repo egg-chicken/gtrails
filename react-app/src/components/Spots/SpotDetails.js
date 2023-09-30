@@ -85,11 +85,11 @@ const SpotDetailsPage = () => {
                   </div>
                   <p>{reviews.length} reviews</p>
                   <div className='write-review-button-placement'>
-                    <OpenModalButton
-                        modalComponent={<ReviewModal id={spot.id}/>}
+                  {isVisible && <OpenModalButton
+                        modalComponent={<ReviewModal id={spot.id} setIsVisible={setIsVisible}/>}
                         buttonText='Write a Review'
                         buttonType="add"
-                    />
+                    />}
                   </div>
                 </div>
                 <div className='s-review-box'>
