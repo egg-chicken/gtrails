@@ -224,7 +224,7 @@ def spotReviews(id):
         userInfo = review.user
 
         reviews_data.append({
-            "createdAt": review.id,
+            "createdAt": review.createdAt,
             "id": review.id,
             "review": review.review,
             "spotId": review.spotId,

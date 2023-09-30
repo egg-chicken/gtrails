@@ -93,32 +93,38 @@ const SpotDetailsPage = () => {
                   </div>
                 </div>
                 <div className='s-review-box'>
+                {(reviews.length < 1 && isVisible) && <div className='no-review-text'>Share your thoughts and post a review. Let people know what to expect</div>}
                 {reviews?.map(review => {
-                const reviewMonth = months[new Date(review.createdAt).getMonth()];
-                const day = (new Date(review.createdAt).getDate()) + 1;
-                const year = new Date(review.createdAt).getFullYear();
+                  const reviewMonth = months[new Date(review.createdAt).getMonth()];
+                  const day = (new Date(review.createdAt).getDate()) + 1;
+                  const year = new Date(review.createdAt).getFullYear();
 
-                return (
-                  <div key={review.id}>
-                    <button className='open-menu-button' onClick={handleClick}>
-                      <i className="far fa-smile" style={{color:'#25d066',}}></i>
-                    </button>
-                    <p className='user-firstname'>{review.User?.firstName} {review.User.lastName}</p>
-                    <p className='date'>{reviewMonth} {day}, {year}</p>
-                    <p className='review-text'>{review.review}</p>
-                    {review.userId === user?.id && <OpenModalButton
-                      modalComponent={<DeleteReviewModal id={review.id} spotId={review.spotId} setIsVisible={setIsVisible}/>}
-                      buttonText="Delete"
-                      buttonType="Delete"
-                    />}
-                    {review.userId === user?.id && <OpenModalButton
-                        modalComponent={<EditReviewModal id={review.id} spotId={review.spotId} setIsVisible={setIsVisible}/>}
-                        buttonText="Edit"
-                        buttonType="edit"
-                    />}
-                  </div>
-                )
-              })}
+                  return (
+                    <div key={review.id}>
+                      <button className='open-menu-button' onClick={handleClick}>
+                        <i className="far fa-smile" style={{color:'#25d066',}}></i>
+                      </button>
+                      <p className='user-firstname'>{review.User?.firstName} {review.User?.lastName}</p>
+                      <p className='date'>{reviewMonth} {day}, {year}</p>
+                      <div className='star-rating'>
+                        {[...Array(review.stars)].map((star, index) => (
+                          <i key={index} className="fa fa-solid fa-star" style={{ color: '#2ced39' }} />
+                        ))}
+                      </div>
+                      <p className='review-text'>{review.review}</p>
+                      {review.User?.id === user?.id && <OpenModalButton
+                        modalComponent={<DeleteReviewModal id={review.id} spotId={review.spotId} setIsVisible={setIsVisible}/>}
+                        buttonText="Delete"
+                        buttonType="Delete"
+                      />}
+                      {review.User?.id === user?.id && <OpenModalButton
+                          modalComponent={<EditReviewModal id={review.id} spotId={review.spotId} setIsVisible={setIsVisible}/>}
+                          buttonText="Edit"
+                          buttonType="edit"
+                      />}
+                    </div>
+                  )
+                })}
               </div>
             </div>
             }
