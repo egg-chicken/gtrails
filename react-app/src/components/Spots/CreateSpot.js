@@ -39,7 +39,7 @@ const CreateSpotForm = () => {
         if(!elevGain) errors.elevGain = 'Elevation Gain is required';
         if(!routeType) errors.routeType = 'Route Type is required';
         if(!image) errors.image = 'Image URL is required';
-
+        if(image && !image.endsWith('.png') && !image.endsWith('.jpg') && !image.endsWith('.jpeg')) errors.image = 'Image URL must end in .png, .jpg, .jpeg';
 
         setErrors(errors);
 
@@ -190,7 +190,7 @@ const CreateSpotForm = () => {
                     <input
                         className="input-create"
                         type='text'
-                        placeholder="Length"
+                        placeholder="Mile Length"
                         value={length}
                         onChange={(e) => setLength(e.target.value)}
                     />
