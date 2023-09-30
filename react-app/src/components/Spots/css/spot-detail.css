@@ -59,3 +59,21 @@
     border-bottom: 1px solid lightgray;
     padding: 15px;
 }
+
+.delete-button,
+.edit-button {
+    background-color: none;
+    border: none;
+    text-decoration: underline;
+    background: none;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.delete-button:hover {
+    color:red;
+}
+
+.edit-button:hover {
+    color: blue;
+}

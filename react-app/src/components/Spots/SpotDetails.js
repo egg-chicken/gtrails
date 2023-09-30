@@ -86,6 +86,7 @@ const SpotDetailsPage = () => {
                 <OpenModalButton
                     modalComponent={<ReviewModal id={spot.id}/>}
                     buttonText='Write a Review'
+                    buttonType="add"
                 />
                 <div className='s-review-box'>
                 {reviews?.map(review => {
@@ -103,11 +104,13 @@ const SpotDetailsPage = () => {
                     <p className='review-text'>{review.review}</p>
                     {review.userId === user?.id && <OpenModalButton
                       modalComponent={<DeleteReviewModal id={review.id} spotId={review.spotId} setIsVisible={setIsVisible}/>}
-                      buttonText='Delete'
+                      buttonText="Delete"
+                      buttonType="Delete"
                     />}
                     {review.userId === user?.id && <OpenModalButton
                         modalComponent={<EditReviewModal id={review.id} spotId={review.spotId} setIsVisible={setIsVisible}/>}
-                        buttonText='Edit'
+                        buttonText="Edit"
+                        buttonType="edit"
                     />}
                   </div>
                 )

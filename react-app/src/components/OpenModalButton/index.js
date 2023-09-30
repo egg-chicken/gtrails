@@ -5,7 +5,8 @@ function OpenModalButton({
   modalComponent, // component to render inside the modal
   buttonText, // text of the button that opens the modal
   onButtonClick, // optional: callback function that will be called once the button that opens the modal is clicked
-  onModalClose // optional: callback function that will be called once the modal is closed
+  onModalClose, // optional: callback function that will be called once the modal is closed
+  buttonType
 }) {
   const { setModalContent, setOnModalClose } = useModal();
 
@@ -15,8 +16,13 @@ function OpenModalButton({
     if (onButtonClick) onButtonClick();
   };
 
+  const buttonClassName = buttonType === 'edit' ? 'edit-button'
+  : buttonType === 'Delete' ? 'delete-button'
+  : buttonType === 'add' ? 'write-button'
+  : '';
+
   return (
-    <button onClick={onClick}>{buttonText}</button>
+    <button className={`custom-button ${buttonClassName}`} onClick={onClick}>{buttonText}</button>
   );
 }
 
