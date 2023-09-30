@@ -77,3 +77,27 @@
 .edit-button:hover {
     color: blue;
 }
+
+.write-button {
+    border-radius: 40% / 80%;
+    background-color: darkgreen;
+    color: white;
+    display: block;
+    font-size: 16px;
+    max-width: 100px;
+    max-height: 50px;
+    border: none;
+}
+
+.write-review-button-placement {
+    /* display: flex;
+    justify-content: flex-end;
+    padding: 40px 10px 20px 20px; */
+    margin-left: auto;
+    padding: 10px;
+}
+
+.spot-rating {
+    display: flex;
+    align-items: center;
+}

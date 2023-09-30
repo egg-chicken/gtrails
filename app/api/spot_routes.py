@@ -211,9 +211,29 @@ def spotReviews(id):
 
     reviews = Review.query.filter_by(spotId=id).all()
 
+    # userInfo = User.query.get(current_user.id)
+
     if reviews is None:
         return {"message": "No reviews found for the spot"}, 404
 
-    reviews_data = [review.to_dict() for review in reviews]
+    # reviews_data = [review.to_dict() for review in reviews]
 
+    reviews_data = []
+
+    for review in reviews:
+        userInfo = review.user
+
+        reviews_data.append({
+            "createdAt": review.id,
+            "id": review.id,
+            "review": review.review,
+            "spotId": review.spotId,
+            "stars": review.stars,
+            "updatedAt": review.updatedAt,
+            "User": {
+                'id': userInfo.id,
+                'firstName': userInfo.firstName,
+                'lastName': userInfo.lastName
+            }
+        })
     return {"Reviews": reviews_data}, 200

@@ -61,7 +61,7 @@ const SpotDetailsPage = () => {
             <div>{spot.city}, {spot.state}</div>
             <p className='spot-rating'>
                 <i className="fa fa-solid fa-star" style={{color:'#2ced39',}}/>
-                {spot.avgRating ? (Number.isInteger(spot.avgRating) ? spot.avgRating.toFixed(1) : spot.avgRating.toFixed(1)) : 'New'}
+                {spot.avgRating ? (Number.isInteger(spot.avgRating) ? spot.avgRating.toFixed(1) : spot.avgRating.toFixed(1)) : 'New'} ({reviews.length})
             </p>
             <div className='spot-details-bar'>
               <p>Length: {spot.length}</p>
@@ -74,20 +74,24 @@ const SpotDetailsPage = () => {
               <p>{spot.description}</p>
             </div>
 
-            <p>Reviews</p>
+            <p>Reviews ({reviews.length})</p>
             <div className='rev-box'>
             {isReviewsLoaded &&
             <div>
-                <p>Average Review</p>
-                <p className='spot-rating'>
-                  <i className="fa fa-solid fa-star" style={{color:'#2ced39',}}/>
-                  {spot.avgRating ? (Number.isInteger(spot.avgRating) ? spot.avgRating.toFixed(1) : spot.avgRating.toFixed(1)) : 'New'}
-                </p>
-                <OpenModalButton
-                    modalComponent={<ReviewModal id={spot.id}/>}
-                    buttonText='Write a Review'
-                    buttonType="add"
-                />
+                <div className='spot-details-bar'>
+                  <div className='spot-rating'>
+                    <i className="fa fa-solid fa-star" style={{color:'#2ced39',}}/>
+                    {spot.avgRating ? (Number.isInteger(spot.avgRating) ? spot.avgRating.toFixed(1) : spot.avgRating.toFixed(1)) : 'No Reviews, yet'}
+                  </div>
+                  <p>{reviews.length} reviews</p>
+                  <div className='write-review-button-placement'>
+                    <OpenModalButton
+                        modalComponent={<ReviewModal id={spot.id}/>}
+                        buttonText='Write a Review'
+                        buttonType="add"
+                    />
+                  </div>
+                </div>
                 <div className='s-review-box'>
                 {reviews?.map(review => {
                 const reviewMonth = months[new Date(review.createdAt).getMonth()];
@@ -99,7 +103,7 @@ const SpotDetailsPage = () => {
                     <button className='open-menu-button' onClick={handleClick}>
                       <i className="far fa-smile" style={{color:'#25d066',}}></i>
                     </button>
-                    <p className='user-firstname'>{review.User?.firstName}</p>
+                    <p className='user-firstname'>{review.User?.firstName} {review.User.lastName}</p>
                     <p className='date'>{reviewMonth} {day}, {year}</p>
                     <p className='review-text'>{review.review}</p>
                     {review.userId === user?.id && <OpenModalButton
