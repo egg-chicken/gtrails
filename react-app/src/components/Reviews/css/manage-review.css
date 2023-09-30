@@ -1,0 +1,11 @@
+.manage-review-container {
+    display: flex;
+    margin: 10px;
+    padding: 10px;
+}
+
+.all-user-reviews {
+    border: none;
+    padding: 10px;
+    background-color: white;
+}

@@ -1,0 +1,25 @@
+.demo-button {
+    background: none;
+    border: none;
+    padding: 15px;
+    text-decoration: underline;
+    color: #00525E;
+    cursor: pointer;
+}
+
+.demo-center {
+    display: flex;
+    justify-content: center;
+}
+
+.errors-login {
+    display: flex;
+    justify-content: center;
+    color: red;
+}
+
+.error-message {
+    display: flex;
+    justify-content: center;
+    color: red;
+}

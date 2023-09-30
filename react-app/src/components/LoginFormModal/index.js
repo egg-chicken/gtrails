@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { login } from "../../store/session";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
+import * as sessionActions from "../../store/session";
 import "./LoginForm.css";
 
 function LoginFormModal() {
@@ -17,7 +18,7 @@ function LoginFormModal() {
     if (data) {
       setErrors(data);
     } else {
-        closeModal()
+      closeModal()
     }
   };
 
@@ -35,6 +36,7 @@ function LoginFormModal() {
           <input
             type="text"
             value={email}
+            placeholder="Username or Email"
             onChange={(e) => setEmail(e.target.value)}
             required
           />
@@ -49,6 +51,12 @@ function LoginFormModal() {
           />
         </label>
         <button type="submit">Log In</button>
+        <div className="demo-center">
+        <button className='demo-button' onClick={(e) => {
+          setEmail('demo@aa.io');
+          setPassword('password');
+        }}>Demo User</button>
+        </div>
       </form>
     </>
   );
