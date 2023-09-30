@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import * as reviewActions from '../../store/reviews';
 import './css/create-edit-review.css';
 
-function ReviewModal({id}) {
+function ReviewModal({id, setIsVisible}) {
     const dispatch = useDispatch();
     const [review, setReview] = useState('');
     const [stars, setStars] = useState(0);
@@ -21,6 +21,11 @@ function ReviewModal({id}) {
         if (review.length < 10) errors.review = 'Please enter a comment with at least 10 characters.';
         if (stars === 0 ) errors.stars = 'Select a rating';
 
+        const reviewAlreadyExists = true;
+        if (reviewAlreadyExists) {
+            errors.review = 'Review already exists for this spot';
+        }
+
         setErrors(errors);
 
         if (Object.keys(errors).length === 0) {
@@ -33,16 +38,19 @@ function ReviewModal({id}) {
             //   review,
             // };
 
-            try {
-              dispatch(reviewActions.createReview(id, reviewData)).then(() => {
-                closeModal();
-                // setIsVisible(false);
-              });
-            } catch (err) {
-              setErrors({});
-              console.error("Error creating review:", err);
-            }
-          }
+
+        dispatch(reviewActions.createReview(id, reviewData))
+          .then(closeModal)
+          .then(() => setIsVisible(false))
+          .catch(async (res) => {
+            const data = await res.json();
+            if(data && data.errors) setErrors(data.errors)
+          });
+        // return setErrors({
+        //     review: 'Review already exists for this spot'
+        //   })
+
+        }
     }
 
     return (

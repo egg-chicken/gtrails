@@ -182,8 +182,9 @@ def createReview(id):
 
     current_user_id = current_user.id
 
-    existing_review = Review.query.filter_by(userId=current_user_id, spotId=id).first()
-
+    # existing_review = Review.query.filter_by(userId=current_user_id, spotId=id).first()
+    existing_review = Review.query.filter(Review.userId == current_user_id, Review.spotId == id).first()
+    
     if existing_review:
         return jsonify({'message': 'User already has a review for this spot'}), 500
 
