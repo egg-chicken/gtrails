@@ -9,54 +9,27 @@ function ReviewModal({id, setIsVisible}) {
     const [review, setReview] = useState('');
     const [stars, setStars] = useState(0);
     const [hover, setHover] = useState(0);
-    const [errors, setErrors] = useState('');
+    const [errors, setErrors] = useState({});
     const { closeModal } = useModal();
-    // const spot = useSelector((state) => state.spot[id]);
 
     const handleSubmit = async(e) => {
         e.preventDefault();
 
         const errors = {};
 
-        if (review.length < 10) errors.review = 'Please enter a comment with at least 10 characters.';
+        if (review && review.length < 10) errors.review = 'Please enter a comment with at least 10 characters.';
         if (stars === 0 ) errors.stars = 'Select a rating';
 
-        const reviewAlreadyExists = true;
-        if (reviewAlreadyExists) {
-            errors.review = 'Review already exists for this spot';
-        }
 
         setErrors(errors);
 
-        if (Object.keys(errors).length === 0) {
-            const reviewData = {
-              stars,
-              review,
-            };
-          // const reviewData = {
-            //   stars,
-            //   review,
-            // };
 
-
-        dispatch(reviewActions.createReview(id, reviewData))
-          .then(closeModal)
-          .then(() => setIsVisible(false))
-          .catch(async (res) => {
-            const data = await res.json();
-            if(data && data.errors) setErrors(data.errors)
-          });
-        // return setErrors({
-        //     review: 'Review already exists for this spot'
-        //   })
-
-        }
     }
 
     return (
         <div className='create-review-container'>
             <div>
-            <p className='review-title'>Update Review</p>
+            <p className='review-title'>Create Review</p>
               {/* <p className='review-title'>{spot.name}</p> */}
             </div>
               <div>{errors && errors.review && <p className="error">{errors.review}</p>}</div>

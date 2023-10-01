@@ -71,13 +71,13 @@ export const getReviewsDetails = (id) => async dispatch => {
 
 
 // create a review
-export const createReview = (spotId, reviewData) => async (dispatch) => {
+export const createReview = (spotId, formData) => async (dispatch) => {
     const response = await fetch(`/api/spots/${spotId}/reviews`, {
-    method: "POST",
-    headers: {
-        "Content-Type": "application/json",
-    },
-    body: JSON.stringify(reviewData),
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: formData,
     });
 
     if (response.ok) {
