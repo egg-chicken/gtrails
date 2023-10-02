@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import * as locationActions from '../../store/locations';
@@ -48,7 +47,7 @@ const LocationDetailsPage = () => {
               }
             }
         }
-      },[isReviewsLoaded, isLoaded, user])
+      },[isReviewsLoaded, isLoaded, user, reviews, location.ownerId, id])
 
     const handleClick = e => {
       e.preventDefault();

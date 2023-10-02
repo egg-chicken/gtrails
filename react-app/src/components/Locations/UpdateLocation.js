@@ -47,7 +47,7 @@ const UpdateLocationForm = () => {
             .catch((err) => {
                 console.error('Error fetching location details:', err);
             });
-    }, [dispatch])
+    }, [dispatch, id])
 
     const handleSubmit = async (e) => {
         e.preventDefault();

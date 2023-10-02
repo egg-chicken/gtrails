@@ -11,7 +11,7 @@ function ReviewModal({id, setIsVisible}) {
     const [hover, setHover] = useState(0);
     const [errors, setErrors] = useState({});
     const { closeModal } = useModal();
-    const location = useSelector((state) => state.location[id]);
+    // const location = useSelector((state) => state.location[id]);
     const previousReview = useSelector((state) => state.review[id]);
 
     useEffect(() => {
