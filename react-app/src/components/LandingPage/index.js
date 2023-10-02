@@ -25,12 +25,12 @@ const LandingPage = () => {
                 <div className="location-container-m">
                     {locationsArray.slice(0,4).map((location) => (
                         <Link key={location.id} to={`/locations/${location.id}`} className='location'>
-                                <img src={location.image} alt='location' className='image' title={location.name}/>
+                                <img src={location.image} alt='location' className='image-main' title={location.name}/>
                                 <div className="location-details">
                                     <p className='a-detail'>{location.name}  </p>
                                     <p className='location-rating'>
-                                        <i className="fa fa-solid fa-star" style={{color:'#2ced39',}}/>
-                                        {location.avgRating ? (Number.isInteger(location.avgRating) ? location.avgRating.toFixed(1) : location.avgRating.toFixed(1)) : 'New'}
+                                        <i className="fa fa-solid fa-star test2" style={{color:'#2ced39',}}/>
+                                        {location.avgRating ? (Number.isInteger(location.avgRating) ? location.avgRating.toFixed(1) : location.avgRating.toFixed(1)) : 'No Reviews'}
                                     </p>
                                 </div>
                                 <div>
@@ -46,12 +46,12 @@ const LandingPage = () => {
                     <div className="location-container-m">
                         {locationsArray.slice(4,8).map((location) => (
                             <Link key={location.id} to={`/locations/${location.id}`} className='location'>
-                                    <img src={location.image} alt='location' className='image' title={location.name}/>
+                                    <img src={location.image} alt='location' className='image-main' title={location.name}/>
                                     <div className="location-details">
                                         <p className='a-detail'>{location.name}  </p>
                                         <p className='location-rating'>
                                             <i className="fa fa-solid fa-star" style={{color:'#2ced39',}}/>
-                                            {location.avgRating ? (Number.isInteger(location.avgRating) ? location.avgRating.toFixed(1) : location.avgRating.toFixed(1)) : 'New'}
+                                            {location.avgRating ? (Number.isInteger(location.avgRating) ? location.avgRating.toFixed(1) : location.avgRating.toFixed(1)) : 'No Reviews'}
                                         </p>
                                     </div>
                                     <div>
@@ -67,12 +67,12 @@ const LandingPage = () => {
                     <div className="location-container-m">
                         {locationsArray.slice(8,12).map((location) => (
                             <Link key={location.id} to={`/locations/${location.id}`} className='location'>
-                                    <img src={location.image} alt='location' className='location-images' title={location.name}/>
+                                    <img src={location.image} alt='location' className='image-main' title={location.name}/>
                                     <div className="location-details">
                                         <p className='a-detail'>{location.name}  </p>
                                         <p className='location-rating'>
                                             <i className="fa fa-solid fa-star" style={{color:'#2ced39',}}/>
-                                            {location.avgRating ? (Number.isInteger(location.avgRating) ? location.avgRating.toFixed(1) : location.avgRating.toFixed(1)) : 'New'}
+                                            {location.avgRating ? (Number.isInteger(location.avgRating) ? location.avgRating.toFixed(1) : location.avgRating.toFixed(1)) : 'No Reviews'}
                                         </p>
                                     </div>
                                     <div>

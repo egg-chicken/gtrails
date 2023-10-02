@@ -2,19 +2,24 @@
   display: flex;
   background: white;
   height: 80px;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   font-size: 1.2rem;
 }
 
+a.home.nav-link.active {
+  padding: 40px;
+}
 .home {
-  font-size: 20pt;
+  font-size: 28pt;
+
 }
 
 .nav-link {
   text-decoration: none;
   color: black;
   padding: 10px 15px;
+
 }
 
 .sub-link:hover {
@@ -40,6 +45,8 @@
 ul.profile-dropdown {
   margin: 0px;
   padding: 0px;
+  right: 20px;
+  top: 60px;
 }
 
 .hidden {
@@ -87,6 +94,20 @@ ul.profile-dropdown {
   cursor: pointer;
 }
 
+.right-nav-side {
+  display: flex;
+    justify-content: flex-end;
+    padding-right: 10px;
+}
+
+div.c.right-nav-side {
+  padding-right: 20px;
+}
+
+.b {
+  display: flex;
+  justify-content: flex-start;
+}
 /*
 .icon-mount {
   width: 40px;

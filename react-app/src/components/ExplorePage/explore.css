@@ -30,7 +30,7 @@
     object-fit: cover;
     max-width: 100%;
     /* idk if the height should be 50 or 60% . . . */
-    height: 50%;
+    height: 60%;
     border-radius: 8px;
 }
 

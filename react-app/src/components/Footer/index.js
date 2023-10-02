@@ -3,6 +3,12 @@ import { NavLink } from 'react-router-dom';
 import './footer.css'
 
 const Footer = () => {
+    const social = {
+        github:'https://github.com/egg-chicken',
+        insta:'',
+        linkedinHandle:'https://www.linkedin.com/in/edithgomezgarcia/',
+    }
+
     return (
         <footer>
             <div className="footer-content">
@@ -16,9 +22,9 @@ const Footer = () => {
             <div className='credits'>
                 <p className='text'>Let's Connect</p>
                 <div className='f-icons'>
-                    <i className="fab fa-instagram"></i>
-                    <i className="fab fa-linkedin"></i>
-                    <i className="fab fa-github"></i>
+                    <a href={social.linkedinHandle}><i className="fab fa-linkedin"></i></a>
+                    <a href={social.github}><i className="fab fa-github"></i></a>
+                    {/* <i className="fab fa-instagram"></i> */}
                 </div>
                 </div>
             <div className='credits'> Icons made by <a href="https://www.flaticon.com/authors/pop-vectors" title="Pop Vectors">  Pop Vectors </a> from  <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>

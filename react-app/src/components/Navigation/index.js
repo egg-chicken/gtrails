@@ -9,18 +9,18 @@ function Navigation({ isLoaded }){
 
 	return (
 		<nav className='nav-container'>
-			<div>
+			<div className='a'>
 				<NavLink className="home nav-link" exact to="/">
 					<span>GTrails</span>
 					<i className="fa fa-hiking" style={{color:'#25d066',}}></i>
 				</NavLink>
 			</div>
-			<div>
+			<div className='b'>
 				<NavLink className="nav-link sub-link" exact to="/explore">Explore</NavLink>
 				<NavLink className="nav-link sub-link" exact to="/community">Community</NavLink>
 				<NavLink className="nav-link sub-link" exact to="/saved">Saved</NavLink>
 			</div>
-			<div className='right-nav-side'>
+			<div className='c right-nav-side'>
 				{isLoaded && (
 					<ProfileButton user={sessionUser}/>
 				)}
