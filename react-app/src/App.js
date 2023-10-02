@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import ManageReviewsPage from "./components/Reviews/ManageReview";
-import UpdateSpotForm from "./components/Spots/UpdateSpot";
-import ManageSpotsPage from "./components/Spots/ManageSpots";
-import SpotDetailsPage from "./components/Spots/SpotDetails";
-import CreateSpotForm from "./components/Spots/CreateSpot";
+import UpdateLocationForm from "./components/Locations/UpdateLocation";
+import ManageLocationsPage from "./components/Locations/ManageLocations";
+import LocationDetailsPage from "./components/Locations/LocationDetails";
+import CreateLocationForm from "./components/Locations/CreateLocation";
 import LandingPage from "./components/LandingPage";
 import SignupFormPage from "./components/SignupFormPage";
 import LoginFormPage from "./components/LoginFormPage";
@@ -43,17 +43,17 @@ function App() {
             <Route path='/reviews/created'>
               <ManageReviewsPage />
             </Route>
-            <Route path='/spots/new'>
-              <CreateSpotForm />
+            <Route path='/locations/new'>
+              <CreateLocationForm />
             </Route>
-            <Route path='/spots/created'>
-              <ManageSpotsPage />
+            <Route path='/locations/created'>
+              <ManageLocationsPage />
             </Route>
-            <Route path='/spots/:id/edit'>
-              <UpdateSpotForm />
+            <Route path='/locations/:id/edit'>
+              <UpdateLocationForm />
             </Route>
-            <Route exact path='/spots/:id'>
-              <SpotDetailsPage />
+            <Route exact path='/locations/:id'>
+              <LocationDetailsPage />
             </Route>
           </Switch>
         )}

@@ -11,6 +11,16 @@ function ReviewModal({id, setIsVisible}) {
     const [hover, setHover] = useState(0);
     const [errors, setErrors] = useState({});
     const { closeModal } = useModal();
+    const location = useSelector((state) => state.location[id]);
+    const previousReview = useSelector((state) => state.review[id]);
+
+    useEffect(() => {
+        if (previousReview) {
+          setErrors({ review: 'You already made a review for this location! Only one review per location' });
+        } else {
+          setErrors('');
+        }
+    }, [previousReview]);
 
     const handleSubmit = async(e) => {
         e.preventDefault();
@@ -20,18 +30,38 @@ function ReviewModal({id, setIsVisible}) {
         if (review && review.length < 10) errors.review = 'Please enter a comment with at least 10 characters.';
         if (stars === 0 ) errors.stars = 'Select a rating';
 
-
         setErrors(errors);
 
+        if (Object.keys(errors).length === 0 && !previousReview) {
+            const formData = {
+              stars,
+              review,
+            };
 
+            try {
+              dispatch(reviewActions.createReview(id, formData)).then(() => {
+                closeModal();
+              });
+            } catch (err) {
+              setErrors({});
+              console.error("Error creating review:", err);
+            }
+          }
+
+        //if (postReview.errors){
+          //setErrors(postReview.errors)
+       // }
     }
 
     return (
         <div className='create-review-container'>
             <div>
             <p className='review-title'>Create Review</p>
-              {/* <p className='review-title'>{spot.name}</p> */}
+              {/* <p className='review-title'>{location.name}</p> */}
             </div>
+            {/* <div>{errors.length > 0 && errors.map(el => (
+              <div key={el} className='errors'>{el}</div>
+            ))}</div> */}
               <div>{errors && errors.review && <p className="error">{errors.review}</p>}</div>
               <div>{errors && errors.stars && <p className="error">{errors.stars}</p>}</div>
               <form onSubmit={handleSubmit}>

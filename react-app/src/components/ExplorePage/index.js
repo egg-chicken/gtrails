@@ -1,34 +1,34 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import * as spotActions from '../../store/spots';
+import * as locationActions from '../../store/locations';
 import './explore.css'
 
 const ExplorePage = () => {
     const dispatch = useDispatch();
-    const spots = useSelector((state) => state.spot);
-    const spotsArray = spots ? Object.values(spots): [];
+    const locations = useSelector((state) => state.location);
+    const locationsArray = locations ? Object.values(locations): [];
 
     useEffect(() => {
-        dispatch(spotActions.getSpots())
+        dispatch(locationActions.getLocations())
     }, [dispatch])
 
     return (
         <div className='explore-container'>
             <h1 className='parks-text'>Explore All Locations</h1>
-                <div className='spot-grid'>
-                    {spotsArray.map((spot) => (
-                        <Link key={spot.id} to={`/spots/${spot.id}`} className='spot'>
-                            <img src={spot.image} alt='spot prev' className='image' title={spot.name}/>
-                            <div className="spot-details">
-                                <p className='a-detail'>{spot.name}</p>
-                                <p className='spot-rating'>
+                <div className='location-grid'>
+                    {locationsArray.map((location) => (
+                        <Link key={location.id} to={`/locations/${location.id}`} className='location'>
+                            <img src={location.image} alt='location prev' className='image' title={location.name}/>
+                            <div className="location-details">
+                                <p className='a-detail'>{location.name}</p>
+                                <p className='location-rating'>
                                     <i className="fa fa-solid fa-star" style={{color:'#2ced39',}}/>
-                                    {spot.avgRating ? (Number.isInteger(spot.avgRating) ? spot.avgRating.toFixed(1) : spot.avgRating.toFixed(1)) : 'No Reviews'}
+                                    {location.avgRating ? (Number.isInteger(location.avgRating) ? location.avgRating.toFixed(1) : location.avgRating.toFixed(1)) : 'No Reviews'}
                                 </p>
                             </div>
-                            <p className="b-detail">{spot.city}, {spot.state}</p>
-                            <p className='b-detail'>Length: {spot.length} mi &#8231; Type: {spot.routeType}</p>
+                            <p className="b-detail">{location.city}, {location.state}</p>
+                            <p className='b-detail'>Length: {location.length} mi &#8231; Type: {location.routeType}</p>
                         </Link>
                     ))}
                 </div>

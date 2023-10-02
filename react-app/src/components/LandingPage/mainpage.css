@@ -43,26 +43,26 @@
     padding-top: 20px;
 }
 
-.spot-images {
+.location-images {
     object-fit: cover;
     max-width: 100%;
     height: auto;
     border-radius: 10px;
 }
 
-.spot-container-m {
+.location-container-m {
     display: grid;
     grid-template-columns: repeat(4, minmax(100px, 1fr));
     gap: 10px;
     padding: 0px 40px 40px 40px;
 }
 
-.spot {
+.location {
     text-decoration: none;
     color: black;
 }
 
-.spot-details{
+.location-details{
     display: flex;
     justify-content: flex-start;
     margin: 0px;
@@ -74,7 +74,7 @@
     padding-top: 5px;
 }
 
-.spot-rating {
+.location-rating {
     margin: 0px;
     padding-top: 5px;
 }

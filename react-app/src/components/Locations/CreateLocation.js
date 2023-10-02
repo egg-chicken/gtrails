@@ -1,53 +1,26 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
-import * as spotActions from '../../store/spots';
+import React, {useState} from "react";
+import { useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import * as locationActions from '../../store/locations'
 
-const UpdateSpotForm = () => {
+const CreateLocationForm = () => {
     const dispatch = useDispatch();
-    const history = useHistory();
-    const { id } = useParams();
-    const spot = useSelector((state) => state.spot[id]);
+    const history = useHistory()
 
-
-    const [name, setName] = useState(spot?.name || '');
-    const [address, setAddress] = useState(spot?.address || '');
-    const [city, setCity] = useState(spot?.city || '');
-    const [state, setState] = useState(spot?.state || '');
-    const [country, setCountry] = useState(spot?.country || '');
-    const [lat, setLat] = useState(spot?.lat || '');
-    const [lng, setLng] = useState(spot?.lng || '');
-    const [length, setLength] = useState(spot?.length || '');
-    const [description, setDescription] = useState(spot?.description || '');
-    const [elevGain, setElevGain] = useState(spot?.elevGain || '');
-    const [routeType, setRouteType] = useState(spot?.routeType || '');
-    const [image, setImage] = useState(spot?.image || '');
+    const [name, setName] = useState('');
+    const [address, setAddress] = useState('');
+    const [city, setCity] = useState('');
+    const [state, setState] = useState('');
+    const [country, setCountry] = useState('');
+    const [lat, setLat] = useState('');
+    const [lng, setLng] = useState('');
+    const [length, setLength] = useState('');
+    const [description, setDescription] = useState('');
+    const [elevGain, setElevGain] = useState('');
+    const [routeType, setRouteType] = useState('');
+    const [image, setImage] = useState('');
 
     const [errors, setErrors] = useState({});
-
-    useEffect(() => {
-            dispatch(spotActions.getSpotsDetails(id))
-            .then(spotdetail => {
-                if(spotdetail){
-                    setName(spotdetail?.name)
-                    setAddress(spotdetail?.address)
-                    setCity(spotdetail?.city)
-                    setState(spotdetail?.state)
-                    setCountry(spotdetail?.country)
-                    setLat(spotdetail?.lat)
-                    setLng(spotdetail?.lng)
-                    setLength(spotdetail?.length)
-                    setDescription(spotdetail?.description)
-                    setElevGain(spotdetail?.elevGain)
-                    setRouteType(spotdetail?.routeType)
-                    setImage(spotdetail?.image)
-                }
-            })
-            .catch((err) => {
-                console.error('Error fetching spot details:', err);
-            });
-    }, [dispatch])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -66,41 +39,42 @@ const UpdateSpotForm = () => {
         if(!elevGain) errors.elevGain = 'Elevation Gain is required';
         if(!routeType) errors.routeType = 'Route Type is required';
         if(!image) errors.image = 'Image URL is required';
+        if(image && !image.endsWith('.png') && !image.endsWith('.jpg') && !image.endsWith('.jpeg')) errors.image = 'Image URL must end in .png, .jpg, .jpeg';
 
-        if (Object.keys(errors).length > 0) {
-            setErrors(errors);
-          } else {
+        setErrors(errors);
+
+        if (Object.keys(errors).length === 0) {
+        const formData = new FormData();
+        formData.append("name", name);
+        formData.append("address", address);
+        formData.append("city", city);
+        formData.append("state", state);
+        formData.append("country", country);
+        formData.append("lat", lat);
+        formData.append("lng", lng);
+        formData.append("description", description);
+        formData.append("length", length);
+        formData.append("elevGain", elevGain);
+        formData.append("routeType", routeType);
+        formData.append("image", image);
+
+        try {
+            await dispatch(locationActions.createLocation(formData));
+            history.push("/explore");
+        } catch (err){
             setErrors({});
-            const formData = new FormData();
-            formData.append("name", name);
-            formData.append("address", address);
-            formData.append("city", city);
-            formData.append("state", state);
-            formData.append("country", country);
-            formData.append("lat", lat);
-            formData.append("lng", lng);
-            formData.append("description", description);
-            formData.append("length", length);
-            formData.append("elevGain", elevGain);
-            formData.append("routeType", routeType);
-            formData.append("image", image);
+            console.error("Error creating location:", err);
+        }
+    }
 
-            dispatch(spotActions.updateSpot(id, formData))
-                .then((spot) => {
-                    history.push(`/spots/${spot.id}`)
-                })
-                .catch((err) => {
-                    setErrors(err)
-                })
-          }
+
     }
 
     return (
         <>
-
-            <div className="page-container">
+        <div className="page-container">
         <div className="form-create">
-            <h1>UPDATE Spot</h1>
+            <h1>Create a New Location</h1>
             <form
                 onSubmit={handleSubmit}
                 encType="multipart/form-data"
@@ -108,12 +82,11 @@ const UpdateSpotForm = () => {
                 <div>
                 <div className="error-message">{errors.name && <p className="">{errors.name}</p>}</div>
                 <label className="label-create">
-                    Spot Name
+                    Location Name
                     <input
                         className="input-create"
                         type='text'
-                        name="name"
-                        placeholder="Spot Name"
+                        placeholder="Location Name"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                     />
@@ -217,7 +190,7 @@ const UpdateSpotForm = () => {
                     <input
                         className="input-create"
                         type='text'
-                        placeholder="Length"
+                        placeholder="Mile Length"
                         value={length}
                         onChange={(e) => setLength(e.target.value)}
                     />
@@ -263,7 +236,7 @@ const UpdateSpotForm = () => {
                 </label>
                 </div>
                 <div className="align-create-button">
-                <button className='create-button test' type="submit">Update</button>
+                <button className='create-button test' type="submit">Create :)</button>
                 </div>
             </form>
         </div>
@@ -272,4 +245,4 @@ const UpdateSpotForm = () => {
     )
 }
 
-export default UpdateSpotForm;
+export default CreateLocationForm;

@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
-import * as spotsActions from "../../store/spots";
+import * as locationsActions from "../../store/locations";
 
 function DeleteModal({id}) {
 
@@ -10,7 +10,7 @@ function DeleteModal({id}) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(spotsActions.deleteSpot(id))
+        dispatch(locationsActions.deleteLocation(id))
             .then(closeModal)
     };
 
@@ -18,10 +18,10 @@ function DeleteModal({id}) {
         <>
         <div className="login-form">
             <h2 className="login-text">Confirm Delete</h2>
-            <p>Are your sure you want to remove this spot from the listings?</p>
+            <p>Are your sure you want to remove this location from the listings?</p>
             <form className='form-delete'onSubmit={handleSubmit}>
-                <button className='create-button' type='submit'>Yes (Delete Spot)</button>
-                <button className='keep-button delete-style' onClick={closeModal}>No (Keep Spot)</button>
+                <button className='create-button' type='submit'>Yes (Delete Location)</button>
+                <button className='keep-button delete-style' onClick={closeModal}>No (Keep Location)</button>
             </form>
         </div>
         </>

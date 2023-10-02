@@ -28,7 +28,7 @@ const ManageReviewsPage = () => {
                 {reviews.map((review) => (
                     <div key={review.id}>
                         <p>{review.stars}</p>
-                        <p>{review.spotName}</p>
+                        <p>{review.locationName}</p>
                         <p>{review.review}</p>
                         <OpenModalButton
                         modalComponent={<DeleteReviewModal id={review.id}/>}

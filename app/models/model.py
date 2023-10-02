@@ -36,20 +36,20 @@ class User(db.Model, UserMixin):
             'email': self.email
         }
 
-    spots = db.relationship('Spot', back_populates="user")
+    locations = db.relationship('Location', back_populates="user")
     reviews = db.relationship('Review', back_populates="user")
 
 
-class Spot(db.Model):
-    __tablename__ = 'spots'
+class Location(db.Model):
+    __tablename__ = 'locations'
 
     if environment == "production":
         __table_args__ = {'schema': SCHEMA}
 
-
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255), nullable=False)
-    userId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
+    userId = db.Column(db.Integer, db.ForeignKey(
+        add_prefix_for_prod('users.id')), nullable=False)
     address = db.Column(db.String(255), nullable=False)
     city = db.Column(db.String(255), nullable=False)
     state = db.Column(db.String(255), nullable=False)
@@ -62,7 +62,8 @@ class Spot(db.Model):
     routeType = db.Column(db.String(255), nullable=False)
     image = db.Column(db.String(255), nullable=False)
     createdAt = db.Column(db.DateTime, server_default=db.func.now())
-    updatedAt = db.Column(db.DateTime, server_default=db.func.now(), server_onupdate=db.func.now())
+    updatedAt = db.Column(
+        db.DateTime, server_default=db.func.now(), server_onupdate=db.func.now())
 
     def calculate_average_rating(self):
         if not self.reviews:
@@ -95,9 +96,9 @@ class Spot(db.Model):
             'avgRating': avg_rating
         }
 
-    user = db.relationship('User', back_populates='spots')
-    # review = db.relationship('Review', back_populates='spots')
-    reviews = db.relationship('Review', back_populates='spot')
+    user = db.relationship('User', back_populates='locations')
+    # review = db.relationship('Review', back_populates='locations')
+    reviews = db.relationship('Review', back_populates='location')
 
 
 class Review(db.Model):
@@ -107,18 +108,21 @@ class Review(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    userId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
-    spotId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('spots.id')), nullable=False)
+    userId = db.Column(db.Integer, db.ForeignKey(
+        add_prefix_for_prod('users.id')), nullable=False)
+    locationId = db.Column(db.Integer, db.ForeignKey(
+        add_prefix_for_prod('locations.id')), nullable=False)
     review = db.Column(db.String(255), nullable=False)
     stars = db.Column(db.Integer, nullable=False)
     createdAt = db.Column(db.DateTime, server_default=db.func.now())
-    updatedAt = db.Column(db.DateTime, server_default=db.func.now(), server_onupdate=db.func.now())
+    updatedAt = db.Column(
+        db.DateTime, server_default=db.func.now(), server_onupdate=db.func.now())
 
     def to_dict(self):
         return {
             'id': self.id,
             'userId': self.userId,
-            'spotId': self.spotId,
+            'locationId': self.locationId,
             'review': self.review,
             'stars': self.stars,
             'createdAt': self.createdAt,
@@ -126,5 +130,5 @@ class Review(db.Model):
         }
 
     user = db.relationship('User', back_populates='reviews')
-    # spots = db.relationship('Spot', back_populates='review')
-    spot = db.relationship('Spot', back_populates='reviews')
+    # locations = db.relationship('Location', back_populates='review')
+    location = db.relationship('Location', back_populates='reviews')

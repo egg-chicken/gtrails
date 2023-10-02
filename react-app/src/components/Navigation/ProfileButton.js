@@ -51,8 +51,8 @@ function ProfileButton({ user }) {
                 <li>{user.email}</li>
               </div>
               <div>
-                <li className="drop-link"><NavLink to='/spots/new' className='new-spots-l' onClick={closeMenu}>Add a New Spot</NavLink></li>
-                <li className="drop-link"><NavLink to='/spots/created' className='manage-spots-l' onClick={closeMenu}>Manage Spots</NavLink></li>
+                <li className="drop-link"><NavLink to='/locations/new' className='new-locations-l' onClick={closeMenu}>Add a New Location</NavLink></li>
+                <li className="drop-link"><NavLink to='/locations/created' className='manage-locations-l' onClick={closeMenu}>Manage Locations</NavLink></li>
                 <li className="drop-link"><NavLink to='/reviews/created' className='reviews-l' onClick={closeMenu}>Reviews</NavLink></li>
               </div>
               <li className="drop-link">

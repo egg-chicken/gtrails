@@ -3,7 +3,7 @@
     padding: 20px;
 }
 
-.spot-grid {
+.location-grid {
     display: grid;
     /* grid-template-columns: repeat(4, 1fr); */
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -16,7 +16,7 @@
     padding: 0px;
 }
 
-.spot {
+.location {
     display: flex;
     flex-direction: column;
     text-decoration: none;
@@ -34,7 +34,7 @@
     border-radius: 8px;
 }
 
-.spot-details {
+.location-details {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;

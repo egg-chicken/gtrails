@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request
-from app.models import User, Spot, Review, db
+from app.models import User, Location, Review, db
 from app.forms.review_form import ReviewForm
 from app.api.auth_routes import validation_errors_to_error_messages
 from flask_login import current_user, login_required, login_user
@@ -7,20 +7,22 @@ from flask_login import current_user, login_required, login_user
 review_routes = Blueprint('reviews', __name__)
 
 # get all the reviews of the current user
+
+
 @review_routes.route('/created', methods=['GET'])
 @login_required
 def userReviews():
-    currentUserReviews = Review.query.filter_by(userId = current_user.id).all()
+    currentUserReviews = Review.query.filter_by(userId=current_user.id).all()
 
-    nameInfo = Spot.query.get(current_user.id)
+    nameInfo = Location.query.get(current_user.id)
 
     reviewInfo = []
 
     for review in currentUserReviews:
-        nameInfo = review.spot
+        nameInfo = review.location
         reviewInfo.append({
             'id': review.id,
-            'spotName': nameInfo.name,
+            'locationName': nameInfo.name,
             'review': review.review,
             'stars': review.stars
         })
@@ -68,8 +70,7 @@ def editReview(id):
         db.session.commit()
         return review.to_dict()
 
-
-    return {"message": "Validation Error","statusCode": 400,'errors': validation_errors_to_error_messages(form.errors)}, 400
+    return {"message": "Validation Error", "statusCode": 400, 'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 
 # delete a review
@@ -88,4 +89,4 @@ def deleteReview(id):
     db.session.delete(review)
     db.session.commit()
 
-    return { "message": 'Successfully deleted', "statusCode": 200}
+    return {"message": 'Successfully deleted', "statusCode": 200}

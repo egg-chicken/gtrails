@@ -35,9 +35,9 @@ const deleteOne = id => ({
     id
 })
 
-// get all the spot reviews
+// get all the location reviews
 export const getAllReviews = id => async dispatch => {
-    const response = await fetch(`/api/spots/${id}/reviews`)
+    const response = await fetch(`/api/locations/${id}/reviews`)
 
     if(response.ok){
         const reviews = await response.json();
@@ -71,8 +71,8 @@ export const getReviewsDetails = (id) => async dispatch => {
 
 
 // create a review
-export const createReview = (spotId, formData) => async (dispatch) => {
-    const response = await fetch(`/api/spots/${spotId}/reviews`, {
+export const createReview = (locationId, formData) => async (dispatch) => {
+    const response = await fetch(`/api/locations/${locationId}/reviews`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
