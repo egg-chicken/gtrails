@@ -68,9 +68,9 @@ ul.profile-dropdown {
   padding: 10px;
 }
 
-.manage-locations-l,
-.new-locations-l,
-.reviews-l {
+.manage-locations-link,
+.new-locations-link,
+.reviews-link {
   text-decoration: none;
   color: black;
 }
@@ -79,6 +79,13 @@ ul.profile-dropdown {
   background-color: red;
 }
 
+.log-out-button {
+  color:red;
+  border: none;
+  background: none;
+  text-decoration: underline;
+  cursor: pointer;
+}
 
 /*
 .icon-mount {

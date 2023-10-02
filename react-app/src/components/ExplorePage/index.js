@@ -19,7 +19,7 @@ const ExplorePage = () => {
                 <div className='location-grid'>
                     {locationsArray.map((location) => (
                         <Link key={location.id} to={`/locations/${location.id}`} className='location'>
-                            <img src={location.image} alt='location prev' className='image' title={location.name}/>
+                            <img src={location.image} alt='location' className='image' title={location.name}/>
                             <div className="location-details">
                                 <p className='a-detail'>{location.name}</p>
                                 <p className='location-rating'>
