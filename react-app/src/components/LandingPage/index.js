@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -25,8 +25,7 @@ const LandingPage = () => {
                     <div className="location-container-m">
                         {locationsArray.slice(0,4).map((location) => (
                             <Link key={location.id} to={`/locations/${location.id}`} className='location'>
-                                    <a key={location.id} href="#" className="location">
-                                    <img src={location.image} alt='location' className='location-images' title={location.name}/>
+                                    <img src={location.image} alt='location' className='location location-images' title={location.name}/>
                                     <div className="location-details">
                                         <p className='a-detail'>{location.name}  </p>
                                         <p className='location-rating'>
@@ -38,7 +37,6 @@ const LandingPage = () => {
                                         <p className="b-detail">{location.city}, {location.state}</p>
                                         <p className="b-detail">Length: {location.length} mi &#8231;  {location.routeType}</p>
                                     </div>
-                                    </a>
                             </Link>
                         ))}
                     </div>
@@ -48,7 +46,6 @@ const LandingPage = () => {
                     <div className="location-container-m">
                         {locationsArray.slice(4,8).map((location) => (
                             <Link key={location.id} to={`/locations/${location.id}`} className='location'>
-                                    <a key={location.id} href="#" className="location">
                                     <img src={location.image} alt='location' className='location-images' title={location.name}/>
                                     <div className="location-details">
                                         <p className='a-detail'>{location.name}  </p>
@@ -61,7 +58,6 @@ const LandingPage = () => {
                                         <p className="b-detail">{location.city}, {location.state}</p>
                                         <p className="b-detail">Length: {location.length} mi &#8231;  {location.routeType}</p>
                                     </div>
-                                    </a>
                             </Link>
                         ))}
                     </div>
@@ -71,7 +67,6 @@ const LandingPage = () => {
                     <div className="location-container-m">
                         {locationsArray.slice(8,12).map((location) => (
                             <Link key={location.id} to={`/locations/${location.id}`} className='location'>
-                                    <a key={location.id} href="#" className="location">
                                     <img src={location.image} alt='location' className='location-images' title={location.name}/>
                                     <div className="location-details">
                                         <p className='a-detail'>{location.name}  </p>
@@ -84,7 +79,6 @@ const LandingPage = () => {
                                         <p className="b-detail">{location.city}, {location.state}</p>
                                         <p className="b-detail">Length: {location.length} mi &#8231;  {location.routeType}</p>
                                     </div>
-                                    </a>
                             </Link>
                         ))}
                     </div>
