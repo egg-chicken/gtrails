@@ -47,7 +47,7 @@ const LocationDetailsPage = () => {
               }
             }
         }
-      },[isReviewsLoaded, isLoaded, user, reviews, location.ownerId, id])
+      },[isReviewsLoaded, isLoaded, user, reviews, id])
 
     const handleClick = e => {
       e.preventDefault();
@@ -94,7 +94,7 @@ const LocationDetailsPage = () => {
 
                   <div className='write-review-button-placement'>
                   <OpenModalButton
-                      modalComponent={<ReviewModal id={location.id} setIsVisible={setIsVisible} />}
+                      modalComponent={<ReviewModal id={location.id} />}
                       buttonText="Write a Review"
                       buttonType="add"
                   />

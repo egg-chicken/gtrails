@@ -12,45 +12,38 @@ function ReviewModal({id, setIsVisible}) {
     const [errors, setErrors] = useState({});
     const { closeModal } = useModal();
     // const location = useSelector((state) => state.location[id]);
-    const previousReview = useSelector((state) => state.review[id]);
-
-    useEffect(() => {
-        if (previousReview) {
-          setErrors({ review: 'You already made a review for this location! Only one review per location' });
-        } else {
-          setErrors('');
-        }
-    }, [previousReview]);
+    // const previousReview = useSelector((state) => state.review[id]);
 
     const handleSubmit = async(e) => {
         e.preventDefault();
 
-        const errors = {};
+        setErrors(null);
 
-        if (review && review.length < 10) errors.review = 'Please enter a comment with at least 10 characters.';
-        if (stars === 0 ) errors.stars = 'Select a rating';
+        const submitErrors = {};
 
-        setErrors(errors);
+        if (review.length < 10) submitErrors.review = 'Please enter a comment with at least 10 characters.';
+        if (stars === 0 ) submitErrors.stars = 'Select a rating';
+        if (submitErrors.review || submitErrors.stars) {
+          setErrors(submitErrors);
+          return
+        }
 
-        if (Object.keys(errors).length === 0 && !previousReview) {
-            const formData = {
+        if (!errors) {
+
+          const reviewData = {
               stars,
               review,
             };
 
-            try {
-              dispatch(reviewActions.createReview(id, formData)).then(() => {
-                closeModal();
-              });
-            } catch (err) {
-              setErrors({});
-              console.error("Error creating review:", err);
+            const data = await dispatch(reviewActions.createReview(id, reviewData))
+            
+            if(data){
+              setErrors(data);
+            } else {
+              closeModal();
             }
-          }
 
-        //if (postReview.errors){
-          //setErrors(postReview.errors)
-       // }
+          }
     }
 
     return (
@@ -59,9 +52,7 @@ function ReviewModal({id, setIsVisible}) {
             <p className='review-title'>Create Review</p>
               {/* <p className='review-title'>{location.name}</p> */}
             </div>
-            {/* <div>{errors.length > 0 && errors.map(el => (
-              <div key={el} className='errors'>{el}</div>
-            ))}</div> */}
+              <div>{errors && errors.message && <p className="error">{errors.message}</p>}</div>
               <div>{errors && errors.review && <p className="error">{errors.review}</p>}</div>
               <div>{errors && errors.stars && <p className="error">{errors.stars}</p>}</div>
               <form onSubmit={handleSubmit}>
@@ -96,7 +87,7 @@ function ReviewModal({id, setIsVisible}) {
                     <button type='submit'
                         onClick={handleSubmit}
                         className='review-submit-button'
-                        // disabled={review.length < 10 || stars === 0 || !!previousReview}
+
                     >
                         <p className='post-text'>Post</p>
                     </button>

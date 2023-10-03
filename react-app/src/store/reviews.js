@@ -71,20 +71,21 @@ export const getReviewsDetails = (id) => async dispatch => {
 
 
 // create a review
-export const createReview = (locationId, formData) => async (dispatch) => {
-    const response = await fetch(`/api/locations/${locationId}/reviews`, {
+export const createReview = (id, reviewData) => async (dispatch) => {
+    const response = await fetch(`/api/locations/${id}/reviews`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
-        body: formData,
+        body: JSON.stringify(reviewData),
     });
 
     if (response.ok) {
     const review = await response.json();
     dispatch(createOne(review));
-    return review;
+    return 
     }
+    return await response.json()
   };
 
 //delete a review using id
