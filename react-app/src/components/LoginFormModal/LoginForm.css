@@ -1,3 +1,23 @@
+.login-container {
+    display: flex;
+    justify-content: flex-start;
+    align-content: center;
+    margin: 20px;
+    padding: 20px;
+    width: 300px;
+    height: 500px;
+    flex-direction: column;
+}
+
+.log-text{
+    font-size: 28px;
+    margin: 0px;
+}
+
+/* .login-title {
+    font-size: 25px;
+} */
+
 .demo-button {
     background: none;
     border: none;
@@ -22,4 +42,30 @@
     display: flex;
     justify-content: center;
     color: red;
+}
+
+.email,
+.password {
+    padding: 10px;
+    display: flex;
+}
+
+/* ?????? */
+input.text4 {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-submit-button {
+     border-radius: 20px;
+     background-color: #054A29;
+     color: white;
+     display: block;
+     font-size: 30px;
+     border: none;
+     width: 300px;
+}
+
+.login-text {
+    font-size: 16px;
 }

@@ -14,7 +14,7 @@ const Footer = () => {
             <div className="footer-content">
                 <p className='text'>&copy; 2023 GTrails, Edith Gomez Garcia</p>
                 <ul className="footer-links">
-                    <li><NavLink exact to="/">Home</NavLink></li>
+                    <li><NavLink className='right-text' exact to="/">Home</NavLink></li>
                     <li><NavLink exact to="/">About</NavLink></li>
                     <li><NavLink exact to="/">Contact</NavLink></li>
                 </ul>
