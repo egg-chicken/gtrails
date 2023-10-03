@@ -237,6 +237,7 @@ def locationReviews(id):
             "locationId": review.locationId,
             "stars": review.stars,
             "updatedAt": review.updatedAt,
+            "userId": review.userId,
             "User": {
                 'id': userInfo.id,
                 'firstName': userInfo.firstName,

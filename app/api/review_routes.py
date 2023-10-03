@@ -7,8 +7,6 @@ from flask_login import current_user, login_required, login_user
 review_routes = Blueprint('reviews', __name__)
 
 # get all the reviews of the current user
-
-
 @review_routes.route('/created', methods=['GET'])
 @login_required
 def userReviews():

@@ -14,19 +14,14 @@ const LocationDetailsPage = () => {
     const dispatch = useDispatch();
     const location = useSelector((state) => state.location[id]);
     const reviews = useSelector((state) => Object.values(state.review));
-    // const review = useSelector((state) => Object.values(state.review[id]));
     const user = useSelector(state => state.session.user);
     const [isReviewsLoaded, setIsReviewsLoaded] = useState(false);
     const [isLoaded, setIsLoaded] = useState(false);
     const [isVisible, setIsVisible] = useState(false);
+
     const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
-    // console.log('reviews', reviews)
-    // console.log('id:', id);
-    // console.log('reviews[id]:', reviews[id]);
-    // console.log('reviewId', reviewId);
-    // console.log('review modal', reviewModal)
-
+    console.log('reviews', reviews)
     useEffect(() => {
         dispatch(locationActions.getLocationsDetails(id))
             .then(() => setIsLoaded(true))
@@ -37,17 +32,12 @@ const LocationDetailsPage = () => {
     useEffect(() => {
 
         if(isReviewsLoaded && isLoaded) {
-            if(user){
-              if(user.id !== location.ownerId){
-                let target = true;
-                reviews.forEach(el => {
-                  if (el.userId === user.id) target = false;
-                });
-                if(target === true) setIsVisible(true);
-              }
+          if(user){
+              setIsVisible(true);
             }
-        }
-      },[isReviewsLoaded, isLoaded, user, reviews, id])
+          }
+
+      },[isReviewsLoaded, isLoaded, user])
 
     const handleClick = e => {
       e.preventDefault();
@@ -110,9 +100,7 @@ const LocationDetailsPage = () => {
 
                   return (
                     <div key={review.id}>
-                      <button className='open-menu-button' onClick={handleClick}>
-                        <i className="far fa-smile" style={{color:'#25d066',}}></i>
-                      </button>
+                      <button className='open-menu-button' onClick={handleClick}><i className="far fa-smile" style={{color:'#25d066',}}></i></button>
                       <p className='user-firstname'>{review.User?.firstName} {review.User?.lastName}</p>
                       <p className='date'>{reviewMonth} {day}, {year}</p>
                       <div className='star-rating'>
@@ -121,12 +109,12 @@ const LocationDetailsPage = () => {
                         ))}
                       </div>
                       <p className='review-text'>{review.review}</p>
-                      {review.User?.id === user?.id && <OpenModalButton
+                      {review.userId === user?.id && <OpenModalButton
                         modalComponent={<DeleteReviewModal id={review.id} locationId={review.locationId} setIsVisible={setIsVisible}/>}
                         buttonText="Delete"
                         buttonType="Delete"
                       />}
-                      {review.User?.id === user?.id && <OpenModalButton
+                      {review.userId === user?.id && <OpenModalButton
                           modalComponent={<EditReviewModal id={review.id} locationId={review.locationId} setIsVisible={setIsVisible}/>}
                           buttonText="Edit"
                           buttonType="edit"
