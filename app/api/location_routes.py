@@ -50,7 +50,6 @@ def userLocations():
 @location_routes.route('/<int:id>', methods=['GET'])
 def locationId(id):
 
-    # location = Location.query.get(id)
     location = Location.query.get(id)
 
     if location is None:

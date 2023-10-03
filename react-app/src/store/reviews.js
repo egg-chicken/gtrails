@@ -53,7 +53,7 @@ export const getCurrentUsersReviews = () => async dispatch => {
     if(response.ok){
         const reviews = await response.json();
         dispatch(loadUserReviews(reviews));
-        console.log('store review:',reviews)
+        // console.log('store review:',reviews)
         return reviews;
     }
 }
@@ -83,7 +83,7 @@ export const createReview = (id, reviewData) => async (dispatch) => {
     if (response.ok) {
     const review = await response.json();
     dispatch(createOne(review));
-    return //will return the errors 
+    return //will return the errors
     }
     return await response.json() //will return the errors
   };

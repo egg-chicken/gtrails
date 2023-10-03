@@ -10,26 +10,32 @@ const ManageReviewsPage = () => {
     const dispatch = useDispatch();
     const reviews = useSelector((state) => Object.values(state.review));
 
-    // console.log('reviews', reviews)
-    // console.log('reviewsArray', reviewArray)
-
     useEffect(() => {
         dispatch(reviewActions.getCurrentUsersReviews())
     }, [dispatch]);
 
+    if (reviews.length === 0) {
+        return (
+            <div className='manage-review-container'>
+                <h1>Manage Reviews</h1>
+                <p>No reviews available. Find a location and create a review</p>
+            </div>
+        );
+    }
 
     return (
         <div className='manage-review-container'>
             <h1>Manage Reviews</h1>
-            <div>
 
-            </div>
             <div className='all-user-reviews'>
                 {reviews.map((review) => (
                     <div key={review.id}>
-                        <p>{review.stars}</p>
-                        <p>{review.locationName}</p>
-                        <p>{review.review}</p>
+                        <div className='review-detials'>
+                            <p>{review.stars}</p>
+                            <p>{review.location}</p>
+                            <p>{review.review}</p>
+                        </div>
+
                         <OpenModalButton
                         modalComponent={<DeleteReviewModal id={review.id}/>}
                         buttonText='Delete'
@@ -40,9 +46,6 @@ const ManageReviewsPage = () => {
                         />
                     </div>
                 ))}
-            </div>
-            <div>
-
             </div>
 
         </div>
