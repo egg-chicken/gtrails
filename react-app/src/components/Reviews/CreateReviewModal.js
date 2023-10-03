@@ -21,7 +21,7 @@ function ReviewModal({id, setIsVisible}) {
 
         const submitErrors = {};
 
-        if (review.length < 10) submitErrors.review = 'Please enter a comment with at least 10 characters.';
+        if (review.length < 5) submitErrors.review = 'Please enter a comment with at least 5 characters.';
         if (stars === 0 ) submitErrors.stars = 'Select a rating';
         if (submitErrors.review || submitErrors.stars) {
           setErrors(submitErrors);
@@ -36,7 +36,7 @@ function ReviewModal({id, setIsVisible}) {
             };
 
             const data = await dispatch(reviewActions.createReview(id, reviewData))
-            
+
             if(data){
               setErrors(data);
             } else {

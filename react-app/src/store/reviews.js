@@ -83,9 +83,9 @@ export const createReview = (id, reviewData) => async (dispatch) => {
     if (response.ok) {
     const review = await response.json();
     dispatch(createOne(review));
-    return 
+    return //will return the errors 
     }
-    return await response.json()
+    return await response.json() //will return the errors
   };
 
 //delete a review using id
