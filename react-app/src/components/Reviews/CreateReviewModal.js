@@ -4,15 +4,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import * as reviewActions from '../../store/reviews';
 import './css/create-edit-review.css';
 
-function ReviewModal({id, setIsVisible}) {
+function ReviewModal({id}) {
     const dispatch = useDispatch();
     const [review, setReview] = useState('');
     const [stars, setStars] = useState(0);
     const [hover, setHover] = useState(0);
     const [errors, setErrors] = useState({});
     const { closeModal } = useModal();
-    // const location = useSelector((state) => state.location[id]);
-    // const previousReview = useSelector((state) => state.review[id]);
+    const location = useSelector((state) => state.location[id]);
 
     const handleSubmit = async(e) => {
         e.preventDefault();
@@ -49,8 +48,8 @@ function ReviewModal({id, setIsVisible}) {
     return (
         <div className='create-review-container'>
             <div>
-            <p className='review-title'>Create Review</p>
-              {/* <p className='review-title'>{location.name}</p> */}
+            {/* <p className='review-title'>Create Review</p> */}
+            <p className='review-title'>{location.name}</p>
             </div>
               <div>{errors && errors.message && <p className="error">{errors.message}</p>}</div>
               <div>{errors && errors.review && <p className="error">{errors.review}</p>}</div>

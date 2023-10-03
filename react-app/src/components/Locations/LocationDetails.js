@@ -93,11 +93,12 @@ const LocationDetailsPage = () => {
                   <p>{reviews.length} reviews</p>
 
                   <div className='write-review-button-placement'>
+                    {isVisible &&
                   <OpenModalButton
                       modalComponent={<ReviewModal id={location.id} />}
                       buttonText="Write a Review"
                       buttonType="add"
-                  />
+                  />}
                   </div>
                 </div>
                 <div className='s-review-box'>
