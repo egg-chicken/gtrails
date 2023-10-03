@@ -33,33 +33,38 @@ function LoginFormModal() {
             <li key={idx}>{error}</li>
           ))}
         </ul>
-        <label className="email">
-          Email
+        <div className="form-container">
+          <p className="sub-text">Email</p>
           <input
             type="text"
-            className="text4"
+            className="input-text"
             value={email}
             placeholder="Email Address"
             onChange={(e) => setEmail(e.target.value)}
             required
           />
-        </label>
-        <label className="password">
-          Password
+        </div>
+        <div className="form-container">
+          <p className="sub-text">Password</p>
           <input
             type="password"
+            className="input-text"
             value={password}
             placeholder="Password"
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-        </label>
-        <button  className="login-submit-button"><p className="login-text">Log In</p></button>
-        <div className="demo-center">
-        <button className='demo-button' onClick={(e) => {
-          setEmail('demo@aa.io');
-          setPassword('password');
-        }}>Demo User</button>
+        </div>
+        <div className="log-button-container">
+          <div className='login-button'>
+            <button  className="login-submit-button"><p className="login-text">Log In</p></button>
+          </div>
+          <div className="demo-center">
+            <button className='demo-button' onClick={(e) => {
+              setEmail('demo@aa.io');
+              setPassword('password');
+            }}>Demo User</button>
+          </div>
         </div>
       </form>
     </div>
