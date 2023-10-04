@@ -126,7 +126,7 @@ const LocationDetailsPage = () => {
             </div>
             }
             </div>
-            </div>
+          </div>
         </div>
     )
 }

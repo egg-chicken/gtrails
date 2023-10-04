@@ -24,7 +24,7 @@ def userReviews():
         reviewInfo.append({
             'id': review.id,
             'locationId': review.locationId,
-            'location': review.location.name,
+            'locationName': review.location.name,
             'review': review.review,
             'stars': review.stars
         })

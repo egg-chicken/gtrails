@@ -32,7 +32,7 @@ const ManageReviewsPage = () => {
                     <div key={review.id}>
                         <div className='review-detials'>
                             <p>{review.stars}</p>
-                            <p>{review.location}</p>
+                            <p>{review.locationName}</p>
                             <p>{review.review}</p>
                         </div>
 
