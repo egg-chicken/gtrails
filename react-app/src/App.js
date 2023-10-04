@@ -7,8 +7,6 @@ import ManageLocationsPage from "./components/Locations/ManageLocations";
 import LocationDetailsPage from "./components/Locations/LocationDetails";
 import CreateLocationForm from "./components/Locations/CreateLocation";
 import LandingPage from "./components/LandingPage";
-import SignupFormPage from "./components/SignupFormPage";
-import LoginFormPage from "./components/LoginFormPage";
 import ExplorePage from "./components/ExplorePage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
