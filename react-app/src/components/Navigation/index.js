@@ -7,6 +7,11 @@ import './Navigation.css';
 function Navigation({ isLoaded }){
 	const sessionUser = useSelector(state => state.session.user);
 
+	const handleClick = e => {
+		e.preventDefault();
+		alert("Feature Coming Soon!")
+	}
+
 	return (
 		<nav className='nav-container'>
 			<div className='a'>
@@ -17,8 +22,8 @@ function Navigation({ isLoaded }){
 			</div>
 			<div className='b'>
 				<NavLink className="nav-link sub-link" exact to="/explore">Explore</NavLink>
-				<NavLink className="nav-link sub-link" exact to="/community">Community</NavLink>
-				<NavLink className="nav-link sub-link" exact to="/saved">Saved</NavLink>
+				<NavLink onClick={handleClick} className="nav-link sub-link" exact to="/community">Community</NavLink>
+				<NavLink onClick={handleClick} className="nav-link sub-link" exact to="/saved">Saved</NavLink>
 			</div>
 			<div className='c right-nav-side'>
 				{isLoaded && (
