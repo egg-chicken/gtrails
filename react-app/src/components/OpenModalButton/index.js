@@ -19,6 +19,8 @@ function OpenModalButton({
   const buttonClassName = buttonType === 'edit' ? 'edit-button'
   : buttonType === 'Delete' ? 'delete-button'
   : buttonType === 'add' ? 'write-button'
+  : buttonType === 'LogIn' ? 'log-in-button'
+  : buttonType === 'SignUp' ? 'sign-up-button'
   : '';
 
   return (

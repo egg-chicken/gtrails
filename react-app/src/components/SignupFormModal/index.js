@@ -17,6 +17,12 @@ function SignupFormModal() {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+
+		if (!email.includes('@') || !email.includes('.com')) {
+			setErrors(["Email is invalid. Please enter a valid email address."]);
+			return;
+		}
+
 		if (password === confirmPassword) {
 			const data = await dispatch(signUp(firstName, lastName, username, email, password));
 			if (data) {
@@ -32,16 +38,17 @@ function SignupFormModal() {
 	};
 
 	return (
-		<div className="login-container">
+		<div className="signup-container">
 			<div className="login-title">
 				<p className="log-text">Sign Up</p>
 			</div>
 			<form className='login-body' onSubmit={handleSubmit}>
-				<ul>
+				<div>
 					{errors.map((error, idx) => (
-						<li key={idx}>{error}</li>
+						<p className='errors'key={idx}>{error}</p>
 					))}
-				</ul>
+				</div>
+				<div className="move">
 				<div className="form-container">
 					<p className="sub-text-signup">First Name</p>
 					<input
@@ -106,6 +113,7 @@ function SignupFormModal() {
           			<div className='login-button'>
 						<button className="login-submit-button" type="submit"><p className="login-text">Sign Up</p></button>
 					</div>
+				</div>
 				</div>
 			</form>
 		</div>

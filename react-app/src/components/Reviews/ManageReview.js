@@ -31,18 +31,24 @@ const ManageReviewsPage = () => {
                 {reviews.map((review) => (
                     <div key={review.id}>
                         <div className='review-detials'>
-                            <p>{review.stars}</p>
-                            <p>{review.locationName}</p>
-                            <p>{review.review}</p>
+                            <div className='star-rating'>
+                                {[...Array(review.stars)].map((star, index) => (
+                                <i key={index} className="fa fa-solid fa-star" style={{ color: '#2ced39' }} />
+                                ))}
+                            </div>
+                                <p>{review.locationName}</p>
+                                <p>{review.review}</p>
                         </div>
 
                         <OpenModalButton
-                        modalComponent={<DeleteReviewModal id={review.id}/>}
-                        buttonText='Delete'
+                            modalComponent={<DeleteReviewModal id={review.id}/>}
+                            buttonText='Delete'
+                            buttonType="Delete"
                         />
                         <OpenModalButton
                             modalComponent={<EditReviewModal id={review.id}/>}
                             buttonText='Edit'
+                            buttonType="edit"
                         />
                     </div>
                 ))}

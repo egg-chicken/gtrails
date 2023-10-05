@@ -68,7 +68,7 @@ ul.profile-dropdown {
 }
 
 .drop-link:hover {
-  background-color: lightgray;
+  background-color: #5BBA6F;
 }
 
 .user-drop {
@@ -91,7 +91,7 @@ ul.profile-dropdown {
   border: none;
   background: none;
   text-decoration: underline;
-  cursor: pointer;
+  cursor: pointer; 
 }
 
 .right-nav-side {
@@ -116,3 +116,25 @@ div.c.right-nav-side {
   margin-top: 20px;
 }
 */
+
+.login-button-container{
+  width: 100px;
+}
+
+.log-in-button,
+.sign-up-button {
+  display: flex;
+  width: 100px;
+  flex-direction: column;
+  border: none;
+  padding: 20px 20px 20px 20px;
+  background: none;
+  cursor: pointer;
+
+}
+
+.log-in-button:hover,
+.sign-up-button:hover {
+  background-color: #5BBA6F;
+  border-radius: 10px;
+}

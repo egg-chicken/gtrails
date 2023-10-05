@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useModal } from '../../context/Modal';
 import { useDispatch, useSelector } from 'react-redux';
 import * as reviewActions from '../../store/reviews';
@@ -83,11 +83,7 @@ function ReviewModal({id}) {
                     />
                   </div>
                   <div className='review-submit-button-placement'>
-                    <button type='submit'
-                        onClick={handleSubmit}
-                        className='review-submit-button'
-
-                    >
+                    <button type='submit' onClick={handleSubmit} className='review-submit-button'>
                         <p className='post-text'>Post</p>
                     </button>
                   </div>

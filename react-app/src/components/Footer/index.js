@@ -7,7 +7,12 @@ const Footer = () => {
         github:'https://github.com/egg-chicken',
         insta:'',
         linkedinHandle:'https://www.linkedin.com/in/edithgomezgarcia/',
-    }
+    };
+
+    const handleClick = e => {
+		e.preventDefault();
+		alert("Feature Coming Soon!")
+	};
 
     return (
         <footer>
@@ -15,8 +20,8 @@ const Footer = () => {
                 <p className='text'>&copy; 2023 GTrails, Edith Gomez Garcia</p>
                 <ul className="footer-links">
                     <li><NavLink className='right-text' exact to="/">Home</NavLink></li>
-                    <li><NavLink exact to="/">About</NavLink></li>
-                    <li><NavLink exact to="/">Contact</NavLink></li>
+                    <li><NavLink onClick={handleClick} exact to="/">About</NavLink></li>
+                    <li><NavLink onClick={handleClick} exact to="/">Contact</NavLink></li>
                 </ul>
             </div>
             <div className='credits'>
