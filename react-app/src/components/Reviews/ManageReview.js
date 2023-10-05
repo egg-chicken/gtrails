@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import EditReviewModal from './EditReviewModal';
 import DeleteReviewModal from '../Reviews/DeleteReviewModal';
 import OpenModalButton from '../OpenModalButton';
@@ -9,9 +10,13 @@ import './css/manage-review.css';
 const ManageReviewsPage = () => {
     const dispatch = useDispatch();
     const reviews = useSelector((state) => Object.values(state.review));
+    const locations = useSelector((state) => state.location);
+    // const locationsArray = locations ? Object.values(locations): [];
+
 
     useEffect(() => {
         dispatch(reviewActions.getCurrentUsersReviews())
+        // dispatch(locationActions.getLocations())
     }, [dispatch]);
 
     if (reviews.length === 0) {
@@ -25,8 +30,8 @@ const ManageReviewsPage = () => {
 
     return (
         <div className='manage-review-container'>
-            <h1>Manage Reviews</h1>
-
+            <div className='location-border-card'>
+            <p className='review-title manage-review'>Manage Reviews</p>
             <div className='all-user-reviews'>
                 {reviews.map((review) => (
                     <div key={review.id}>
@@ -36,6 +41,12 @@ const ManageReviewsPage = () => {
                                 <i key={index} className="fa fa-solid fa-star" style={{ color: '#2ced39' }} />
                                 ))}
                             </div>
+                            <div className='profile-location'>
+
+                            </div>
+                                <Link to={`/locations/${review.locationId}`}>
+                                    <img src={review.location.image} alt='location prev' className='image' title={locations.name}/>
+                                </Link>
                                 <p>{review.locationName}</p>
                                 <p>{review.review}</p>
                         </div>
@@ -53,7 +64,7 @@ const ManageReviewsPage = () => {
                     </div>
                 ))}
             </div>
-
+            </div>
         </div>
     )
 }
