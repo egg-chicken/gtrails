@@ -33,9 +33,15 @@ const LocationDetailsPage = () => {
 
         if(isReviewsLoaded && isLoaded) {
           if(user){
-              setIsVisible(true);
+            if(user.id !== location.userId){
+              let target = true;
+              reviews.forEach(el => {
+                if(el.userId === user.id) target = false;
+              });
+              if(target === true) setIsVisible(true);
             }
           }
+        }
 
       },[isReviewsLoaded, isLoaded, user])
 
