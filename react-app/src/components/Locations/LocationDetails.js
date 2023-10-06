@@ -58,8 +58,10 @@ const LocationDetailsPage = () => {
         <div className='location-detail-container'>
           <div className='location-border-card'>
             <div className='cover-container'>
-              <img className='location-image-id' src={location.image} alt={location.image}/>
-              <p className='location-detail-title'>{location.name}</p>
+              <div className='cover-image'>
+                <img className='location-image-id' src={location.image} alt={location.image}/>
+              </div>
+              <h1 className='location-detail-title c-title'>{location.name}</h1>
             </div>
             <div>{location.city}, {location.state}</div>
             <p className='location-rating'>
@@ -67,9 +69,18 @@ const LocationDetailsPage = () => {
                 {location.avgRating ? (Number.isInteger(location.avgRating) ? location.avgRating.toFixed(1) : location.avgRating.toFixed(1)) : 'New'} ({reviews.length})
             </p>
             <div className='location-details-bar'>
-              <p>Length: {location.length}</p>
-              <p>Elevation Gain: {location.elevGain}</p>
-              <p>Route Type: {location.routeType}</p>
+              <div className='detail-bar'>
+                <span className='label non-bold-text'>Length:</span>
+                <span className='value bold-text'>{location.length} mi</span>
+              </div>
+              <div className='detail-bar'>
+                <span className='label non-bold-text'>Elevation Gain:</span>
+                <span className='value bold-text'>{location.elevGain} ft</span>
+              </div>
+              <div className='detail-bar'>
+                <span className='label non-bold-text'>Route Type:</span>
+                <span className='value bold-text'>{location.routeType}</span>
+              </div>
             </div>
             <p>Check out this {location.length} mile {location.routeType} near {location.city}, {location.state}.</p>
             <p>Description</p>

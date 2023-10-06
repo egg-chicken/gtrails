@@ -5,19 +5,24 @@ import EditReviewModal from './EditReviewModal';
 import DeleteReviewModal from '../Reviews/DeleteReviewModal';
 import OpenModalButton from '../OpenModalButton';
 import * as reviewActions from '../../store/reviews';
+import * as locationActions from '../../store/locations';
+import { useParams } from 'react-router-dom';
 import './css/manage-review.css';
 
 const ManageReviewsPage = () => {
+    const { id } = useParams();
     const dispatch = useDispatch();
     const reviews = useSelector((state) => Object.values(state.review));
-    const locations = useSelector((state) => state.location);
-    // const locationsArray = locations ? Object.values(locations): [];
+    const locations = useSelector((state) => state.location[id]);
+    const locationsArray = locations ? Object.values(locations): [];
 
+    //get locations details by id - if the locationId === the id of the location then return the image if not return previmage
+    console.log('locationsxccc', locationsArray)
 
     useEffect(() => {
         dispatch(reviewActions.getCurrentUsersReviews())
-        // dispatch(locationActions.getLocations())
-    }, [dispatch]);
+        dispatch(locationActions.getLocationsDetails(id))
+    }, [dispatch, id]);
 
     if (reviews.length === 0) {
         return (
@@ -45,9 +50,13 @@ const ManageReviewsPage = () => {
 
                             </div>
                                 <Link to={`/locations/${review.locationId}`}>
-                                    <img src={review.location.image} alt='location prev' className='image' title={locations.name}/>
+                                    <p>{review.locationName}</p>
+                                    {/* {locations[review.locationId] && locations[review.locationId].image ? (
+        <img src={locations[review.locationId].image} alt='location prev' className='image' title={locations[review.locationId].name} />
+    ) : (
+        <div className='image-placeholder'>Image not available</div>
+    )} */}
                                 </Link>
-                                <p>{review.locationName}</p>
                                 <p>{review.review}</p>
                         </div>
 
