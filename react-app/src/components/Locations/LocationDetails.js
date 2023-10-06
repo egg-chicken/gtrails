@@ -43,7 +43,7 @@ const LocationDetailsPage = () => {
           }
         }
 
-      },[isReviewsLoaded, isLoaded, user])
+      },[isReviewsLoaded, isLoaded, user, location, reviews])
 
     const handleClick = e => {
       e.preventDefault();
@@ -61,13 +61,37 @@ const LocationDetailsPage = () => {
               <div className='cover-image'>
                 <img className='location-image-id' src={location.image} alt={location.image}/>
               </div>
-              <h1 className='location-detail-title c-title'>{location.name}</h1>
+              <h1 className='location-name-title'>{location.name}</h1>
+              <div className='location-direction'>
+                <p onClick={handleClick} className='city-state'>{location.address}</p>
+                <p className='location-rating-main'>
+                  <i className="fa fa-solid fa-star" style={{color:'#2ced39',}}/>
+                  {location.avgRating ? (Number.isInteger(location.avgRating) ? location.avgRating.toFixed(1) : location.avgRating.toFixed(1)) : 'New'} ({reviews.length})
+                </p>
+              </div>
             </div>
-            <div>{location.city}, {location.state}</div>
-            <p className='location-rating'>
-                <i className="fa fa-solid fa-star" style={{color:'#2ced39',}}/>
-                {location.avgRating ? (Number.isInteger(location.avgRating) ? location.avgRating.toFixed(1) : location.avgRating.toFixed(1)) : 'New'} ({reviews.length})
-            </p>
+            <div className='bar-links location-details-bar-buttons'>
+              <div className='detail-bar-button'>
+                <button className='bar-button' onClick={handleClick}><i className="far fa-images" style={{color:'#054A29',}}/></button>
+                <span className='button-title'>Photos</span>
+              </div>
+              <div className='detail-bar-button'>
+                <button className='bar-button' onClick={handleClick}><i className="fas fa-directions" style={{color:'#054A29',}}/></button>
+                <span className='button-title'>Directions</span>
+              </div>
+              <div className='detail-bar-button'>
+                <button className='bar-button' onClick={handleClick}><i className="fas fa-print" style={{color:'#054A29',}}/></button>
+                <span className='button-title'>Print</span>
+              </div>
+              <div className='detail-bar-button'>
+                <button className='bar-button' onClick={handleClick}><i className="fas fa-share" style={{color:'#054A29',}}/></button>
+                <span className='button-title'>Share</span>
+              </div>
+              <div className='detail-bar-button'>
+                <button className='bar-button' onClick={handleClick}><i className="fas fa-ellipsis-h" style={{color:'#054A29',}}/></button>
+                <span className='button-title'>More</span>
+              </div>
+            </div>
             <div className='location-details-bar'>
               <div className='detail-bar'>
                 <span className='label non-bold-text'>Length:</span>
@@ -82,7 +106,7 @@ const LocationDetailsPage = () => {
                 <span className='value bold-text'>{location.routeType}</span>
               </div>
             </div>
-            <p>Check out this {location.length} mile {location.routeType} near {location.city}, {location.state}.</p>
+            <p className='info-box'>Check out this {location.length} mile {location.routeType} near {location.city}, {location.state}.</p>
             <p>Description</p>
             <div className='desc-box'>
               <p>{location.description}</p>

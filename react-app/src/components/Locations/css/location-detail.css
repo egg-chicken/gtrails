@@ -1,6 +1,8 @@
 .location-detail-container {
     margin: 20px 20px 20px 150px;
-    padding: 40px;
+    /* padding: 40px; */
+    padding-left: 250px;
+    padding-right: 250px;
 }
 
 .location-border-card {
@@ -24,7 +26,8 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    /* align-items: center; */
+    align-items: flex-start;
     text-align: center;
     background-size: cover;
     background-position: center center;
@@ -43,36 +46,89 @@
     overflow: hidden;
   }
 
-.location-detail-title {
+.location-name-title {
     font-size: 35px;
     margin: 10px 0px;
     color: white;
     position: relative;
     z-index: 1;
+    padding-left: 20px;
+}
+
+.city-state {
+    font-size: 18px;
+    color: white;
+    position: relative;
+    padding-left: 20px;
+    margin: 0px;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.bar-links {
+    background-color: green;
+}
+
+.bar-button {
+    position: relative;
+    bottom: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    border: none;
+    background-color: white;
 }
 
 .location-details-bar {
     display: flex;
-    padding: 10px;
+    /* padding: 20px; */
     gap: 10px;
-  }
+    justify-content: space-between;
+    padding-left: 20px;
+    padding-bottom: 10px;
+    padding-right: 20px;
+    padding-top: 10px;
+}
 
+.location-details-bar-buttons {
+    display: flex;
+    /* padding: 20px; */
+    gap: 10px;
+    justify-content: space-around;
+    padding-left: 20px;
+    /* padding-bottom: 10px; */
+    padding-right: 20px;
+    /* padding-top: 10px; */
+}
+
+.button-title{
+    color: white;
+    position: relative;
+    bottom: 10px;
+}
 
 .detail-bar {
     display: flex;
     flex-direction: column;
     margin: 0;
-  }
+}
+.detail-bar-button {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    align-items: center;
+}
 
-  .label {
-    margin-right: 10px;
-    font-weight: normal;
-    color: gray;
-  }
+.label {
+margin-right: 10px;
+font-weight: normal;
+color: gray;
+}
 
-  .bold-text {
-    font-weight: bold;
-  }
+.bold-text {
+font-weight: bold;
+}
 
 .desc-box,
 .rev-box {
@@ -121,7 +177,29 @@
     padding: 10px;
 }
 
-.location-rating {
+.location-rating,
+.location-rating-main {
     display: flex;
     align-items: center;
+    /* align-items: baseline; */
+    position: relative;
+}
+
+.location-rating-main {
+    margin: 0px;
+    color: white;
+    padding-left: 10px;
+    font-size: 18px;
+}
+
+.location-direction {
+    display: flex;
+}
+
+.fa-star:before {
+    font-size: 18px;
+}
+
+.info-box {
+    padding-left: 20px;
 }

@@ -17,7 +17,7 @@ const LandingPage = () => {
     return (
         <div className="a-container">
             <div className="cover">
-                <h1 className="c-title">Find your outdoors</h1>
+                <h1>Find your outdoors</h1>
                 <NavLink exact to="/explore" className='explore-l'>Explore nearby trails</NavLink>
             </div>
             <div className="b-container">
