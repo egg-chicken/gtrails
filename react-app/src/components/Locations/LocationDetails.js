@@ -107,7 +107,7 @@ const LocationDetailsPage = () => {
               </div>
             </div>
             <p className='info-box'>Check out this {location.length} mile {location.routeType} near {location.city}, {location.state}.</p>
-            <p>Description</p>
+            <p className='info-box'>Description:</p>
             <div className='desc-box'>
               <p>{location.description}</p>
             </div>

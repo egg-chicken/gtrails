@@ -1,8 +1,8 @@
 .location-detail-container {
     margin: 20px 20px 20px 150px;
     /* padding: 40px; */
-    padding-left: 250px;
-    padding-right: 250px;
+    padding-left: 100px;
+    padding-right: 100px;
 }
 
 .location-border-card {
@@ -202,4 +202,5 @@ font-weight: bold;
 
 .info-box {
     padding-left: 20px;
+    margin: 40px 0px;
 }
