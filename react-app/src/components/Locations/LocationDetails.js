@@ -18,10 +18,10 @@ const LocationDetailsPage = () => {
     const [isReviewsLoaded, setIsReviewsLoaded] = useState(false);
     const [isLoaded, setIsLoaded] = useState(false);
     const [isVisible, setIsVisible] = useState(false);
-
+    const [toggleState, setToggleState] = useState(1);
     const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
-    console.log('reviews', reviews)
+    // console.log('reviews', reviews)
     useEffect(() => {
         dispatch(locationActions.getLocationsDetails(id))
             .then(() => setIsLoaded(true))
@@ -48,7 +48,12 @@ const LocationDetailsPage = () => {
     const handleClick = e => {
       e.preventDefault();
       alert("Feature Coming Soon!")
-    }
+    };
+
+    const toggleTab = (index) => {
+      setToggleState(index);
+      console.log(index)
+    };
 
     if(!location){
         return 'no location'
@@ -107,10 +112,23 @@ const LocationDetailsPage = () => {
               </div>
             </div>
             <p className='info-box'>Check out this {location.length} mile {location.routeType} near {location.city}, {location.state}.</p>
-            <p className='info-box'>Description:</p>
-            <div className='desc-box'>
-              <p>{location.description}</p>
-            </div>
+
+              <div className='block-tabs'>
+                <button className={toggleState === 1 ? 'tabs active-tabs': 'tabs'} onClick={() => toggleTab(1)}><span className='tab-text'>Description</span></button>
+                <button className={toggleState === 2 ? 'tabs active-tabs': 'tabs'} onClick={() => toggleTab(2)}><span className='tab-text'>Contact</span></button>
+                <button className={toggleState === 3 ? 'tabs active-tabs': 'tabs'} onClick={() => toggleTab(3)}><span className='tab-text'>Getting There</span></button>
+              </div>
+              <div className='content-tabs'>
+                <div className={toggleState === 1 ? 'content active-content': 'content'}>
+                  <span className='tab-text'>{location.description}</span>
+                </div>
+                <div className={toggleState === 2 ? 'content active-content': 'content'}>
+                  <span className='tab-text'>Feature Coming Soon</span>
+                </div>
+                <div className={toggleState === 3 ? 'content active-content': 'content'}>
+                  <span className='tab-text'>Feature Coming Soon</span>
+                </div>
+              </div>
 
             <p>Reviews ({reviews.length})</p>
             <div className='rev-box'>
