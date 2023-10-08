@@ -18,7 +18,9 @@ const LocationDetailsPage = () => {
     const [isReviewsLoaded, setIsReviewsLoaded] = useState(false);
     const [isLoaded, setIsLoaded] = useState(false);
     const [isVisible, setIsVisible] = useState(false);
-    const [toggleState, setToggleState] = useState(1);
+    // const [toggleState, setToggleState] = useState(1);
+    const [upperToggleState, setUpperToggleState] = useState(1);
+    const [lowerToggleState, setLowerToggleState] = useState(4);
     const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
     // console.log('reviews', reviews)
@@ -50,10 +52,14 @@ const LocationDetailsPage = () => {
       alert("Feature Coming Soon!")
     };
 
-    const toggleTab = (index) => {
-      setToggleState(index);
-      console.log(index)
+    const toggleTab = (index, isUpper) => {
+      if (isUpper) {
+        setUpperToggleState(index);
+      } else {
+        setLowerToggleState(index);
+      }
     };
+
 
     if(!location){
         return 'no location'
@@ -114,77 +120,95 @@ const LocationDetailsPage = () => {
             <p className='info-box'>Check out this {location.length} mile {location.routeType} near {location.city}, {location.state}.</p>
 
               <div className='block-tabs'>
-                <button className={toggleState === 1 ? 'tabs active-tabs': 'tabs'} onClick={() => toggleTab(1)}><span className='tab-text'>Description</span></button>
-                <button className={toggleState === 2 ? 'tabs active-tabs': 'tabs'} onClick={() => toggleTab(2)}><span className='tab-text'>Contact</span></button>
-                <button className={toggleState === 3 ? 'tabs active-tabs': 'tabs'} onClick={() => toggleTab(3)}><span className='tab-text'>Getting There</span></button>
+                <button className={upperToggleState === 1 ? 'tabs active-tabs' : 'tabs'} onClick={() => toggleTab(1, true)}><span className='tab-text'>Description</span></button>
+                <button className={upperToggleState === 2 ? 'tabs active-tabs' : 'tabs'} onClick={() => toggleTab(2, true)}><span className='tab-text'>Contact</span></button>
+                <button className={upperToggleState === 3 ? 'tabs active-tabs' : 'tabs'} onClick={() => toggleTab(3, true)}><span className='tab-text'>Getting There</span></button>
               </div>
               <div className='content-tabs'>
-                <div className={toggleState === 1 ? 'content active-content': 'content'}>
+                <div className={upperToggleState === 1 ? 'content active-content' : 'content'}>
                   <span className='tab-text'>{location.description}</span>
                 </div>
-                <div className={toggleState === 2 ? 'content active-content': 'content'}>
+                <div className={upperToggleState === 2 ? 'content active-content' : 'content'}>
                   <span className='tab-text'>Feature Coming Soon</span>
                 </div>
-                <div className={toggleState === 3 ? 'content active-content': 'content'}>
+                <div className={upperToggleState === 3 ? 'content active-content' : 'content'}>
                   <span className='tab-text'>Feature Coming Soon</span>
                 </div>
               </div>
 
-            <p>Reviews ({reviews.length})</p>
-            <div className='rev-box'>
-            {isReviewsLoaded &&
-            <div>
-                <div className='location-details-bar'>
-                  <div className='location-rating'>
-                    <i className="fa fa-solid fa-star" style={{color:'#2ced39',}}/>
-                    {location.avgRating ? (Number.isInteger(location.avgRating) ? location.avgRating.toFixed(1) : location.avgRating.toFixed(1)) : 'No Reviews, yet'}
-                  </div>
-                  <p>{reviews.length} reviews</p>
+              <div className='block-tabs'>
+                <button className={lowerToggleState === 4 ? 'tabs active-tabs' : 'tabs'} onClick={() => toggleTab(4, false)}><span className='tab-text'>Reviews ({reviews.length})</span></button>
+                <button className={lowerToggleState === 5 ? 'tabs active-tabs' : 'tabs'} onClick={() => toggleTab(5, false)}><span className='tab-text'>Photos (0)</span></button>
+                <button className={lowerToggleState === 6 ? 'tabs active-tabs' : 'tabs'} onClick={() => toggleTab(6, false)}><span className='tab-text'>Activities</span></button>
+              </div>
 
-                  <div className='write-review-button-placement'>
-                    {isVisible &&
-                  <OpenModalButton
-                      modalComponent={<ReviewModal id={location.id} />}
-                      buttonText="Write a Review"
-                      buttonType="add"
-                  />}
-                  </div>
-                </div>
-                <div className='s-review-box'>
-                {(reviews.length < 1 && isVisible) && <div className='no-review-text'>Share your thoughts and post a review. Let people know what to expect</div>}
-                {reviews?.map(review => {
-                  const reviewMonth = months[new Date(review.createdAt).getMonth()];
-                  const day = (new Date(review.createdAt).getDate()) + 1;
-                  const year = new Date(review.createdAt).getFullYear();
-
-                  return (
-                    <div key={review.id}>
-                      <button className='open-menu-button' onClick={handleClick}><i className="far fa-smile" style={{color:'#25d066',}}></i></button>
-                      <p className='user-firstname'>{review.User?.firstName} {review.User?.lastName}</p>
-                      <p className='date'>{reviewMonth} {day}, {year}</p>
-                      <div className='star-rating'>
-                        {[...Array(review.stars)].map((star, index) => (
-                          <i key={index} className="fa fa-solid fa-star" style={{ color: '#2ced39' }} />
-                        ))}
+              <div className='content-tabs'>
+                <div className={lowerToggleState === 4 ? 'content active-content' : 'content'}>
+                  {isReviewsLoaded &&
+                    <div>
+                      <div className='location-details-bar'>
+                        <div className='location-rating'>
+                          <i className="fa fa-solid fa-star" style={{color:'#2ced39',}}/>
+                          {location.avgRating ? (Number.isInteger(location.avgRating) ? location.avgRating.toFixed(1) : location.avgRating.toFixed(1)) : 'No Reviews, yet'}
+                        </div>
+                        <p>{reviews.length} reviews</p>
+                        <div className='write-review-button-placement'>
+                          {isVisible && <OpenModalButton
+                              modalComponent={<ReviewModal id={location.id} />}
+                              buttonText="Write a Review"
+                              buttonType="add"
+                          />}
+                        </div>
                       </div>
-                      <p className='review-text'>{review.review}</p>
-                      {review.userId === user?.id && <OpenModalButton
-                        modalComponent={<DeleteReviewModal id={review.id} locationId={review.locationId} setIsVisible={setIsVisible}/>}
-                        buttonText="Delete"
-                        buttonType="Delete"
-                      />}
-                      {review.userId === user?.id && <OpenModalButton
-                          modalComponent={<EditReviewModal id={review.id} locationId={review.locationId} setIsVisible={setIsVisible}/>}
-                          buttonText="Edit"
-                          buttonType="edit"
-                      />}
+                      <div className='s-review-box'>
+                        {(reviews.length < 1 && isVisible) && <div className='no-review-text'>Share your thoughts and post a review. Let people know what to expect</div>}
+                        {reviews?.map(review => {
+                          const reviewMonth = months[new Date(review.createdAt).getMonth()];
+                          const day = (new Date(review.createdAt).getDate()) + 1;
+                          const year = new Date(review.createdAt).getFullYear();
+
+                          return (
+                            <div className='each-review' key={review.id}>
+                              <div className='top-review-info'>
+                                <button className='open-menu-button' onClick={handleClick}><i className="far fa-smile" style={{color:'#25d066',}}></i></button>
+                                <div className='username-date'>
+                                  <p className='user-firstname'>{review.User?.firstName} {review.User?.lastName}</p>
+                                  <p className='date'>{reviewMonth} {day}, {year}</p>
+                                </div>
+                              </div>
+                              <div className='star-rating'>
+                                {[...Array(review.stars)].map((star, index) => (
+                                  <i key={index} className="fa fa-solid fa-star" style={{ color: '#2ced39' }} />
+                                ))}
+                              </div>
+                              <p className='review-text'>{review.review}</p>
+                              {review.userId === user?.id && <OpenModalButton
+                                modalComponent={<DeleteReviewModal id={review.id} locationId={review.locationId} setIsVisible={setIsVisible}/>}
+                                buttonText="Delete"
+                                buttonType="Delete"
+                              />}
+                              {review.userId === user?.id && <OpenModalButton
+                                  modalComponent={<EditReviewModal id={review.id} locationId={review.locationId} setIsVisible={setIsVisible}/>}
+                                  buttonText="Edit"
+                                  buttonType="edit"
+                              />}
+                            </div>
+                          )
+                        })}
+                      </div>
                     </div>
-                  )
-                })}
+                  }
+                </div>
+
+                <div className={lowerToggleState === 5 ? 'content active-content' : 'content'}>
+                  <span className='tab-text'>Feature Coming Soon</span>
+                </div>
+                <div className={lowerToggleState === 6 ? 'content active-content' : 'content'}>
+                  <span className='tab-text'>Feature Coming Soon</span>
+                </div>
               </div>
-            </div>
-            }
-            </div>
+
+
           </div>
         </div>
     )

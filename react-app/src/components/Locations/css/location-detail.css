@@ -129,7 +129,7 @@
 .label {
 margin-right: 10px;
 font-weight: normal;
-color: gray;
+color: #656e5e;
 }
 
 .bold-text {
@@ -144,9 +144,34 @@ font-weight: bold;
 }
 
 .s-review-box {
-    border-top: 1px solid lightgray;
-    border-bottom: 1px solid lightgray;
     padding: 15px;
+}
+
+.each-review {
+    border-top: 1px solid lightgray;
+    padding: 16px;
+}
+
+.top-review-info {
+    display: flex;
+}
+
+.user-firstname{
+    margin: 0px;
+    padding-bottom: 2px;
+}
+
+.date {
+    margin: 0px;
+    color: #656e5e;
+}
+
+.username-date{
+    padding-left: 15px;
+}
+
+.star-rating {
+    padding-top: 15px;
 }
 
 .delete-button,
