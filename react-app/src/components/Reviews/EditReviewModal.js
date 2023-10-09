@@ -61,8 +61,8 @@ function EditReviewModal({id}) {
             <div>
               <p className='review-title'>Edit your review</p>
             </div>
-            <div>{errors && errors.review && <p className="error">{errors.review}</p>}</div>
-              <div>{errors && errors.stars && <p className="error">{errors.stars}</p>}</div>
+            <div className="error-message">{errors && errors.review && <p className="error-message">{errors.review}</p>}</div>
+            <div className="error-message">{errors && errors.stars && <p className="error-message">{errors.stars}</p>}</div>
             <form onSubmit={handleSubmit}>
                 <div className='star-rating-container'>
                     <p className='rating-text'>Rating</p>

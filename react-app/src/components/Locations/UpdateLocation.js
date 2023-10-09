@@ -101,7 +101,7 @@ const UpdateLocationForm = () => {
                 <div className='form-create'>
                     <p className='location-detail-title'>Update Location</p>
                     <form className='location-body' onSubmit={handleSubmit} encType="multipart/form-data">
-                        <div className="error-message">{errors.name && <p className="">{errors.name}</p>}</div>
+                        <div className="error-message">{errors.name && <p className="error-message">{errors.name}</p>}</div>
                         <div className="form-container-create">
                             <p className="sub-text-signup">Location Name</p>
                             <input
@@ -114,7 +114,7 @@ const UpdateLocationForm = () => {
                             />
                         </div>
                         <div>
-                        <div className="error-message">{errors.address && <p className="">{errors.address}</p>}</div>
+                        <div className="error-message">{errors.address && <p className="error-message">{errors.address}</p>}</div>
                         <div className="form-container-create">
                             <p className="sub-text-signup">Address</p>
                             <input
@@ -127,7 +127,7 @@ const UpdateLocationForm = () => {
                         </div>
                         </div>
                         <div>
-                        <div className="error-message">{errors.city && <p className="">{errors.city}</p>}</div>
+                        <div className="error-message">{errors.city && <p className="error-message">{errors.city}</p>}</div>
                         <div className="form-container-create">
                             <p className="sub-text-signup">City</p>
                             <input
@@ -140,7 +140,7 @@ const UpdateLocationForm = () => {
                         </div>
                         </div>
                         <div>
-                        <div className="error-message">{errors.state && <p className="">{errors.state}</p>}</div>
+                        <div className="error-message">{errors.state && <p className="error-message">{errors.state}</p>}</div>
                         <div className="form-container-create">
                             <p className="sub-text-signup">State</p>
                             <input
@@ -153,7 +153,7 @@ const UpdateLocationForm = () => {
                         </div>
                         </div>
                         <div>
-                        <div className="error-message">{errors.country && <p className="">{errors.country}</p>}</div>
+                        <div className="error-message">{errors.country && <p className="error-message">{errors.country}</p>}</div>
                         <div className="form-container-create">
                             <p className="sub-text-signup">Country</p>
                             <input
@@ -166,7 +166,7 @@ const UpdateLocationForm = () => {
                         </div>
                         </div>
                         <div>
-                        <div className="error-message">{errors.lat && <p className="">{errors.lat}</p>}</div>
+                        <div className="error-message">{errors.lat && <p className="error-message">{errors.lat}</p>}</div>
                         <div className="form-container-create">
                             <p className="sub-text-signup">Latitude</p>
                             <input
@@ -179,7 +179,7 @@ const UpdateLocationForm = () => {
                         </div>
                         </div>
                         <div>
-                        <div className="error-message">{errors.lng && <p className="">{errors.lng}</p>}</div>
+                        <div className="error-message">{errors.lng && <p className="error-message">{errors.lng}</p>}</div>
                         <div className="form-container-create">
                             <p className="sub-text-signup">Longitude</p>
                             <input
@@ -192,7 +192,7 @@ const UpdateLocationForm = () => {
                         </div>
                         </div>
                         <div>
-                        <div className="error-message">{errors.description && <p className="">{errors.description}</p>}</div>
+                        <div className="error-message">{errors.description && <p className="error-message">{errors.description}</p>}</div>
                         <div className="form-container-create">
                             <p className="sub-text-signup">Description</p>
                             <input
@@ -205,7 +205,7 @@ const UpdateLocationForm = () => {
                         </div>
                         </div>
                         <div>
-                        <div className="error-message">{errors.length && <p className="">{errors.length}</p>}</div>
+                        <div className="error-message">{errors.length && <p className="error-message">{errors.length}</p>}</div>
                         <div className="form-container-create">
                             <p className="sub-text-signup">length</p>
                             <input
@@ -218,7 +218,7 @@ const UpdateLocationForm = () => {
                         </div>
                         </div>
                         <div>
-                        <div className="error-message">{errors.elevGain && <p className="">{errors.elevGain}</p>}</div>
+                        <div className="error-message">{errors.elevGain && <p className="error-message">{errors.elevGain}</p>}</div>
                         <div className="form-container-create">
                             <p className="sub-text-signup">Elevation Gain</p>
                             <input
@@ -231,7 +231,7 @@ const UpdateLocationForm = () => {
                         </div>
                         </div>
                         <div>
-                        <div className="error-message">{errors.routeType && <p className="">{errors.routeType}</p>}</div>
+                        <div className="error-message">{errors.routeType && <p className="error-message">{errors.routeType}</p>}</div>
                         <div className="form-container-create">
                             <p className="sub-text-signup">Route Type</p>
                             <input
@@ -244,7 +244,7 @@ const UpdateLocationForm = () => {
                         </div>
                         </div>
                         <div>
-                        <div className="error-message">{errors.image && <p className="">{errors.image}</p>}</div>
+                        <div className="error-message">{errors.image && <p className="error-message">{errors.image}</p>}</div>
                         <div className="form-container-create">
                             <p className="sub-text-signup">Image</p>
                             <input

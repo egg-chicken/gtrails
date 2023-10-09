@@ -51,9 +51,9 @@ function ReviewModal({id}) {
             {/* <p className='review-title'>Create Review</p> */}
             <p className='review-title'>{location.name}</p>
             </div>
-              <div>{errors && errors.message && <p className="error">{errors.message}</p>}</div>
-              <div>{errors && errors.review && <p className="error">{errors.review}</p>}</div>
-              <div>{errors && errors.stars && <p className="error">{errors.stars}</p>}</div>
+              <div className="error-message">{errors && errors.message && <p className="error-message">{errors.message}</p>}</div>
+              <div className="error-message">{errors && errors.review && <p className="error-message">{errors.review}</p>}</div>
+              <div className="error-message">{errors && errors.stars && <p className="error-message">{errors.stars}</p>}</div>
               <form onSubmit={handleSubmit}>
                   <div className='star-rating-container'>
                     <p className='rating-text'>Rating</p>
