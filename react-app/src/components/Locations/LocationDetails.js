@@ -60,6 +60,13 @@ const LocationDetailsPage = () => {
       }
     };
 
+    const starRatingCount = Array(5).fill(0);
+    reviews.forEach(review => {
+      const stars = review.stars;
+      if (stars >= 1 && stars <= 5) {
+        starRatingCount[stars - 1]++;
+      }
+    });
 
     if(!location){
         return 'no location'
@@ -146,12 +153,24 @@ const LocationDetailsPage = () => {
                 <div className={lowerToggleState === 4 ? 'content active-content' : 'content'}>
                   {isReviewsLoaded &&
                     <div>
-                      <div className='location-details-bar'>
-                        <div className='location-rating'>
-                          <i className="fa fa-solid fa-star" style={{color:'#2ced39',}}/>
-                          {location.avgRating ? (Number.isInteger(location.avgRating) ? location.avgRating.toFixed(1) : location.avgRating.toFixed(1)) : 'No Reviews, yet'}
+                      <div className='lower-location-details-bar'>
+                        <div className='star-rating-bar-graph'>
+                          <div className='star-bar'>
+                            {[...Array(5)].map((star, index) => (
+                              <div key={index} className='star-bar-item'>
+                                <div className='star-label'>{index + 1} <i className="fa fa-solid fa-star" style={{color:'#2ced39',}}/></div>
+                                <div className='star-bar-fill' style={{ width: `${(starRatingCount[index] / reviews.length) * 100}px` }}></div>
+                              </div>
+                            ))}
+                          </div>
                         </div>
-                        <p>{reviews.length} reviews</p>
+                        <div className='total-location-rating-section'>
+                          <div>
+                            <span className='rating-count'>{location.avgRating ? (Number.isInteger(location.avgRating) ? location.avgRating.toFixed(1) : location.avgRating.toFixed(1)) : 'No Reviews'}</span>
+                            <i className="fa fa-solid fa-star" style={{ color: '#2ced39' }} />
+                          </div>
+                          <p className='total-reviews'>{reviews.length} reviews</p>
+                        </div>
                         <div className='write-review-button-placement'>
                           {isVisible && <OpenModalButton
                               modalComponent={<ReviewModal id={location.id} />}

@@ -1,9 +1,9 @@
 /** the whole page **/
 .location-detail-container {
     margin: 20px 20px 20px 150px;
-    /* padding: 40px; */
     padding-left: 100px;
     padding-right: 100px;
+    min-width: 500px;
 }
 
 
@@ -96,6 +96,16 @@
     padding-top: 10px;
 }
 
+.lower-location-details-bar {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+    padding-left: 20px;
+    padding-bottom: 30px;
+    padding-right: 20px;
+    padding-top: 10px;
+}
+
 .location-details-bar-buttons {
     display: flex;
     /* padding: 20px; */
@@ -127,13 +137,13 @@
 
 /** reviews **/
 .label {
-margin-right: 10px;
-font-weight: normal;
-color: #656e5e;
+    margin-right: 10px;
+    font-weight: normal;
+    color: #656e5e;
 }
 
 .bold-text {
-font-weight: bold;
+    font-weight: bold;
 }
 
 .desc-box,
@@ -193,30 +203,41 @@ font-weight: bold;
 }
 
 .write-button {
-    border-radius: 40% / 80%;
+    border-radius: 20% / 80%;
     background-color: darkgreen;
     color: white;
     display: block;
     font-size: 16px;
-    max-width: 100px;
-    max-height: 50px;
+    width: 200px;
+    height: 50px;
     border: none;
 }
 
-.write-review-button-placement {
+/* .write-review-button-placement {
     margin-left: auto;
     padding: 10px;
+} */
+
+.total-location-rating-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-left: 50px;
 }
 
-.location-rating,
+.total-reviews {
+    margin: 0px;
+}
+
+.rating-count {
+    font-weight: bold;
+    font-size: 40px;
+}
+
 .location-rating-main {
     display: flex;
     align-items: center;
-    /* align-items: baseline; */
     position: relative;
-}
-
-.location-rating-main {
     margin: 0px;
     color: white;
     padding-left: 10px;
@@ -234,6 +255,7 @@ font-weight: bold;
 .info-box {
     padding-left: 20px;
     margin: 40px 0px;
+    padding-top: 10px;
 }
 
 /** tab info **/
@@ -246,6 +268,8 @@ font-weight: bold;
     display: flex;
     border-bottom: 1px solid lightgrey;
     padding-left: 20px;
+    padding-top: 40px;
+    justify-content: space-around;
 }
 
 .tabs {
@@ -255,6 +279,7 @@ font-weight: bold;
     cursor: pointer;
     border-radius: 5px 5px 0 0;
     margin-right: 5px;
+    width: 200px;
 }
 
 .tab:hover {
@@ -278,3 +303,37 @@ font-weight: bold;
 .content.active-content {
     display: block;
 }
+
+
+/* total stars rating */
+.star-rating-bar-graph {
+    /* margin-top: 20px; */
+    display: flex;
+    flex-direction: column;
+  }
+
+  .star-bar {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  .star-bar-item {
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+  }
+
+  .star-label {
+    font-size: 14px;
+    margin-bottom: 5px;
+
+    flex-direction: row;
+    display: flex;
+  }
+
+  .star-bar-fill {
+    background-color: #2ced39;
+    height: 10px;
+    border-radius: 5px;
+    width: 70%;
+  }
