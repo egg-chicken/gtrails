@@ -77,13 +77,15 @@ const LocationDetailsPage = () => {
               <div className='cover-image'>
                 <img className='location-image-id' src={location.image} alt={location.image}/>
               </div>
-              <h1 className='location-name-title'>{location.name}</h1>
-              <div className='location-direction'>
-                <p onClick={handleClick} className='city-state'>{location.address}</p>
-                <p className='location-rating-main'>
-                  <i className="fa fa-solid fa-star" style={{color:'#2ced39',}}/>
-                  {location.avgRating ? (Number.isInteger(location.avgRating) ? location.avgRating.toFixed(1) : location.avgRating.toFixed(1)) : 'New'} ({reviews.length})
-                </p>
+              <div className='title-test-center'>
+                <h1 className='location-name-title'>{location.name}</h1>
+                <div className='location-direction'>
+                  <p onClick={handleClick} className='city-state'>{location.address}</p>
+                  <p className='location-rating-main'>
+                    <i className="fa fa-solid fa-star" style={{color:'#2ced39',}}/>
+                    {location.avgRating ? (Number.isInteger(location.avgRating) ? location.avgRating.toFixed(1) : location.avgRating.toFixed(1)) : 'New'} ({reviews.length})
+                  </p>
+                </div>
               </div>
             </div>
             <div className='bar-links location-details-bar-buttons'>
@@ -165,7 +167,7 @@ const LocationDetailsPage = () => {
                         <div className='total-location-rating-section'>
                           <div>
                             {/* <span className='rating-count'>{location.avgRating ? (Number.isInteger(location.avgRating) ? location.avgRating.toFixed(1) : location.avgRating.toFixed(1)) : 'No Reviews'}</span> */}
-                            {location.avgRating ? (Number.isInteger(location.avgRating) ? location.avgRating.toFixed(1) : location.avgRating.toFixed(1)) : 'No Reviews'}
+                            {location.avgRating ? location.avgRating.toFixed(1) : 'No Reviews'}
                             <i className="fa fa-solid fa-star" style={{ color: '#2ced39' }} />
                           </div>
                           <p className='total-reviews'>{reviews.length} reviews</p>
