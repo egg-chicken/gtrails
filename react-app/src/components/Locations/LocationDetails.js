@@ -8,6 +8,7 @@ import EditReviewModal from '../Reviews/EditReviewModal';
 import ReviewModal from '../Reviews/CreateReviewModal';
 import DeleteReviewModal from '../Reviews/DeleteReviewModal';
 import './css/location-detail.css'
+// import AverageRating from './AverageRating';
 
 const LocationDetailsPage = () => {
     const { id } = useParams();
@@ -165,9 +166,10 @@ const LocationDetailsPage = () => {
                           </div>
                         </div>
                         <div className='total-location-rating-section'>
+                          {/* <AverageRating avgRating={location.avgRating} reviewCount={reviews.length} /> */}
                           <div>
-                            {/* <span className='rating-count'>{location.avgRating ? (Number.isInteger(location.avgRating) ? location.avgRating.toFixed(1) : location.avgRating.toFixed(1)) : 'No Reviews'}</span> */}
-                            {location.avgRating ? location.avgRating.toFixed(1) : 'No Reviews'}
+                            <span className='rating-count'>{location.avgRating ? (Number.isInteger(location.avgRating) ? location.avgRating.toFixed(1) : location.avgRating.toFixed(1)) : 'No Reviews'}</span>
+                            {/* {reviews.avgRating ? (Number.isInteger(location.avgRating) ? reviews.avgRating.toFixed(1) : 'No Reviews'} */}
                             <i className="fa fa-solid fa-star" style={{ color: '#2ced39' }} />
                           </div>
                           <p className='total-reviews'>{reviews.length} reviews</p>

@@ -230,6 +230,9 @@ def locationReviews(id):
 
     reviews_data = []
 
+    location = Location.query.get(id)
+    avg_rating = location.calculate_average_rating()
+
     for review in reviews:
         userInfo = review.user
 
@@ -238,6 +241,7 @@ def locationReviews(id):
             "id": review.id,
             "review": review.review,
             "locationId": review.locationId,
+            "avgRating": avg_rating,
             "stars": review.stars,
             "updatedAt": review.updatedAt,
             "userId": review.userId,
@@ -247,4 +251,4 @@ def locationReviews(id):
                 'lastName': userInfo.lastName
             }
         })
-    return {"Reviews": reviews_data}, 200
+    return jsonify({"Reviews": reviews_data}), 200
