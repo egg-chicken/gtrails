@@ -15,17 +15,17 @@ function DeleteModal({id}) {
     };
 
     return (
-        <>
-        <div className="login-form">
-            <h2 className="login-text">Confirm Delete</h2>
-            <p>Are your sure you want to remove this location from the listings?</p>
-            <form className='form-delete'onSubmit={handleSubmit}>
-                <button className='create-button' type='submit'>Yes (Delete Location)</button>
-                <button className='keep-button delete-style' onClick={closeModal}>No (Keep Location)</button>
-            </form>
+        <div className="delete-modal-container">
+            <div className="login-form">
+                <p className="delete-title-text">Delete Location?</p>
+                <p className="confirmation-delete">Deleting a location will erase it permanently</p>
+                <form className='delete-buttons' onSubmit={handleSubmit}>
+                    <button className='yes-delete-review' type='submit'>Delete</button>
+                    <button className='keep-review' onClick={closeModal}>Keep</button>
+                </form>
+            </div>
         </div>
-        </>
-    )
+        )
     }
 
 export default DeleteModal;

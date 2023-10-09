@@ -96,179 +96,175 @@ const UpdateLocationForm = () => {
     }
 
     return (
-        <>
-
-            <div className="page-container">
-        <div className="form-create">
-            <h1>UPDATE Location</h1>
-            <form
-                onSubmit={handleSubmit}
-                encType="multipart/form-data"
-            >
-                <div>
-                <div className="error-message">{errors.name && <p className="">{errors.name}</p>}</div>
-                <label className="label-create">
-                    Location Name
-                    <input
-                        className="input-create"
-                        type='text'
-                        name="name"
-                        placeholder="Location Name"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                    />
-                </label>
+        <div className="location-detail-container">
+            <div className="location-border-card">
+                <div className='form-create'>
+                    <p className='location-detail-title'>Update Location</p>
+                    <form className='location-body' onSubmit={handleSubmit} encType="multipart/form-data">
+                        <div className="error-message">{errors.name && <p className="">{errors.name}</p>}</div>
+                        <div className="form-container-create">
+                            <p className="sub-text-signup">Location Name</p>
+                            <input
+                                className="input-create"
+                                type='text'
+                                name="name"
+                                placeholder="Location Name"
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
+                            />
+                        </div>
+                        <div>
+                        <div className="error-message">{errors.address && <p className="">{errors.address}</p>}</div>
+                        <div className="form-container-create">
+                            <p className="sub-text-signup">Address</p>
+                            <input
+                                className="input-create"
+                                type='text'
+                                placeholder="Address"
+                                value={address}
+                                onChange={(e) => setAddress(e.target.value)}
+                            />
+                        </div>
+                        </div>
+                        <div>
+                        <div className="error-message">{errors.city && <p className="">{errors.city}</p>}</div>
+                        <div className="form-container-create">
+                            <p className="sub-text-signup">City</p>
+                            <input
+                                className="input-create"
+                                type="text"
+                                placeholder="City"
+                                value={city}
+                                onChange={(e) => setCity(e.target.value)}
+                            />
+                        </div>
+                        </div>
+                        <div>
+                        <div className="error-message">{errors.state && <p className="">{errors.state}</p>}</div>
+                        <div className="form-container-create">
+                            <p className="sub-text-signup">State</p>
+                            <input
+                                className="input-create"
+                                type='text'
+                                placeholder="State"
+                                value={state}
+                                onChange={(e) => setState(e.target.value)}
+                            />
+                        </div>
+                        </div>
+                        <div>
+                        <div className="error-message">{errors.country && <p className="">{errors.country}</p>}</div>
+                        <div className="form-container-create">
+                            <p className="sub-text-signup">Country</p>
+                            <input
+                                className="input-create"
+                                type='text'
+                                placeholder="Country"
+                                value={country}
+                                onChange={(e) => setCountry(e.target.value)}
+                            />
+                        </div>
+                        </div>
+                        <div>
+                        <div className="error-message">{errors.lat && <p className="">{errors.lat}</p>}</div>
+                        <div className="form-container-create">
+                            <p className="sub-text-signup">Latitude</p>
+                            <input
+                                className="input-create"
+                                type='text'
+                                placeholder="Latitude"
+                                value={lat}
+                                onChange={(e) => setLat(e.target.value)}
+                            />
+                        </div>
+                        </div>
+                        <div>
+                        <div className="error-message">{errors.lng && <p className="">{errors.lng}</p>}</div>
+                        <div className="form-container-create">
+                            <p className="sub-text-signup">Longitude</p>
+                            <input
+                                className="input-create"
+                                type='text'
+                                placeholder="Longitude"
+                                value={lng}
+                                onChange={(e) => setLng(e.target.value)}
+                            />
+                        </div>
+                        </div>
+                        <div>
+                        <div className="error-message">{errors.description && <p className="">{errors.description}</p>}</div>
+                        <div className="form-container-create">
+                            <p className="sub-text-signup">Description</p>
+                            <input
+                                className="input-create"
+                                type='text'
+                                placeholder="Description"
+                                value={description}
+                                onChange={(e) => setDescription(e.target.value)}
+                            />
+                        </div>
+                        </div>
+                        <div>
+                        <div className="error-message">{errors.length && <p className="">{errors.length}</p>}</div>
+                        <div className="form-container-create">
+                            <p className="sub-text-signup">length</p>
+                            <input
+                                className="input-create"
+                                type='text'
+                                placeholder="Length"
+                                value={length}
+                                onChange={(e) => setLength(e.target.value)}
+                            />
+                        </div>
+                        </div>
+                        <div>
+                        <div className="error-message">{errors.elevGain && <p className="">{errors.elevGain}</p>}</div>
+                        <div className="form-container-create">
+                            <p className="sub-text-signup">Elevation Gain</p>
+                            <input
+                                className="input-create"
+                                type='text'
+                                placeholder="Elevation Gain"
+                                value={elevGain}
+                                onChange={(e) => setElevGain(e.target.value)}
+                            />
+                        </div>
+                        </div>
+                        <div>
+                        <div className="error-message">{errors.routeType && <p className="">{errors.routeType}</p>}</div>
+                        <div className="form-container-create">
+                            <p className="sub-text-signup">Route Type</p>
+                            <input
+                                className="input-create"
+                                type='text'
+                                placeholder="Route Type"
+                                value={routeType}
+                                onChange={(e) => setRouteType(e.target.value)}
+                            />
+                        </div>
+                        </div>
+                        <div>
+                        <div className="error-message">{errors.image && <p className="">{errors.image}</p>}</div>
+                        <div className="form-container-create">
+                            <p className="sub-text-signup">Image</p>
+                            <input
+                                className="input-create"
+                                type='text'
+                                placeholder="Image"
+                                value={image}
+                                onChange={(e) => setImage(e.target.value)}
+                            />
+                        </div>
+                        </div>
+                        <div className="sign-button-container">
+                            <div className='login-button'>
+                                <button className='login-submit-button' type="submit"><p className="login-text">Update</p></button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-                <div>
-                <div className="error-message">{errors.address && <p className="">{errors.address}</p>}</div>
-                <label className="label-create">
-                    Address
-                    <input
-                        className="input-create"
-                        type='text'
-                        placeholder="Address"
-                        value={address}
-                        onChange={(e) => setAddress(e.target.value)}
-                    />
-                </label>
-                </div>
-                <div>
-                <div className="error-message">{errors.city && <p className="">{errors.city}</p>}</div>
-                <label className="label-create">
-                    City
-                    <input
-                        className="input-create"
-                        type="text"
-                        placeholder="City"
-                        value={city}
-                        onChange={(e) => setCity(e.target.value)}
-                    />
-                </label>
-                </div>
-                <div>
-                <div className="error-message">{errors.state && <p className="">{errors.state}</p>}</div>
-                <label className="label-create">
-                    State
-                    <input
-                        className="input-create"
-                        type='text'
-                        placeholder="State"
-                        value={state}
-                        onChange={(e) => setState(e.target.value)}
-                    />
-                </label>
-                </div>
-                <div>
-                <div className="error-message">{errors.country && <p className="">{errors.country}</p>}</div>
-                <label className="label-create">
-                    Country
-                    <input
-                        className="input-create"
-                        type='text'
-                        placeholder="Country"
-                        value={country}
-                        onChange={(e) => setCountry(e.target.value)}
-                    />
-                </label>
-                </div>
-                <div>
-                <div className="error-message">{errors.lat && <p className="">{errors.lat}</p>}</div>
-                <label className="label-create">
-                    Latitude
-                    <input
-                        className="input-create"
-                        type='text'
-                        placeholder="Latitude"
-                        value={lat}
-                        onChange={(e) => setLat(e.target.value)}
-                    />
-                </label>
-                </div>
-                <div>
-                <div className="error-message">{errors.lng && <p className="">{errors.lng}</p>}</div>
-                <label className="label-create">
-                    Longitude
-                    <input
-                        className="input-create"
-                        type='text'
-                        placeholder="Longitude"
-                        value={lng}
-                        onChange={(e) => setLng(e.target.value)}
-                    />
-                </label>
-                </div>
-                <div>
-                <div className="error-message">{errors.description && <p className="">{errors.description}</p>}</div>
-                <label className="label-create">
-                    Description
-                    <input
-                        className="input-create"
-                        type='text'
-                        placeholder="Description"
-                        value={description}
-                        onChange={(e) => setDescription(e.target.value)}
-                    />
-                </label>
-                </div>
-                <div>
-                <div className="error-message">{errors.length && <p className="">{errors.length}</p>}</div>
-                <label className="label-create">
-                    length
-                    <input
-                        className="input-create"
-                        type='text'
-                        placeholder="Length"
-                        value={length}
-                        onChange={(e) => setLength(e.target.value)}
-                    />
-                </label>
-                </div>
-                <div>
-                <div className="error-message">{errors.elevGain && <p className="">{errors.elevGain}</p>}</div>
-                <label className="label-create">
-                    Elevation Gain
-                    <input
-                        className="input-create"
-                        type='text'
-                        placeholder="Elevation Gain"
-                        value={elevGain}
-                        onChange={(e) => setElevGain(e.target.value)}
-                    />
-                </label>
-                </div>
-                <div>
-                <div className="error-message">{errors.routeType && <p className="">{errors.routeType}</p>}</div>
-                <label className="label-create">
-                    Route Type
-                    <input
-                        className="input-create"
-                        type='text'
-                        placeholder="Route Type"
-                        value={routeType}
-                        onChange={(e) => setRouteType(e.target.value)}
-                    />
-                </label>
-                </div>
-                <div>
-                <div className="error-message">{errors.image && <p className="">{errors.image}</p>}</div>
-                <label className="label-create">
-                    Image
-                    <input
-                        className="input-create"
-                        type='text'
-                        placeholder="Image"
-                        value={image}
-                        onChange={(e) => setImage(e.target.value)}
-                    />
-                </label>
-                </div>
-                <div className="align-create-button">
-                <button className='create-button test' type="submit">Update</button>
-                </div>
-            </form>
+            </div>
         </div>
-        </div>
-        </>
     )
 }
 

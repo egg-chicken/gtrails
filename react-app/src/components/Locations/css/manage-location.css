@@ -7,3 +7,20 @@
     margin: 0px;
     padding: 0px;
 }
+
+.new-loc-button {
+    padding-bottom: 20px;
+}
+
+.loc-name-detail {
+    margin: 0px;
+}
+
+
+.location-img-link {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: black;
+    height: auto;
+}

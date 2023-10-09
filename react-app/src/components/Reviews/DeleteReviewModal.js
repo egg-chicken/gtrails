@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import * as reviewActions from "../../store/reviews";
+import './css/delete-modal.css'
 
 function DeleteReviewModal ({id}) {
     const { closeModal } = useModal();
@@ -14,16 +15,16 @@ function DeleteReviewModal ({id}) {
     };
 
     return (
-        <>
-            <div className="login-form">
-            <h2 className="login-text">Confirm Delete</h2>
-            <p>Are you sure you want to delete this review?</p>
-            <form onSubmit={handleSubmit}>
-                <button className='create-button' type='submit'>Yes (Delete Review)</button>
-                <button className='keep-button delete-style' onClick={closeModal}>No (Keep Review)</button>
-            </form>
+        <div className="delete-modal-container">
+            <div className="delete-form">
+                <p className="delete-title-text">Delete Review?</p>
+                <p className="confirmation-delete">Deleting a review will erase it permanently</p>
+                <form className='delete-buttons' onSubmit={handleSubmit}>
+                    <button className='yes-delete-review' type='submit'>Delete</button>
+                    <button className='keep-review' onClick={closeModal}>Keep</button>
+                </form>
             </div>
-        </>
+        </div>
 
 
     )

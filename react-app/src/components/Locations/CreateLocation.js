@@ -76,7 +76,7 @@ const CreateLocationForm = () => {
             <div className='location-border-card'>
                 <div className="form-create">
                 <p className='location-detail-title'>Create a New Location</p>
-                    <form className='login-body' onSubmit={handleSubmit} encType="multipart/form-data">
+                    <form className='location-body' onSubmit={handleSubmit} encType="multipart/form-data">
                         <div className="error-message">{errors.name && <p className="">{errors.name}</p>}</div>
                         <div className="form-container-create">
                             <p className="sub-text-signup">Location Name</p>
@@ -99,27 +99,29 @@ const CreateLocationForm = () => {
                                 onChange={(e) => setAddress(e.target.value)}
                             />
                         </div>
-                        <div className="error-message">{errors.city && <p className="">{errors.city}</p>}</div>
-                        <div className="form-container-create">
-                            <p className="sub-text-signup">City</p>
-                            <input
-                                className="input-create"
-                                type="text"
-                                placeholder="City"
-                                value={city}
-                                onChange={(e) => setCity(e.target.value)}
-                            />
-                        </div>
-                        <div className="error-message">{errors.state && <p className="">{errors.state}</p>}</div>
-                        <div className="form-container-create">
-                            <p className="sub-text-signup">State</p>
-                            <input
-                                className="input-create"
-                                type='text'
-                                placeholder="State"
-                                value={state}
-                                onChange={(e) => setState(e.target.value)}
-                            />
+                        <div className="error-message">{errors.city && <p className="error-message">{errors.city}</p>}</div>
+                        <div className="error-message">{errors.state && <p className="error-message">{errors.state}</p>}</div>
+                        <div className="city-state">
+                            <div className="form-container-create-2">
+                                <p className="sub-text-signup">City</p>
+                                <input
+                                    className="input-create"
+                                    type="text"
+                                    placeholder="City"
+                                    value={city}
+                                    onChange={(e) => setCity(e.target.value)}
+                                />
+                            </div>
+                            <div className="form-container-create-2">
+                                <p className="sub-text-signup">State</p>
+                                <input
+                                    className="input-create"
+                                    type='text'
+                                    placeholder="State"
+                                    value={state}
+                                    onChange={(e) => setState(e.target.value)}
+                                />
+                            </div>
                         </div>
                         <div className="error-message">{errors.country && <p className="">{errors.country}</p>}</div>
                         <div className="form-container-create">

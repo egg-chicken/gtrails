@@ -18,17 +18,15 @@ const LocationDetailsPage = () => {
     const [isReviewsLoaded, setIsReviewsLoaded] = useState(false);
     const [isLoaded, setIsLoaded] = useState(false);
     const [isVisible, setIsVisible] = useState(false);
-    // const [toggleState, setToggleState] = useState(1);
     const [upperToggleState, setUpperToggleState] = useState(1);
     const [lowerToggleState, setLowerToggleState] = useState(4);
     const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
-    // console.log('reviews', reviews)
     useEffect(() => {
-        dispatch(locationActions.getLocationsDetails(id))
-            .then(() => setIsLoaded(true))
-        dispatch(reviewActions.getAllReviews(id))
-            .then(() => setIsReviewsLoaded(true))
+      dispatch(locationActions.getLocationsDetails(id))
+        .then(() => setIsLoaded(true))
+      dispatch(reviewActions.getAllReviews(id))
+        .then(() => setIsReviewsLoaded(true))
     }, [dispatch, id])
 
     useEffect(() => {
@@ -166,7 +164,8 @@ const LocationDetailsPage = () => {
                         </div>
                         <div className='total-location-rating-section'>
                           <div>
-                            <span className='rating-count'>{location.avgRating ? (Number.isInteger(location.avgRating) ? location.avgRating.toFixed(1) : location.avgRating.toFixed(1)) : 'No Reviews'}</span>
+                            {/* <span className='rating-count'>{location.avgRating ? (Number.isInteger(location.avgRating) ? location.avgRating.toFixed(1) : location.avgRating.toFixed(1)) : 'No Reviews'}</span> */}
+                            {location.avgRating ? (Number.isInteger(location.avgRating) ? location.avgRating.toFixed(1) : location.avgRating.toFixed(1)) : 'No Reviews'}
                             <i className="fa fa-solid fa-star" style={{ color: '#2ced39' }} />
                           </div>
                           <p className='total-reviews'>{reviews.length} reviews</p>
@@ -201,11 +200,16 @@ const LocationDetailsPage = () => {
                                 ))}
                               </div>
                               <p className='review-text'>{review.review}</p>
-                              {review.userId === user?.id && <OpenModalButton
-                                modalComponent={<DeleteReviewModal id={review.id} locationId={review.locationId} setIsVisible={setIsVisible}/>}
-                                buttonText="Delete"
-                                buttonType="Delete"
-                              />}
+                              {review.userId === user?.id &&
+                                <>
+                                  <OpenModalButton
+                                    modalComponent={<DeleteReviewModal id={review.id} locationId={review.locationId} setIsVisible={setIsVisible}/>}
+                                    buttonText="Delete"
+                                    buttonType="Delete"
+                                  />
+                                  &#124;
+                                </>
+                              }
                               {review.userId === user?.id && <OpenModalButton
                                   modalComponent={<EditReviewModal id={review.id} locationId={review.locationId} setIsVisible={setIsVisible}/>}
                                   buttonText="Edit"

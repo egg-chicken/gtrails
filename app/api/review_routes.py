@@ -25,8 +25,10 @@ def userReviews():
             'id': review.id,
             'locationId': review.locationId,
             'locationName': review.location.name,
+            'image': review.location.image,
             'review': review.review,
-            'stars': review.stars
+            'stars': review.stars,
+            'createdAt': review.createdAt
         })
 
     return {'reviews': reviewInfo}

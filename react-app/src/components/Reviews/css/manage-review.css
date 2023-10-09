@@ -7,8 +7,41 @@
     padding: 10px; */
 }
 
+.manage-review {
+    display: flex;
+    justify-content: center;
+}
+
 .all-user-reviews {
-    border: none;
+    border-radius: 40px;
     padding: 10px;
     background-color: white;
+}
+
+.review-detials {
+    padding-left: 5px;
+}
+.review-location-name {
+    margin: 0px;
+    color: black;
+}
+
+.review-link-location {
+    text-decoration: none;
+}
+
+.review-img {
+    border-radius: 8px;
+    width: 40px;
+    height: 40px;
+}
+
+.review-text {
+    margin: 0px;
+    padding-bottom: 16px;
+}
+
+.each-review-info {
+    display: flex;
+    flex-direction: row;
 }

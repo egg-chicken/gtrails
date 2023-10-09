@@ -5,7 +5,6 @@ import EditReviewModal from './EditReviewModal';
 import DeleteReviewModal from '../Reviews/DeleteReviewModal';
 import OpenModalButton from '../OpenModalButton';
 import * as reviewActions from '../../store/reviews';
-import * as locationActions from '../../store/locations';
 import { useParams } from 'react-router-dom';
 import './css/manage-review.css';
 
@@ -13,15 +12,12 @@ const ManageReviewsPage = () => {
     const { id } = useParams();
     const dispatch = useDispatch();
     const reviews = useSelector((state) => Object.values(state.review));
-    const locations = useSelector((state) => state.location[id]);
-    const locationsArray = locations ? Object.values(locations): [];
-
+    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
     //get locations details by id - if the locationId === the id of the location then return the image if not return previmage
-    console.log('locationsxccc', locationsArray)
 
     useEffect(() => {
         dispatch(reviewActions.getCurrentUsersReviews())
-        dispatch(locationActions.getLocationsDetails(id))
+        // dispatch(locationActions.getLocationsDetails(id))
     }, [dispatch, id]);
 
     if (reviews.length === 0) {
@@ -38,40 +34,46 @@ const ManageReviewsPage = () => {
             <div className='location-border-card'>
             <p className='review-title manage-review'>Manage Reviews</p>
             <div className='all-user-reviews'>
-                {reviews.map((review) => (
-                    <div key={review.id}>
-                        <div className='review-detials'>
-                            <div className='star-rating'>
-                                {[...Array(review.stars)].map((star, index) => (
-                                <i key={index} className="fa fa-solid fa-star" style={{ color: '#2ced39' }} />
-                                ))}
-                            </div>
-                            <div className='profile-location'>
+                {reviews?.map(review => {
+                    const reviewMonth = months[new Date(review.createdAt).getMonth()];
+                    const day = (new Date(review.createdAt).getDate()) + 1;
+                    const year = new Date(review.createdAt).getFullYear();
 
+                    return (
+                        <div className='each-review' key={review.id}>
+                            <div className='review-detials'>
+                                    <div className='each-review-info'>
+                                        <Link className='review-link-location' to={`/locations/${review.locationId}`}>
+                                            <img className='review-img' src={review.image} alt={review.image}/>
+                                        </Link>
+                                        <div className='username-date'>
+                                            <Link className='review-link-location' to={`/locations/${review.locationId}`}>
+                                                <p className='review-location-name'>{review.locationName}</p>
+                                            </Link>
+                                            <p className='date'>{reviewMonth} {day}, {year}</p>
+                                        </div>
+                                    </div>
+                                    <div className='star-rating'>
+                                        {[...Array(review.stars)].map((star, index) => (
+                                        <i key={index} className="fa fa-solid fa-star" style={{ color: '#2ced39' }} />
+                                        ))}
+                                    </div>
+                                    <p className='review-text'>{review.review}</p>
                             </div>
-                                <Link to={`/locations/${review.locationId}`}>
-                                    <p>{review.locationName}</p>
-                                    {/* {locations[review.locationId] && locations[review.locationId].image ? (
-        <img src={locations[review.locationId].image} alt='location prev' className='image' title={locations[review.locationId].name} />
-    ) : (
-        <div className='image-placeholder'>Image not available</div>
-    )} */}
-                                </Link>
-                                <p>{review.review}</p>
+
+                            <OpenModalButton
+                                modalComponent={<DeleteReviewModal id={review.id}/>}
+                                buttonText='Delete'
+                                buttonType="Delete"
+                            />&#124;
+                            <OpenModalButton
+                                modalComponent={<EditReviewModal id={review.id}/>}
+                                buttonText='Edit'
+                                buttonType="edit"
+                            />
                         </div>
-
-                        <OpenModalButton
-                            modalComponent={<DeleteReviewModal id={review.id}/>}
-                            buttonText='Delete'
-                            buttonType="Delete"
-                        />
-                        <OpenModalButton
-                            modalComponent={<EditReviewModal id={review.id}/>}
-                            buttonText='Edit'
-                            buttonType="edit"
-                        />
-                    </div>
-                ))}
+                    )
+                })}
             </div>
             </div>
         </div>

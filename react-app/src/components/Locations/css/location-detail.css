@@ -93,7 +93,7 @@
     padding-left: 20px;
     padding-bottom: 10px;
     padding-right: 20px;
-    padding-top: 10px;
+    padding-top: 30px;
 }
 
 .lower-location-details-bar {
@@ -181,7 +181,7 @@
 }
 
 .star-rating {
-    padding-top: 15px;
+    padding-top: 12px;
 }
 
 .delete-button,
@@ -292,7 +292,7 @@
 }
 
 .content-tabs {
-    padding: 20px;
+    padding: 50px;
     border-radius: 0 0 5px 5px;
 }
 

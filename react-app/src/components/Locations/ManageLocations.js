@@ -22,20 +22,22 @@ const ManageLocationsPage = () => {
             <h1>Manage Locations</h1>
             <div className='add-box'>
                 <p className='add-box'>Found a location?</p>
-                <button onClick={(e) => {
-                    e.stopPropagation()
-                    history.push('/locations/new')
-                    }}>
-                        Add a New Location
-                </button>
+                <div className='new-loc-button'>
+                    <button onClick={(e) => {
+                        e.stopPropagation()
+                        history.push('/locations/new')
+                        }}>
+                            Add a New Location
+                    </button>
+                </div>
             </div>
             <div className='location-grid'>
                 {locationsArray.map((location) => (
                     <div key={location.id}>
-                        <Link to={`/locations/${location.id}`} className='location'>
+                        <Link to={`/locations/${location.id}`} className='location-img-link'>
                             <img src={location.image} alt='location prev' className='image' title={location.name}/>
                             <div className="location-details">
-                                <p>{location.name}</p>
+                                <p className='loc-name-detail'>{location.name}</p>
                                 <p className='location-rating'>
                                     <i className="fa fa-solid fa-star" style={{color:'#2ced39',}}/>
                                     {location.avgRating ? (Number.isInteger(location.avgRating) ? location.avgRating.toFixed(1) : location.avgRating.toFixed(1)) : 'No Reviews'}
@@ -47,7 +49,7 @@ const ManageLocationsPage = () => {
                             modalComponent={<DeleteModal id={location.id}/>}
                             buttonText="Delete"
                             buttonType="Delete"
-                        />
+                        />&#124;
                         <button className='edit-button' onClick={(e) => {
                             e.stopPropagation()
                             history.push(`/locations/${location.id}/edit`)

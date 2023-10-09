@@ -1,12 +1,27 @@
 .form-container-create {
     padding-bottom: 20px;
-    padding-left: 40px;
+    /* padding-left: 40px; */
     display: flex;
     justify-content: space-around;
     flex-direction: column;
     width: 250px;
 }
 
+.form-container-create-2 {
+    padding-bottom: 20px;
+    padding-left: 40px;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    width: 150px;
+}
+
+.location-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 .location-detail-title {
     display: flex;
     justify-content: center;
@@ -18,4 +33,22 @@
 .sign-button-container {
     padding: 15px 0px;
     padding-left: 40px;
+}
+
+.error-message {
+    display: flex;
+    justify-content: center;
+    color: red;
+    margin: 0px;
+}
+
+.sub-text-signup {
+    color: black;
+    font-size: 16px;
+}
+.city-state {
+    display: flex;
+    flex-direction: row;
+    margin: 0px;
+    /* justify-content: center; */
 }
