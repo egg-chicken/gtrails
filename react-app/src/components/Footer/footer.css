@@ -1,9 +1,25 @@
 footer {
-    background-color: #2A9134;
-    padding: 40px;
-    height: 100px;
+    background-color: #054A29;
+    padding: 40px 100px;
+    height: 200px;
     text-align: center;
   }
+
+a.footer-home.nav-link.active {
+  display: flex;
+  padding: 0px;
+  padding-bottom: 30px;
+  font-size: 30px;
+}
+
+.fh {
+  text-decoration: none;
+}
+
+.icon-cred {
+  text-decoration: none;
+  color: #efefec;
+}
 
 .footer-content {
   display: flex;
@@ -11,27 +27,15 @@ footer {
   align-items: center;
 }
 
-.footer-links {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.footer-links li {
-  display: inline-block;
-  margin-left: 10px;
-}
-
-.footer-links li:first-child {
-  margin-left: 0;
-}
-
-.footer-links a{
+.f-links {
   text-decoration: none;
-  color: whitesmoke;
+  color: #efefec;
+  padding-top: 20px;
+  padding-bottom: 30px;
+  font-weight: bold;
 }
 
-.footer-links a:hover {
+.f-links:hover {
   text-decoration: underline;
 }
 
@@ -42,9 +46,16 @@ footer {
   align-items: baseline;
 }
 
-.text {
+.text,
+.text-end {
   font-size: 18px;
   margin: 0px;
+  color: #efefec;
+}
+
+.text-end,
+div.credits.icon-cred {
+  font-size: 14px;
 }
 
 .f-icons {
@@ -52,11 +63,22 @@ footer {
   height: 20px;
   width: 20px;
   padding: 10px;
-  color: white;
+  color: #efefec;
 }
 
 .fa-instagram:before,
 .fa-linkedin:before,
 .fa-github:before  {
   padding: 10px;
+  color: #efefec;
+}
+
+.footer-credits {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: flex-start;
+  border-top: 1px solid #efefec;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  justify-content: space-between;
 }

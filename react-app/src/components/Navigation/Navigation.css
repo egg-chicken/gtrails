@@ -10,6 +10,7 @@
 a.home.nav-link.active {
   padding: 40px;
 }
+
 .home {
   font-size: 28pt;
 
@@ -91,7 +92,7 @@ ul.profile-dropdown {
   border: none;
   background: none;
   text-decoration: underline;
-  cursor: pointer; 
+  cursor: pointer;
 }
 
 .right-nav-side {
