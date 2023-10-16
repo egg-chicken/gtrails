@@ -33,11 +33,11 @@ function SignupFormModal() {
 		}
 
 		if(password.length < 5) {
-			errorMess.push("Password must have more than 5 characters")
+			errorMess.push("Password must be more than 5 characters")
 		}
 
 		if(email.length < 5) {
-			errorMess.push("Email must have more than 5 characters")
+			errorMess.push("Email must be more than 5 characters")
 		}
 
 		if(username === email) {

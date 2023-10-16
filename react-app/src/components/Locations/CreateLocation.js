@@ -33,11 +33,19 @@ const CreateLocationForm = () => {
         if(!city) errors.city = 'City is required';
         if(!state) errors.state = 'State is required';
         if(!country) errors.country = 'Country is required';
-        if(!lat) errors.lat = 'Latitude is required';
-        if(!lng) errors.lng = 'Longitude is required';
-        if(!length) errors.length = 'Length is required';
+        if (!lat || isNaN(parseFloat(lat))) {
+            errors.lat = 'Latitude is required (Must be a number)';
+        }
+        if (!lng || isNaN(parseFloat(lng))) {
+            errors.lng = 'Longitude is required (Must be a number)';
+        }
+        if (!length || isNaN(parseFloat(length))) {
+            errors.length = 'Length is required (Must be a number)';
+        }
         if(!description) errors.description = 'Description is required';
-        if(!elevGain) errors.elevGain = 'Elevation Gain is required';
+        if (!elevGain || isNaN(parseFloat(elevGain))) {
+            errors.elevGain = 'Elevation Gain is required (Must be a number)';
+        }
         if(!routeType) errors.routeType = 'Route Type is required';
         if(!image) errors.image = 'Image URL is required';
         if(image && !image.endsWith('.png') && !image.endsWith('.jpg') && !image.endsWith('.jpeg')) errors.image = 'Image URL must end in .png, .jpg, .jpeg';
@@ -169,7 +177,7 @@ const CreateLocationForm = () => {
                         </div>
                         <div className="error-message">{errors.length && <p className="error-message">{errors.length}</p>}</div>
                         <div className="form-container-create">
-                            <p className="sub-text-signup">length</p>
+                            <p className="sub-text-signup">Mile Length</p>
                             <input
                                 className="input-create"
                                 type='text'

@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import * as locationActions from '../../store/locations';
-import './mainpage.css'
+import './css/mainpage.css'
 
 const LandingPage = () => {
     const dispatch = useDispatch();
@@ -20,8 +20,8 @@ const LandingPage = () => {
                 <h1>Find your outdoors</h1>
                 <NavLink exact to="/explore" className='explore-l'>Explore nearby trails</NavLink>
             </div>
-            <div className="b-container">
-                <p className="parks-text">Parks worth a look</p>
+            <div className="parks-text">
+                <p className="sub-heading-text">Parks worth a look</p>
                 <div className="location-container-m">
                     {locationsArray.slice(0,4).map((location) => (
                         <Link key={location.id} to={`/locations/${location.id}`} className='location'>
@@ -42,7 +42,7 @@ const LandingPage = () => {
                 </div>
                 </div>
                 <div className="parks-text">
-                    <p className="parks-text">Locations to explore</p>
+                    <p className="sub-heading-text">Locations to explore</p>
                     <div className="location-container-m">
                         {locationsArray.slice(4,8).map((location) => (
                             <Link key={location.id} to={`/locations/${location.id}`} className='location'>
@@ -63,7 +63,7 @@ const LandingPage = () => {
                     </div>
                 </div>
                 <div className="parks-text">
-                    <p className="parks-text">Get away from the city</p>
+                    <p className="sub-heading-text">Get away from the city</p>
                     <div className="location-container-m">
                         {locationsArray.slice(8,12).map((location) => (
                             <Link key={location.id} to={`/locations/${location.id}`} className='location'>

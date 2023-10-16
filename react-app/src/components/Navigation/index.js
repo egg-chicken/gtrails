@@ -16,8 +16,8 @@ function Navigation({ isLoaded }){
 		<nav className='nav-container'>
 			<div className='a'>
 				<NavLink className="home nav-link" exact to="/">
-					<span>GTrails</span>
 					<i className="fa fa-hiking" style={{color:'#25d066'}}></i>
+					<span>GTrails</span>
 				</NavLink>
 			</div>
 			<div className='b'>
