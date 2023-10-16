@@ -20,7 +20,7 @@ function ReviewModal({id}) {
 
         const submitErrors = {};
 
-        if (review.length < 5) submitErrors.review = 'Please enter a comment with at least 5 characters.';
+        if (review.length < 5) submitErrors.review = 'Please enter a review with at least 5 characters.';
         if (stars === 0 ) submitErrors.stars = 'Select a rating';
         if (submitErrors.review || submitErrors.stars) {
           setErrors(submitErrors);
