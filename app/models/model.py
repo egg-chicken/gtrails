@@ -2,6 +2,11 @@ from .db import db, environment, SCHEMA, add_prefix_for_prod
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
+# join table
+activitylocation = db.Table("activitylocation",
+                       db.Column("activityId", db.Integer, db.ForeignKey(add_prefix_for_prod('activity.id')), primary_key=True),
+                       db.Column("locationId", db.Integer, db.ForeignKey(add_prefix_for_prod('location.id')), primary_key=True)
+                       )
 
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
@@ -99,6 +104,9 @@ class Location(db.Model):
     user = db.relationship('User', back_populates='locations')
     # review = db.relationship('Review', back_populates='locations')
     reviews = db.relationship('Review', back_populates='location')
+    activities = db.relationship("Activity",
+                            secondary=activitylocation,
+                            back_populates="locations")
 
 
 class Review(db.Model):
@@ -136,3 +144,24 @@ class Review(db.Model):
     user = db.relationship('User', back_populates='reviews')
     # locations = db.relationship('Location', back_populates='review')
     location = db.relationship('Location', back_populates='reviews')
+
+class Activity(db.Model):
+    __tablename__ = 'activities'
+
+    if environment == "production":
+        __table_args__ = {'schema': SCHEMA}
+
+    id = db.Column(db.Integer, primary_key=True)
+    activityType = db.Column(db.String(255), nullable=False)
+    difficulty = db.Column(db.String(255), nullable=False)
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'activityType': self.activityType,
+            'difficulty': self.difficulty,
+        }
+
+    location = db.relationship("Location",
+                            secondary=activitylocation,
+                            back_populates="activities")
