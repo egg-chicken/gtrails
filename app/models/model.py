@@ -4,9 +4,12 @@ from flask_login import UserMixin
 
 # join table
 activitylocation = db.Table("activitylocation",
-                       db.Column("activityId", db.Integer, db.ForeignKey(add_prefix_for_prod('activity.id')), primary_key=True),
-                       db.Column("locationId", db.Integer, db.ForeignKey(add_prefix_for_prod('location.id')), primary_key=True)
+                       db.Column("activityId", db.Integer, db.ForeignKey(add_prefix_for_prod('activities.id')), primary_key=True),
+                       db.Column("locationId", db.Integer, db.ForeignKey(add_prefix_for_prod('locations.id')), primary_key=True)
                        )
+
+if environment == "production":
+        activitylocation.schema = SCHEMA
 
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
@@ -106,7 +109,8 @@ class Location(db.Model):
     reviews = db.relationship('Review', back_populates='location')
     activities = db.relationship("Activity",
                             secondary=activitylocation,
-                            back_populates="locations")
+                            back_populates="locations",
+                            )
 
 
 class Review(db.Model):
@@ -162,6 +166,7 @@ class Activity(db.Model):
             'difficulty': self.difficulty,
         }
 
-    location = db.relationship("Location",
+    locations = db.relationship("Location",
                             secondary=activitylocation,
-                            back_populates="activities")
+                            back_populates="activities",
+                            )
