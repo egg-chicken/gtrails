@@ -53,8 +53,53 @@ def createActivity():
         return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
     return {'errors': 'Invalid data received'}, 400
-# edit a activity
 
+
+# edit an activity
+@activity_routes.route('/<int:id>/edit', methods=['PUT'])
+@login_required
+def updatedActivity(id):
+
+    activity = Activity.query.get(id)
+
+    if activity is None:
+        return {'message': "Activity couldn\'t be found", "statusCode": 404}
+
+    if activity.userId != current_user.id:
+        return {'errors': ['Forbidden: You don\'t have permission']}, 403
+
+    form = ActivityForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+        activity = Activity(
+            activityType=form.data['activityType'],
+            difficulty=form.data['difficulty'],
+            # userId=current_user.id,
+        )
+        db.session.add(activity)
+        db.session.commit()
+        return activity.to_dict()
+
+    if form.errors:
+        return {'errors': validation_errors_to_error_messages(form.errors)}, 400
+
+    return {'errors': 'Invalid data received'}, 400
 
 
 # delete an activity
+@activity_routes.route('/<int:id>/del', methods=['DELETE'])
+@login_required
+def delete(id):
+    activity = Activity.query.get(id)
+
+    if activity is None:
+        return {'message': "Activity couldn\'t be found", "statusCode": 404}
+
+    if activity.userId != current_user.id:
+        return {'errors': ['Forbidden: You don\'t have permission']}, 403
+
+    db.session.delete(activity)
+    db.session.commit()
+
+    return {"message": 'Successfully deleted', "statusCode": 200}

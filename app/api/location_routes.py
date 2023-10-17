@@ -162,6 +162,7 @@ def delete(id):
     if location:
         for review in location.reviews:
             db.session.delete(review)
+            
     # user.locations.remove(location)
     db.session.delete(location)
     db.session.commit()
