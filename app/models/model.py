@@ -57,6 +57,7 @@ class Location(db.Model):
     lat = db.Column(db.Float, nullable=False)
     lng = db.Column(db.Float, nullable=False)
     description = db.Column(db.String(255), nullable=False)
+    difficulty = db.Column(db.String(255), nullable=False)
     length = db.Column(db.Float, nullable=False)
     elevGain = db.Column(db.Integer, nullable=False)
     routeType = db.Column(db.String(255), nullable=False)
@@ -87,6 +88,7 @@ class Location(db.Model):
             'lat': self.lat,
             'lng': self.lng,
             'description': self.description,
+            'difficulty': self.difficulty,
             'length': self.length,
             'elevGain': self.elevGain,
             'routeType': self.routeType,
