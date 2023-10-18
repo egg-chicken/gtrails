@@ -92,6 +92,7 @@ def createLocation():
             lat=form.data['lat'],
             lng=form.data['lng'],
             description=form.data['description'],
+            difficulty=form.data['difficulty'],
             length=form.data['length'],
             elevGain=form.data['elevGain'],
             routeType=form.data['routeType'],
@@ -133,6 +134,7 @@ def updateLocation(id):
         location.lat = form.data['lat']
         location.lng = form.data['lng']
         location.description = form.data['description']
+        location.difficulty = form.data['difficulty']
         location.length = form.data['length']
         location.elevGain = form.data['elevGain']
         location.routeType = form.data['routeType']

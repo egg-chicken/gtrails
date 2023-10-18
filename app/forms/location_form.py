@@ -12,6 +12,7 @@ class LocationForm(FlaskForm):
     lat = FloatField('lat', validators=[DataRequired()])
     lng = FloatField('lng', validators=[DataRequired()])
     description = StringField('description', validators=[DataRequired()])
+    difficulty = StringField('difficulty', validators=[DataRequired()])
     length = FloatField('length', validators=[DataRequired()])
     elevGain = IntegerField('elevGain', validators=[DataRequired()])
     routeType = StringField('routeType', validators=[DataRequired()])
