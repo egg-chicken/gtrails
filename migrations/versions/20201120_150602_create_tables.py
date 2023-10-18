@@ -69,9 +69,13 @@ def upgrade():
     )
     op.create_table('activities',
         sa.Column('id', sa.Integer(), nullable=False),
+        sa.Column('userId', sa.Integer(), nullable=False),
         sa.Column('activityType', sa.String(length=255), nullable=False),
-        sa.Column('difficulty', sa.String(length=255), nullable=False),
+        sa.Column('trailConditions', sa.String(length=255), nullable=False),
+        sa.Column('createdAt', sa.DateTime(),server_default=sa.func.current_timestamp(), nullable=False),
+        sa.Column('updatedAt', sa.DateTime(),server_default=sa.func.current_timestamp(), nullable=False),
         sa.PrimaryKeyConstraint('id'),
+        sa.ForeignKeyConstraint(["userId"], ['users.id'])
     )
     op.create_table('activitylocation',
         sa.Column("activityId", sa.Integer(), primary_key=True),

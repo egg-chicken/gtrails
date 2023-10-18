@@ -42,7 +42,7 @@ def createActivity():
     if form.validate_on_submit():
         activity = Activity(
             activityType=form.data['activityType'],
-            difficulty=form.data['difficulty'],
+            trailConditions=form.data['trailConditions'],
             # userId=current_user.id,
         )
         db.session.add(activity)
@@ -74,8 +74,8 @@ def updatedActivity(id):
     if form.validate_on_submit():
         activity = Activity(
             activityType=form.data['activityType'],
-            difficulty=form.data['difficulty'],
-            # userId=current_user.id,
+            trailConditions=form.data['trailConditions'],
+            userId=current_user.id,
         )
         db.session.add(activity)
         db.session.commit()

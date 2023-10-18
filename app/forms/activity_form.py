@@ -4,4 +4,4 @@ from wtforms.validators import DataRequired
 
 class ActivityForm(FlaskForm):
     activityType = StringField('activity', validators=[DataRequired()])
-    difficulty = StringField('difficulty', validators=[DataRequired()])
+    trailConditions = StringField('trailConditions', validators=[DataRequired()])

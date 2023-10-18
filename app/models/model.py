@@ -56,8 +56,7 @@ class Location(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255), nullable=False)
-    userId = db.Column(db.Integer, db.ForeignKey(
-        add_prefix_for_prod('users.id')), nullable=False)
+    userId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     address = db.Column(db.String(255), nullable=False)
     city = db.Column(db.String(255), nullable=False)
     state = db.Column(db.String(255), nullable=False)
@@ -70,8 +69,7 @@ class Location(db.Model):
     routeType = db.Column(db.String(255), nullable=False)
     image = db.Column(db.String(255), nullable=False)
     createdAt = db.Column(db.DateTime, server_default=db.func.now())
-    updatedAt = db.Column(
-        db.DateTime, server_default=db.func.now(), server_onupdate=db.func.now())
+    updatedAt = db.Column(db.DateTime, server_default=db.func.now(), server_onupdate=db.func.now())
 
     def calculate_average_rating(self):
         if not self.reviews:
@@ -120,15 +118,12 @@ class Review(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    userId = db.Column(db.Integer, db.ForeignKey(
-        add_prefix_for_prod('users.id')), nullable=False)
-    locationId = db.Column(db.Integer, db.ForeignKey(
-        add_prefix_for_prod('locations.id')), nullable=False)
+    userId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
+    locationId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('locations.id')), nullable=False)
     review = db.Column(db.String(255), nullable=False)
     stars = db.Column(db.Integer, nullable=False)
     createdAt = db.Column(db.DateTime, server_default=db.func.now())
-    updatedAt = db.Column(
-        db.DateTime, server_default=db.func.now(), server_onupdate=db.func.now())
+    updatedAt = db.Column(db.DateTime, server_default=db.func.now(), server_onupdate=db.func.now())
 
     # def update_location_avg_rating(self):
     #     self.location.avgRating = self.location.calculate_average_rating()
@@ -156,16 +151,20 @@ class Activity(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
+    userId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     activityType = db.Column(db.String(255), nullable=False)
-    difficulty = db.Column(db.String(255), nullable=False)
+    trailConditions = db.Column(db.String(255), nullable=False)
+    createdAt = db.Column(db.DateTime, server_default=db.func.now())
+    updatedAt = db.Column(db.DateTime, server_default=db.func.now(), server_onupdate=db.func.now())
 
     def to_dict(self):
         return {
             'id': self.id,
             'activityType': self.activityType,
-            'difficulty': self.difficulty,
+            'trailConditions': self.trailConditions,
         }
 
+    user = db.relationship('User', back_populates='activities')
     locations = db.relationship("Location",
                             secondary=activitylocation,
                             back_populates="activities",
