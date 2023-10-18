@@ -3,19 +3,22 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
 # join table
-activitylocation = db.Table("activitylocation",
-                       db.Column("activityId", db.Integer, db.ForeignKey(add_prefix_for_prod('activities.id')), primary_key=True),
-                       db.Column("locationId", db.Integer, db.ForeignKey(add_prefix_for_prod('locations.id')), primary_key=True)
-                       )
+act_tag_loc = db.Table(
+    "act_tag_loc",
+    db.Column("tagId", db.Integer, db.ForeignKey(add_prefix_for_prod("tags.id")), primary_key=True),
+    db.Column("activityId", db.Integer, db.ForeignKey(add_prefix_for_prod("activities.id")), primary_key=True),
+    db.Column("locationId", db.Integer, db.ForeignKey(add_prefix_for_prod("locations.id")), primary_key=True),
+)
 
 if environment == "production":
-        activitylocation.schema = SCHEMA
+    act_tag_loc.schema = SCHEMA
+
 
 class User(db.Model, UserMixin):
-    __tablename__ = 'users'
+    __tablename__ = "users"
 
     if environment == "production":
-        __table_args__ = {'schema': SCHEMA}
+        __table_args__ = {"schema": SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
     firstName = db.Column(db.String(40), nullable=False)
@@ -37,26 +40,28 @@ class User(db.Model, UserMixin):
 
     def to_dict(self):
         return {
-            'id': self.id,
-            'firstName': self.firstName,
-            'lastName': self.lastName,
-            'username': self.username,
-            'email': self.email
+            "id": self.id,
+            "firstName": self.firstName,
+            "lastName": self.lastName,
+            "username": self.username,
+            "email": self.email,
         }
 
-    locations = db.relationship('Location', back_populates="user")
-    reviews = db.relationship('Review', back_populates="user")
+    locations = db.relationship("Location", back_populates="user")
+    reviews = db.relationship("Review", back_populates="user")
 
 
 class Location(db.Model):
-    __tablename__ = 'locations'
+    __tablename__ = "locations"
 
     if environment == "production":
-        __table_args__ = {'schema': SCHEMA}
+        __table_args__ = {"schema": SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255), nullable=False)
-    userId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
+    userId = db.Column(
+        db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False
+    )
     address = db.Column(db.String(255), nullable=False)
     city = db.Column(db.String(255), nullable=False)
     state = db.Column(db.String(255), nullable=False)
@@ -69,7 +74,9 @@ class Location(db.Model):
     routeType = db.Column(db.String(255), nullable=False)
     image = db.Column(db.String(255), nullable=False)
     createdAt = db.Column(db.DateTime, server_default=db.func.now())
-    updatedAt = db.Column(db.DateTime, server_default=db.func.now(), server_onupdate=db.func.now())
+    updatedAt = db.Column(
+        db.DateTime, server_default=db.func.now(), server_onupdate=db.func.now()
+    )
 
     def calculate_average_rating(self):
         if not self.reviews:
@@ -83,47 +90,59 @@ class Location(db.Model):
         avg_rating = self.calculate_average_rating()
 
         return {
-            'id': self.id,
-            'name': self.name,
-            'userId': self.userId,
-            'address': self.address,
-            'city': self.city,
-            'state': self.state,
-            'country': self.country,
-            'lat': self.lat,
-            'lng': self.lng,
-            'description': self.description,
-            'length': self.length,
-            'elevGain': self.elevGain,
-            'routeType': self.routeType,
-            'image': self.image,
-            'createdAt': self.createdAt,
-            'updatedAt': self.updatedAt,
-            'avgRating': avg_rating
+            "id": self.id,
+            "name": self.name,
+            "userId": self.userId,
+            "address": self.address,
+            "city": self.city,
+            "state": self.state,
+            "country": self.country,
+            "lat": self.lat,
+            "lng": self.lng,
+            "description": self.description,
+            "length": self.length,
+            "elevGain": self.elevGain,
+            "routeType": self.routeType,
+            "image": self.image,
+            "createdAt": self.createdAt,
+            "updatedAt": self.updatedAt,
+            "avgRating": avg_rating,
         }
 
-    user = db.relationship('User', back_populates='locations')
+    user = db.relationship("User", back_populates="locations")
     # review = db.relationship('Review', back_populates='locations')
-    reviews = db.relationship('Review', back_populates='location')
-    activities = db.relationship("Activity",
-                            secondary=activitylocation,
-                            back_populates="locations",
-                            )
+    reviews = db.relationship("Review", back_populates="location")
+    activities = db.relationship(
+        "Activity",
+        secondary=act_tag_loc,
+        back_populates="locations",
+    )
+    tags = db.relationship(
+        "Tag",
+        secondary=act_tag_loc,
+        back_populates="locations",
+    )
 
 
 class Review(db.Model):
-    __tablename__ = 'reviews'
+    __tablename__ = "reviews"
 
     if environment == "production":
-        __table_args__ = {'schema': SCHEMA}
+        __table_args__ = {"schema": SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    userId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
-    locationId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('locations.id')), nullable=False)
+    userId = db.Column(
+        db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False
+    )
+    locationId = db.Column(
+        db.Integer, db.ForeignKey(add_prefix_for_prod("locations.id")), nullable=False
+    )
     review = db.Column(db.String(255), nullable=False)
     stars = db.Column(db.Integer, nullable=False)
     createdAt = db.Column(db.DateTime, server_default=db.func.now())
-    updatedAt = db.Column(db.DateTime, server_default=db.func.now(), server_onupdate=db.func.now())
+    updatedAt = db.Column(
+        db.DateTime, server_default=db.func.now(), server_onupdate=db.func.now()
+    )
 
     # def update_location_avg_rating(self):
     #     self.location.avgRating = self.location.calculate_average_rating()
@@ -131,41 +150,67 @@ class Review(db.Model):
 
     def to_dict(self):
         return {
-            'id': self.id,
-            'userId': self.userId,
-            'locationId': self.locationId,
-            'review': self.review,
-            'stars': self.stars,
-            'createdAt': self.createdAt,
-            'updatedAt': self.updatedAt,
+            "id": self.id,
+            "userId": self.userId,
+            "locationId": self.locationId,
+            "review": self.review,
+            "stars": self.stars,
+            "createdAt": self.createdAt,
+            "updatedAt": self.updatedAt,
         }
 
-    user = db.relationship('User', back_populates='reviews')
+    user = db.relationship("User", back_populates="reviews")
     # locations = db.relationship('Location', back_populates='review')
-    location = db.relationship('Location', back_populates='reviews')
+    location = db.relationship("Location", back_populates="reviews")
+
 
 class Activity(db.Model):
-    __tablename__ = 'activities'
+    __tablename__ = "activities"
 
     if environment == "production":
-        __table_args__ = {'schema': SCHEMA}
+        __table_args__ = {"schema": SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    userId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
+    userId = db.Column(
+        db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False
+    )
     activityType = db.Column(db.String(255), nullable=False)
     trailConditions = db.Column(db.String(255), nullable=False)
     createdAt = db.Column(db.DateTime, server_default=db.func.now())
-    updatedAt = db.Column(db.DateTime, server_default=db.func.now(), server_onupdate=db.func.now())
+    updatedAt = db.Column(
+        db.DateTime, server_default=db.func.now(), server_onupdate=db.func.now()
+    )
 
     def to_dict(self):
         return {
-            'id': self.id,
-            'activityType': self.activityType,
-            'trailConditions': self.trailConditions,
+            "id": self.id,
+            "activityType": self.activityType,
+            "trailConditions": self.trailConditions,
         }
 
-    user = db.relationship('User', back_populates='activities')
-    locations = db.relationship("Location",
-                            secondary=activitylocation,
-                            back_populates="activities",
-                            )
+    user = db.relationship("User", back_populates="activities")
+    locations = db.relationship(
+        "Location",
+        secondary=act_tag_loc,
+        back_populates="activities",
+    )
+    tags = db.relationship(
+        "Tag",
+        secondary=act_tag_loc,
+        back_populates="activities",
+    )
+
+class Tag(db.Model):
+    __tablename__ = "tags"
+
+    if environment == "production":
+        __table_args__ = {"schema": SCHEMA}
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(255), nullable=False)
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+        }
