@@ -174,8 +174,11 @@ class Activity(db.Model):
     def to_dict(self):
         return {
             "id": self.id,
+            "userId": self.userId,
             "activityType": self.activityType,
             "trailConditions": self.trailConditions,
+            "createdAt": self.createdAt,
+            "updatedAt": self.updatedAt,
         }
 
     user = db.relationship("User", back_populates="activities")

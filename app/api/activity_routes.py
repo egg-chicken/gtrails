@@ -17,6 +17,14 @@ def getActivity():
 
 
 # return all the activities created by user
+@activity_routes.route('/created', methods=['GET'])
+@login_required
+def userActivities():
+    current_user_id = current_user.id
+
+    currentUserActivities = Activity.query.filter(Activity.userId == current_user_id)
+
+    return jsonify({'activities': [each.to_dict() for each in currentUserActivities]})
 
 
 # return the details of the activity based on id
@@ -43,7 +51,7 @@ def createActivity():
         activity = Activity(
             activityType=form.data['activityType'],
             trailConditions=form.data['trailConditions'],
-            # userId=current_user.id,
+            userId=current_user.id,
         )
         db.session.add(activity)
         db.session.commit()
@@ -72,11 +80,9 @@ def updatedActivity(id):
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
-        activity = Activity(
-            activityType=form.data['activityType'],
-            trailConditions=form.data['trailConditions'],
-            userId=current_user.id,
-        )
+        activity.activityType = form.data['activityType']
+        activity.trailConditions = form.data['trailConditions']
+
         db.session.add(activity)
         db.session.commit()
         return activity.to_dict()
