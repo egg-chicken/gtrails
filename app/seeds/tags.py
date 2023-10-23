@@ -3,7 +3,7 @@ from sqlalchemy.sql import text
 from datetime import datetime
 
 
-def seed_activities():
+def seed_tags():
     r1 = Tag(name='great!')
     r2 = Tag(name='great!')
     r3 = Tag(name='great!')
@@ -32,7 +32,7 @@ def seed_activities():
     db.session.commit()
 
 
-def undo_activities():
+def undo_tags():
     if environment == "production":
         db.session.execute(
             f"TRUNCATE table {SCHEMA}.users RESTART IDENTITY CASCADE;")

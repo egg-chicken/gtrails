@@ -49,7 +49,7 @@ class User(db.Model, UserMixin):
 
     locations = db.relationship("Location", back_populates="user")
     reviews = db.relationship("Review", back_populates="user")
-
+    activities = db.relationship("Activity", back_populates="user")
 
 class Location(db.Model):
     __tablename__ = "locations"
@@ -131,18 +131,12 @@ class Review(db.Model):
         __table_args__ = {"schema": SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    userId = db.Column(
-        db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False
-    )
-    locationId = db.Column(
-        db.Integer, db.ForeignKey(add_prefix_for_prod("locations.id")), nullable=False
-    )
+    userId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
+    locationId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("locations.id")), nullable=False)
     review = db.Column(db.String(255), nullable=False)
     stars = db.Column(db.Integer, nullable=False)
     createdAt = db.Column(db.DateTime, server_default=db.func.now())
-    updatedAt = db.Column(
-        db.DateTime, server_default=db.func.now(), server_onupdate=db.func.now()
-    )
+    updatedAt = db.Column(db.DateTime, server_default=db.func.now(), server_onupdate=db.func.now())
 
     # def update_location_avg_rating(self):
     #     self.location.avgRating = self.location.calculate_average_rating()
@@ -171,15 +165,11 @@ class Activity(db.Model):
         __table_args__ = {"schema": SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    userId = db.Column(
-        db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False
-    )
+    userId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
     activityType = db.Column(db.String(255), nullable=False)
     trailConditions = db.Column(db.String(255), nullable=False)
     createdAt = db.Column(db.DateTime, server_default=db.func.now())
-    updatedAt = db.Column(
-        db.DateTime, server_default=db.func.now(), server_onupdate=db.func.now()
-    )
+    updatedAt = db.Column(db.DateTime, server_default=db.func.now(), server_onupdate=db.func.now())
 
     def to_dict(self):
         return {
@@ -214,3 +204,14 @@ class Tag(db.Model):
             "id": self.id,
             "name": self.name,
         }
+
+    locations = db.relationship(
+        "Location",
+        secondary=act_tag_loc,
+        back_populates="tags",
+    )
+    activities = db.relationship(
+        "Activity",
+        secondary=act_tag_loc,
+        back_populates="tags",
+    )
