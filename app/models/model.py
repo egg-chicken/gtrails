@@ -59,9 +59,7 @@ class Location(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255), nullable=False)
-    userId = db.Column(
-        db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False
-    )
+    userId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
     address = db.Column(db.String(255), nullable=False)
     city = db.Column(db.String(255), nullable=False)
     state = db.Column(db.String(255), nullable=False)
@@ -69,6 +67,7 @@ class Location(db.Model):
     lat = db.Column(db.Float, nullable=False)
     lng = db.Column(db.Float, nullable=False)
     description = db.Column(db.String(255), nullable=False)
+    difficulty = db.Column(db.String(255), nullable=False)
     length = db.Column(db.Float, nullable=False)
     elevGain = db.Column(db.Integer, nullable=False)
     routeType = db.Column(db.String(255), nullable=False)
@@ -90,23 +89,24 @@ class Location(db.Model):
         avg_rating = self.calculate_average_rating()
 
         return {
-            "id": self.id,
-            "name": self.name,
-            "userId": self.userId,
-            "address": self.address,
-            "city": self.city,
-            "state": self.state,
-            "country": self.country,
-            "lat": self.lat,
-            "lng": self.lng,
-            "description": self.description,
-            "length": self.length,
-            "elevGain": self.elevGain,
-            "routeType": self.routeType,
-            "image": self.image,
-            "createdAt": self.createdAt,
-            "updatedAt": self.updatedAt,
-            "avgRating": avg_rating,
+            'id': self.id,
+            'name': self.name,
+            'userId': self.userId,
+            'address': self.address,
+            'city': self.city,
+            'state': self.state,
+            'country': self.country,
+            'lat': self.lat,
+            'lng': self.lng,
+            'description': self.description,
+            'difficulty': self.difficulty,
+            'length': self.length,
+            'elevGain': self.elevGain,
+            'routeType': self.routeType,
+            'image': self.image,
+            'createdAt': self.createdAt,
+            'updatedAt': self.updatedAt,
+            'avgRating': avg_rating
         }
 
     user = db.relationship("User", back_populates="locations")

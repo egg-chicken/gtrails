@@ -47,6 +47,7 @@ def upgrade():
         sa.Column("lat", sa.Float(), nullable=False),
         sa.Column("lng", sa.Float(), nullable=False),
         sa.Column("description", sa.String(length=255), nullable=False),
+        sa.Column('difficulty', sa.String(length=255), nullable=False),
         sa.Column("length", sa.Float(), nullable=False),
         sa.Column("elevGain", sa.Integer(), nullable=False),
         sa.Column("routeType", sa.String(length=255), nullable=False),
@@ -102,7 +103,8 @@ def upgrade():
         op.execute(f"ALTER TABLE reviews SET SCHEMA {SCHEMA};")
         op.execute(f"ALTER TABLE activities SET SCHEMA {SCHEMA};")
         op.execute(f"ALTER TABLE act_tag_loc SET SCHEMA {SCHEMA};")
-    # ### end Alembic commands ###qqqqqqqqq
+        
+    # ### end Alembic commands ###
 
 
 def downgrade():
