@@ -74,6 +74,11 @@
     /* top: 50px; */
 }
 
+.difficulty {
+    color: white;
+    font-size: 18px;
+}
+
 .city-state {
     font-size: 18px;
     color: white;
@@ -262,6 +267,7 @@
 
 .location-direction {
     display: flex;
+    padding-left: 20px;
 }
 
 .fa-star:before {

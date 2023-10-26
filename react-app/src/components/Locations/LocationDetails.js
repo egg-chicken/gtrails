@@ -81,12 +81,13 @@ const LocationDetailsPage = () => {
               <div className='title-test-center'>
                 <h1 className='location-name-title'>{location.name}</h1>
                 <div className='location-direction'>
-                  <p onClick={handleClick} className='city-state'>{location.address}</p>
+                  <p className='difficulty'>{location.difficulty} &#8231; </p>
                   <p className='location-rating-main'>
                     <i className="fa fa-solid fa-star" style={{color:'#2ced39',}}/>
                     {location.avgRating ? (Number.isInteger(location.avgRating) ? location.avgRating.toFixed(1) : location.avgRating.toFixed(1)) : 'New'} ({reviews.length})
                   </p>
                 </div>
+                <p onClick={handleClick} className='city-state'>{location.address}</p>
               </div>
             </div>
             <div className='bar-links location-details-bar-buttons'>
