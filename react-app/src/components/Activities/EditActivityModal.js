@@ -1,33 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useModal } from '../../context/Modal';
 
-const CreateActivityModal = () => {
+const EditActivityModal = () => {
     const [activityType, setActivityType] = useState('');
     const [trailConditions, setTrailConditions] = useState('');
     const [errors, setErrors] = useState({});
     const { closeModal } = useModal();
-    
-    const handleSubmit = async(e) => {
-        e.preventDefault();
 
-        setErrors(null);
-
-        const submitErrors = {};
-
-        if (!activityType) submitErrors.activityType = 'Please Select an Activity Type';
-        if (!trailConditions) submitErrors.trailConditions = 'Please enter the trail conditions';
-        if (submitErrors.activityType || submitErrors.trailConditions){
-            setErrors(submitErrors);
-            return
-        }
-
-    }
-
+    useEffect(() => {
+    });
 
     return (
-        <div className="activity-container">
-            <p>location name</p>
-            <form onSubmit={handleSubmit}>
+        <div className="edit-activity-container">
+            <p>Edit your activity</p>
+            <form>
                 <label>Activity type
                     <input
                         value={activityType}
@@ -48,4 +34,4 @@ const CreateActivityModal = () => {
     )
 };
 
-export default CreateActivityModal;
+export default EditActivityModal;
