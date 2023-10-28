@@ -3,11 +3,6 @@ import { NavLink } from 'react-router-dom';
 import './footer.css'
 
 const Footer = () => {
-    const social = {
-        github:'https://github.com/egg-chicken',
-        // insta: '',
-        linkedinHandle:'https://www.linkedin.com/in/edithgomezgarcia/',
-    };
 
     const handleClick = e => {
 		e.preventDefault();
@@ -33,9 +28,9 @@ const Footer = () => {
                 <div className='connect-info'>
                     <p className='text'>Connect With Me</p>
                     <div className='f-icons'>
-                        <a href={social.linkedinHandle}><i className="fab fa-linkedin"></i></a>
-                        <a href={social.github}><i className="fab fa-github"></i></a>
-                        <i className="fab fa-instagram"></i>
+                        <a target="_blank" href='https://www.linkedin.com/in/edithgomezgarcia/'><i className="fab fa-linkedin"></i></a>
+                        <a target="_blank" href='https://github.com/egg-chicken'><i className="fab fa-github"></i></a>
+                        {/* <i className="fab fa-instagram"></i> */}
                     </div>
                 </div>
                 <div>
