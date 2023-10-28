@@ -2,12 +2,13 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
-
 import { ModalProvider, Modal } from "./context/Modal";
 import configureStore from "./store";
 import * as sessionActions from "./store/session";
 import * as locationActions from './store/locations';
 import * as reviewActions from './store/reviews';
+import * as activityActions from './store/activities';
+
 import App from "./App";
 
 import "./index.css";
@@ -19,6 +20,7 @@ if (process.env.NODE_ENV !== "production") {
 	window.sessionActions = sessionActions;
 	window.locationActions = locationActions;
 	window.reviewActions = reviewActions;
+	window.activityActions = activityActions;
 }
 
 // Wrap the application with the Modal provider and render the Modal component
