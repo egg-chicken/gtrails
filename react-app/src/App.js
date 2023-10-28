@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import ManageReviewsPage from "./components/Reviews/ManageReview";
+import ManageActivitiesPage from "./components/Activities/ManageActivities";
 import UpdateLocationForm from "./components/Locations/UpdateLocation";
 import ManageLocationsPage from "./components/Locations/ManageLocations";
 import LocationDetailsPage from "./components/Locations/LocationDetails";
@@ -31,6 +32,9 @@ function App() {
             </Route>
             <Route path="/explore" >
               <ExplorePage />
+            </Route>
+            <Route path='/activities/created'>
+              <ManageActivitiesPage />
             </Route>
             <Route path='/reviews/created'>
               <ManageReviewsPage />
