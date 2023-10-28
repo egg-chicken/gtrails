@@ -69,7 +69,7 @@ export const getActivitiesDetails = (id) => async dispatch => {
 };
 
 // create an activity
-export const createActivity = () => async dispatch => {
+export const createActivity = (activity) => async dispatch => {
     const res = await fetch('/api/activities/new', {
         method: 'POST',
         body: activity
