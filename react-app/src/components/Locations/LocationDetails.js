@@ -66,14 +66,15 @@ const LocationDetailsPage = () => {
       }
     });
 
-    const averageRating = (location) => {
+    const averageRating = (location, decimal=1) => {
       const review = reviews.filter((review) => review.locationId === location.id);
       if(review.length > 0){
         let num = 0;
         for (let i = 0; i < review.length; i ++){
           num += review[i].stars;
         }
-        return num / review.length;
+        const average = num / review.length;
+        return average.toFixed(decimal);
       }
       return 'No reviews';
     }
@@ -95,7 +96,7 @@ const LocationDetailsPage = () => {
                   <p className='difficulty'>{location.difficulty} &#8231; </p>
                   <p className='location-rating-main'>
                     <i className="fa fa-solid fa-star" style={{color:'#2ced39',}}/>
-                    {location.avgRating ? (Number.isInteger(location.avgRating) ? location.avgRating.toFixed(1) : location.avgRating.toFixed(1)) : 'New'} ({reviews.length})
+                    {averageRating(location)}
                   </p>
                 </div>
                 <p onClick={handleClick} className='city-state'>{location.address}</p>
@@ -178,10 +179,11 @@ const LocationDetailsPage = () => {
                           </div>
                         </div>
                         <div className='total-location-rating-section'>
-                          {/* <AverageRating avgRating={location.avgRating} reviewCount={reviews.length} /> */}
                           <div>
-                              <span className='rating-count'>{averageRating(location)}
-                              <i className="fa fa-solid fa-star" style={{ color: '#2ced39' }} /></span>
+                              <span className='rating-count'>
+                                {averageRating(location)}
+                                <i className="fa fa-solid fa-star" style={{ color: '#2ced39' }} />
+                              </span>
                           </div>
                           <p className='total-reviews'>{reviews.length} reviews</p>
                         </div>
