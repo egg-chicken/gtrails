@@ -5,7 +5,6 @@ import './footer.css'
 const Footer = () => {
     const social = {
         github:'https://github.com/egg-chicken',
-        // insta: '',
         linkedinHandle:'https://www.linkedin.com/in/edithgomezgarcia/',
     };
 
