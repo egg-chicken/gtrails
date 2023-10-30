@@ -3,3 +3,4 @@ from .signup_form import SignUpForm
 from .review_form import ReviewForm
 from .location_form import LocationForm
 from .activity_form import ActivityForm
+from .list_form import ListForm
