@@ -26,7 +26,12 @@ def getListId(id):
     if list is None:
         return {'message': "List couldn\'t be found", "statusCode": 404}
 
-    return list.to_dict()
+    listDetails = list.to_dict()
+    listDetails["locations"] = []
+    for location in list.locations:
+        listDetails["locations"].append(location.to_dict())
+        
+    return listDetails
 
 
 # Create a list
