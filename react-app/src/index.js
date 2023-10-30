@@ -8,6 +8,7 @@ import * as sessionActions from "./store/session";
 import * as locationActions from './store/locations';
 import * as reviewActions from './store/reviews';
 import * as activityActions from './store/activities';
+import * as listActions from './store/lists';
 
 import App from "./App";
 
@@ -21,6 +22,7 @@ if (process.env.NODE_ENV !== "production") {
 	window.locationActions = locationActions;
 	window.reviewActions = reviewActions;
 	window.activityActions = activityActions;
+	window.listActions = listActions;
 }
 
 // Wrap the application with the Modal provider and render the Modal component

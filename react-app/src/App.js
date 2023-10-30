@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import ManageReviewsPage from "./components/Reviews/ManageReview";
 import ManageActivitiesPage from "./components/Activities/ManageActivities";
+import ManageListPage from "./components/Lists/ManageLists";
 import UpdateLocationForm from "./components/Locations/UpdateLocation";
 import ManageLocationsPage from "./components/Locations/ManageLocations";
 import LocationDetailsPage from "./components/Locations/LocationDetails";
@@ -38,6 +39,9 @@ function App() {
             </Route>
             <Route path='/reviews/created'>
               <ManageReviewsPage />
+            </Route>
+            <Route path='/lists/created'>
+              <ManageListPage />
             </Route>
             <Route path='/locations/new'>
               <CreateLocationForm />
