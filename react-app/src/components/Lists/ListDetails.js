@@ -43,8 +43,14 @@ const ListDetailPage = () => {
         list?.locations?.forEach((location) => {
             const { lat, lng } = location;
             // console.log('Latitude:', lat, 'Longitude:', lng);
-            new mapboxgl.Marker()
+            new mapboxgl.Marker({
+                color: "#2ced39",
+            })
                 .setLngLat([lng, lat])
+                .setPopup(new mapboxgl.Popup().setHTML(
+                    `<p>${location.name}</p>
+                    <a href='/locations/${location.id}'>See locations details</a>
+                    `))
                 .addTo(map.current);
         });
 
