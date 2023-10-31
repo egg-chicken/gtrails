@@ -1,18 +1,56 @@
-import React, { useEffect } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from 'react-router-dom';
 import * as listActions from '../../store/lists';
 import './css/list-details.css'
+import mapboxgl from '!mapbox-gl';// eslint-disable-line import/no-webpack-loader-syntax
+import 'mapbox-gl/dist/mapbox-gl.css';
+// import dotenv from 'dotenv';
+
+// dotenv.config();
+
+// mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN
 
 const ListDetailPage = () => {
     const { id } = useParams();
     const dispatch = useDispatch();
     const list  = useSelector((state) => state.list[id])
 
+    const mapContainer = useRef(null);
+    const map = useRef(null);
+    const [lng, setLng] = useState(-120.5);
+    const [lat, setLat] = useState(43.8);
+    const [zoom, setZoom] = useState(4);
+
     useEffect(() => {
         dispatch(listActions.getListsDetails(id))
     }, [dispatch, id]);
+
+
+    useEffect(() => {
+        if (map.current) return;
+        map.current = new mapboxgl.Map({
+        container: mapContainer.current,
+        style: 'mapbox://styles/mapbox/streets-v12',
+        center: [lng, lat],
+        zoom: zoom
+        });
+        addMarkersToMap();
+    }, []);
+
+    const addMarkersToMap = () => {
+        list?.locations?.forEach((location) => {
+            const { lat, lng } = location;
+            // console.log('Latitude:', lat, 'Longitude:', lng);
+            new mapboxgl.Marker()
+                .setLngLat([lng, lat])
+                .addTo(map.current);
+        });
+
+    };
+
+    addMarkersToMap();
 
     return (
         <div className="list-detail-container">
@@ -25,6 +63,9 @@ const ListDetailPage = () => {
                     </Link>
                 </div>
             ))}
+            <div>
+                <div ref={mapContainer} className="map-container" />
+            </div>
         </div>
     )
 
