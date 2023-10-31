@@ -1,0 +1,15 @@
+.list-detail-container {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 20px 20px 150px;
+    padding-left: 100px;
+    padding-right: 100px;
+    min-width: 500px;
+    max-width: 1000px;
+    flex-direction: column;
+
+    border-radius: 40px;
+    background-color: white;
+    width: 90%;
+    box-shadow: 2px 2px 15px 2px grey;
+}

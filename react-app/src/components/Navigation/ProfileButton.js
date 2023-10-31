@@ -59,6 +59,7 @@ function ProfileButton({ user }) {
                 <li className="drop-link"><NavLink to='/locations/created' className='manage-locations-link' onClick={closeMenu}>Manage Locations</NavLink></li>
                 <li className="drop-link"><NavLink to='/reviews/created' className='reviews-link' onClick={closeMenu}>Reviews</NavLink></li>
                 <li className="drop-link"><NavLink to='/activities/created' className='reviews-link' onClick={closeMenu}>Activities</NavLink></li>
+                <li className="drop-link"><NavLink to='/lists/created' className='reviews-link' onClick={closeMenu}>Lists</NavLink></li>
               </div>
               <li className="drop-link">
                 <button className='log-out-button' onClick={handleLogout}>Log Out</button>

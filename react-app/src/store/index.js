@@ -4,12 +4,14 @@ import session from './session';
 import locationsReducer from './locations';
 import reviewsReducer from './reviews';
 import activityReducer from './activities';
+import listReducer from './lists';
 
 const rootReducer = combineReducers({
   session,
   location: locationsReducer,
   review: reviewsReducer,
-  activity: activityReducer
+  activity: activityReducer,
+  list:listReducer
 });
 
 

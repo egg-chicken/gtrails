@@ -8,7 +8,7 @@ from app.api.auth_routes import validation_errors_to_error_messages
 list_routes = Blueprint('lists', __name__)
 
 # Return all lists created by user
-@list_routes.route('/', methods=['GET'])
+@list_routes.route('/created', methods=['GET'])
 @login_required
 def getUserLists():
 
@@ -30,7 +30,7 @@ def getListId(id):
     listDetails["locations"] = []
     for location in list.locations:
         listDetails["locations"].append(location.to_dict())
-        
+
     return listDetails
 
 
