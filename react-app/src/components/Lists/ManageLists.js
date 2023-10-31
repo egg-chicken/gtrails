@@ -21,7 +21,7 @@ const ManageListPage = () => {
             <div>
                 {lists?.map(list => (
                     <div key={list.id}>
-                        <Link to={`/lists/${id}`}>
+                        <Link to={`/lists/${list.id}`}>
                             <p>{list.listName}</p>
                         </Link>
                     </div>

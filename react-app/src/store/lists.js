@@ -107,7 +107,7 @@ export const updateList = (id, list) => async dispatch => {
 const initialState = {};
 
 const listReducer = (state = initialState, action) => {
-    const newState = {...state}
+    let newState = {...state}
     switch (action.type) {
         case LOAD_ALL_LISTS:
             const allLists = {};
