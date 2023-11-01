@@ -35,6 +35,18 @@ const updateOne = activity => ({
     activity
 });
 
+// get all the activities locations
+export const getAllActivities = id => async dispatch => {
+    const response = await fetch(`/api/locations/${id}/activities`)
+
+    if(response.ok){
+        const activities = await response.json();
+        dispatch(loadActivities(activities));
+        return activities;
+    }
+}
+
+
 // get all activities
 export const getActivities = () => async dispatch => {
     const res = await fetch('/api/activities');

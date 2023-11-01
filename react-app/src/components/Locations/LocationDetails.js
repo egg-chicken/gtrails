@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import * as locationActions from '../../store/locations';
 import * as reviewActions from '../../store/reviews';
+import * as activityActions from '../../store/activities';
 import OpenModalButton from '../OpenModalButton';
 import EditReviewModal from '../Reviews/EditReviewModal';
 import ReviewModal from '../Reviews/CreateReviewModal';
@@ -14,6 +15,7 @@ const LocationDetailsPage = () => {
     const dispatch = useDispatch();
     const location = useSelector((state) => state.location[id]);
     const reviews = useSelector((state) => Object.values(state.review));
+    const activities = useSelector((state) => Object.values(state.activity));
     const user = useSelector(state => state.session.user);
     const [isReviewsLoaded, setIsReviewsLoaded] = useState(false);
     const [isLoaded, setIsLoaded] = useState(false);
@@ -27,6 +29,7 @@ const LocationDetailsPage = () => {
         .then(() => setIsLoaded(true))
       dispatch(reviewActions.getAllReviews(id))
         .then(() => setIsReviewsLoaded(true))
+      dispatch(activityActions.getAllActivities(id))
     }, [dispatch, id])
 
     useEffect(() => {
@@ -159,8 +162,8 @@ const LocationDetailsPage = () => {
 
               <div className='block-tabs'>
                 <button className={lowerToggleState === 4 ? 'tabs active-tabs' : 'tabs'} onClick={() => toggleTab(4, false)}><span className='tab-text'>Reviews ({reviews.length})</span></button>
-                <button className={lowerToggleState === 5 ? 'tabs active-tabs' : 'tabs'} onClick={() => toggleTab(5, false)}><span className='tab-text'>Photos (0)</span></button>
-                <button className={lowerToggleState === 6 ? 'tabs active-tabs' : 'tabs'} onClick={() => toggleTab(6, false)}><span className='tab-text'>Activities</span></button>
+                <button className={lowerToggleState === 5 ? 'tabs active-tabs' : 'tabs'} onClick={() => toggleTab(5, false)}><span className='tab-text'>Activities</span></button>
+                <button className={lowerToggleState === 6 ? 'tabs active-tabs' : 'tabs'} onClick={() => toggleTab(6, false)}><span className='tab-text'>Photos (0)</span></button>
               </div>
 
               <div className='content-tabs'>
@@ -241,7 +244,16 @@ const LocationDetailsPage = () => {
                 </div>
 
                 <div className={lowerToggleState === 5 ? 'content active-content' : 'content'}>
-                  <span className='tab-text'>Feature Coming Soon</span>
+                  {/* <span className='tab-text'>Feature Coming Soon</span> */}
+                  <div>
+                    {activities?.map(activity => (
+                      <div key={activity.id}>
+                        <p>{activity.activityType}</p>
+                        <p>{activity.trailConditions}</p>
+                        <p>{activity.userId}</p>
+                      </div>
+                    ))}
+                  </div>
                 </div>
                 <div className={lowerToggleState === 6 ? 'content active-content' : 'content'}>
                   <span className='tab-text'>Feature Coming Soon</span>

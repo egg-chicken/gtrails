@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request
-from app.models import User, Location, Review, db
+from app.models import User, Location, Review, Activity, act_tag_loc, db
 from app.forms.location_form import LocationForm
 from app.forms.review_form import ReviewForm
 from app.api.auth_routes import validation_errors_to_error_messages
@@ -164,7 +164,7 @@ def delete(id):
     if location:
         for review in location.reviews:
             db.session.delete(review)
-            
+
     # user.locations.remove(location)
     db.session.delete(location)
     db.session.commit()
@@ -255,3 +255,19 @@ def locationReviews(id):
             }
         })
     return jsonify({"Reviews": reviews_data}), 200
+
+
+# get all the activities by locations
+@location_routes.route('/<int:id>/activities', methods=['GET'])
+def locationActivities(id):
+    location = Location.query.get(id)
+
+    if location is None:
+        return jsonify({'message': "Location couldn't be found"}), 404
+
+    activities = Activity.query.join(act_tag_loc).filter(
+        act_tag_loc.c.locationId == id).all()
+
+    activities_data = [activity.to_dict() for activity in activities]
+
+    return jsonify({'activities': activities_data}), 200
