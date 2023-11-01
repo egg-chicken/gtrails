@@ -56,17 +56,28 @@ const ListDetailPage = () => {
 
     return (
         <div className="list-detail-container">
-            <h1>{list?.listName}</h1>
-            <p>Explore {list?.listName} - view hand-curated trail maps as well as detailed reviews and photos from hikers, campers and nature lovers like you</p>
-            {list?.locations?.map((location, index) => (
-                <div key={index}>
-                    <Link to={`/locations/${location.id}`}>
-                        <p>{location.name}</p>
-                    </Link>
+            <div className="list-cover">
+                <h1 className="list-title">{list?.listName}</h1>
+            </div>
+            <div className="list-body">
+                <div className="left-side">
+                    <p className="list-description">Explore {list?.listName} - view hand-curated trail maps as well as detailed reviews and photos from hikers, campers and nature lovers like you</p>
+                    <div ref={mapContainer} className="map-container" />
                 </div>
-            ))}
-            <div>
-                <div ref={mapContainer} className="map-container" />
+                <div className="right-side">
+                    {list?.locations?.map((location, index) => (
+                        <div key={index}>
+                            <Link to={`/locations/${location.id}`} className='location'>
+                                <img src={location.image} alt='location' className='image' title={location.name}/>
+                                <p>{location.name}</p>
+                                <p className='location-rating'>
+                                    <i className="fa fa-solid fa-star" style={{color:'#2ced39',}}/>
+                                    {location.avgRating ? (Number.isInteger(location.avgRating) ? location.avgRating.toFixed(1) : location.avgRating.toFixed(1)) : 'No Reviews'}
+                                </p>
+                            </Link>
+                        </div>
+                    ))}
+                </div>
             </div>
         </div>
     )

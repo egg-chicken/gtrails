@@ -14,7 +14,32 @@
     box-shadow: 2px 2px 15px 2px grey;
 }
 
+.list-cover {
+    display: flex;
+    height: 200px;
+    align-items: flex-end;
+    border-bottom: 1px solid lightgray;
+}
+
+.list-body{
+    display: flex;
+    flex-direction: row;
+    padding-top: 8px;
+}
+
+.left-side {
+    width: 60%;
+}
+
+.list-description {
+    padding: 0px;
+}
+
+.right-side {
+    width: 30%;
+}
 .map-container {
     height: 400px;
-    width: 400px
+    width: 400px;
+    border-radius: 10px;
 }
