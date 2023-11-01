@@ -6,11 +6,8 @@ import * as listActions from '../../store/lists';
 import './css/list-details.css'
 import mapboxgl from '!mapbox-gl';// eslint-disable-line import/no-webpack-loader-syntax
 import 'mapbox-gl/dist/mapbox-gl.css';
-// import dotenv from 'dotenv';
 
-// dotenv.config();
-
-// mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN
+mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN
 
 const ListDetailPage = () => {
     const { id } = useParams();
@@ -42,7 +39,6 @@ const ListDetailPage = () => {
     const addMarkersToMap = () => {
         list?.locations?.forEach((location) => {
             const { lat, lng } = location;
-            // console.log('Latitude:', lat, 'Longitude:', lng);
             new mapboxgl.Marker({
                 color: "#2ced39",
             })
