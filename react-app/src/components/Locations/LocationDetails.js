@@ -8,6 +8,7 @@ import OpenModalButton from '../OpenModalButton';
 import EditReviewModal from '../Reviews/EditReviewModal';
 import ReviewModal from '../Reviews/CreateReviewModal';
 import DeleteReviewModal from '../Reviews/DeleteReviewModal';
+import CreateActivityModal from '../Activities/CreateActivityModal';
 import './css/location-detail.css'
 
 const LocationDetailsPage = () => {
@@ -242,9 +243,14 @@ const LocationDetailsPage = () => {
                     </div>
                   }
                 </div>
-
                 <div className={lowerToggleState === 5 ? 'content active-content' : 'content'}>
-                  {/* <span className='tab-text'>Feature Coming Soon</span> */}
+                  <div className='write-review-button-placement'>
+                    {isVisible && <OpenModalButton
+                        modalComponent={<CreateActivityModal />}
+                        buttonText="Post Your Recent Activity"
+                        buttonType="add"
+                    />}
+                  </div>
                   <div>
                     {activities?.map(activity => (
                       <div key={activity.id}>
@@ -256,7 +262,7 @@ const LocationDetailsPage = () => {
                   </div>
                 </div>
                 <div className={lowerToggleState === 6 ? 'content active-content' : 'content'}>
-                  <span className='tab-text'>Feature Coming Soon</span>
+                  <span className='tab-text'>Feature Coming Soon!</span>
                 </div>
               </div>
 

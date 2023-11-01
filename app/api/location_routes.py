@@ -2,6 +2,7 @@ from flask import Blueprint, jsonify, request
 from app.models import User, Location, Review, Activity, act_tag_loc, db
 from app.forms.location_form import LocationForm
 from app.forms.review_form import ReviewForm
+from app.forms.activity_form import ActivityForm
 from app.api.auth_routes import validation_errors_to_error_messages
 from flask_login import current_user, login_required, login_user
 
@@ -271,3 +272,38 @@ def locationActivities(id):
     activities_data = [activity.to_dict() for activity in activities]
 
     return jsonify({'activities': activities_data}), 200
+
+
+# create an activity based on location's id
+@location_routes.route('/<int:id>/activities/new', methods=['POST'])
+@login_required
+def createActivity(id):
+
+    location = Location.query.get(id)
+
+    if location is None:
+        return jsonify({'message': "Location couldn't be found"}), 404
+
+    form = ActivityForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+        activity = Activity(
+            userId=current_user.id,
+            activityType=form.data['activityType'],
+            trailConditions=form.data['trailConditions']
+        )
+
+        db.session.add(activity)
+        db.session.commit()
+
+        association = act_tag_loc.insert().values(
+            activityId=activity.id,
+            locationId=location.id
+        )
+
+        db.session.execute(association)
+        db.session.commit()
+
+
+    return {"message": "Validation Error", "statusCode": 400, 'errors': validation_errors_to_error_messages(form.errors)}, 400

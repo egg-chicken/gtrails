@@ -81,16 +81,21 @@ export const getActivitiesDetails = (id) => async dispatch => {
 };
 
 // create an activity
-export const createActivity = (activity) => async dispatch => {
+export const createActivity = (id, activityData) => async dispatch => {
     const res = await fetch('/api/activities/new', {
         method: 'POST',
-        body: activity
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(activityData)
     });
 
     if (res.ok) {
         const activity = await res.json();
         dispatch(createOne(activity));
+        return
     }
+    return await res.json()
 };
 
 // delete an activity

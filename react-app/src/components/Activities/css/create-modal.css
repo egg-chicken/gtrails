@@ -1,0 +1,24 @@
+.activity-container {
+    margin: 20px;
+    padding: 20px;
+    width: 300px;
+    height: 500px;
+}
+
+.activity-title {
+    font-size: 40px;
+}
+
+.act-sub-sec {
+    padding: 5px;
+    margin: 14px 0px;
+}
+
+.review-submit-button {
+    border-radius: 40% / 80%;
+    background-color: #137547;
+    color: white;
+    display: block;
+    font-size: 30px;
+    border: none;
+}
