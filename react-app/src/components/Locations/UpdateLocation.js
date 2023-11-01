@@ -20,6 +20,7 @@ const UpdateLocationForm = () => {
     const [lng, setLng] = useState(location?.lng || '');
     const [length, setLength] = useState(location?.length || '');
     const [description, setDescription] = useState(location?.description || '');
+    const [difficulty, setDifficulty] = useState(location?.difficulty || '');
     const [elevGain, setElevGain] = useState(location?.elevGain || '');
     const [routeType, setRouteType] = useState(location?.routeType || '');
     const [image, setImage] = useState(location?.image || '');
@@ -39,6 +40,7 @@ const UpdateLocationForm = () => {
                     setLng(locationdetail?.lng)
                     setLength(locationdetail?.length)
                     setDescription(locationdetail?.description)
+                    setDifficulty(locationdetail?.difficulty)
                     setElevGain(locationdetail?.elevGain)
                     setRouteType(locationdetail?.routeType)
                     setImage(locationdetail?.image)
@@ -63,6 +65,7 @@ const UpdateLocationForm = () => {
         if(!lng) errors.lng = 'Longitude is required';
         if(!length) errors.length = 'Length is required';
         if(!description) errors.description = 'Description is required';
+        if(!difficulty) errors.difficulty = 'Difficulty is required';
         if(!elevGain) errors.elevGain = 'Elevation Gain is required';
         if(!routeType) errors.routeType = 'Route Type is required';
         if(!image) errors.image = 'Image URL is required';
@@ -80,6 +83,7 @@ const UpdateLocationForm = () => {
             formData.append("lat", lat);
             formData.append("lng", lng);
             formData.append("description", description);
+            formData.append("difficulty", difficulty);
             formData.append("length", length);
             formData.append("elevGain", elevGain);
             formData.append("routeType", routeType);
@@ -201,6 +205,17 @@ const UpdateLocationForm = () => {
                                 placeholder="Description"
                                 value={description}
                                 onChange={(e) => setDescription(e.target.value)}
+                            />
+                        </div>
+                        <div className="error-message">{errors.difficulty && <p className="error-message">{errors.difficulty}</p>}</div>
+                        <div className="form-container-create">
+                            <p className="sub-text-signup">Difficulty</p>
+                            <input
+                                className="input-create"
+                                type='text'
+                                placeholder="Difficulty"
+                                value={difficulty}
+                                onChange={(e) => setDifficulty(e.target.value)}
                             />
                         </div>
                         </div>
