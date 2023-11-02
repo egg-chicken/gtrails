@@ -12,6 +12,7 @@ const CreateActivityModal = ({locationId}) => {
     const [trailConditions, setTrailConditions] = useState('');
     const [errors, setErrors] = useState({});
     const { closeModal } = useModal();
+    // const location = useSelector((state) => state.location[locationId]);
     // const location = useSelector((state) => state.location[id]);
 
     const handleSubmit = async(e) => {
@@ -49,27 +50,40 @@ const CreateActivityModal = ({locationId}) => {
 
     return (
         <div className="activity-container">
-            <p className="activity-title">location name</p>
+            <p className="review-title">Post Your Recent Activity</p>
             <form onSubmit={handleSubmit}>
-                <div className="act-sub-sec">
-                    <label>Activity type
-                        <input
-                            value={activityType}
-                            placeholder="Activity Type"
-                            onChange={(e) => setActivityType(e.target.value)}
-                        />
+                <div className="review-rating-container">
+                    <label>
+                    <p className="rating-text">Activity type</p>
+                    <select value={activityType} onChange={(e) => setActivityType(e.target.value)}>
+                        <option value="Hiking">Hiking</option>
+                        <option value="Walking">Walking</option>
+                        <option value="Running">Running</option>
+                        <option value="Biking">Biking</option>
+                        <option value="Mountain Biking">Mountain Biking</option>
+                        <option value="Backpacking">Backpacking</option>
+                        <option value="Camping">Camping</option>
+                        <option value="Bird Watching">Bird Watching</option>
+                        <option value="Fishing">Fishing</option>
+                        <option value="Rock Climbing">Rock Climbing</option>
+                        <option value="Horseback Riding">Horseback Riding</option>
+                    </select>
                     </label>
                 </div>
                 <div className="act-sub-sec">
-                    <label>Trail Conditions
+                    <p className="rating-text">Trail Conditions</p>
                         <input
+                            className='review-input'
                             value={trailConditions}
                             placeholder="Trail Conditions"
                             onChange={(e) => setTrailConditions(e.target.value)}
                         />
-                    </label>
                 </div>
-                <button className="review-submit-button">Post</button>
+                <div className="review-submit-button-placement">
+                    <button className="review-submit-button">
+                        <p className='post-text'>Post</p>
+                    </button>
+                </div>
             </form>
         </div>
     )
