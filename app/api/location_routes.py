@@ -225,12 +225,8 @@ def locationReviews(id):
 
     reviews = Review.query.filter_by(locationId=id).all()
 
-    # userInfo = User.query.get(current_user.id)
-
     if reviews is None:
         return {"message": "No reviews found for the location"}, 404
-
-    # reviews_data = [review.to_dict() for review in reviews]
 
     reviews_data = []
 
@@ -261,6 +257,7 @@ def locationReviews(id):
 # get all the activities by locations
 @location_routes.route('/<int:id>/activities', methods=['GET'])
 def locationActivities(id):
+
     location = Location.query.get(id)
 
     if location is None:
@@ -269,9 +266,26 @@ def locationActivities(id):
     activities = Activity.query.join(act_tag_loc).filter(
         act_tag_loc.c.locationId == id).all()
 
-    activities_data = [activity.to_dict() for activity in activities]
+    act_data = []
 
-    return jsonify({'activities': activities_data}), 200
+    for activity in activities:
+        user_info = activity.user
+
+        act_data.append({
+            "id": activity.id,
+            "activityType": activity.activityType,
+            "trailConditions": activity.trailConditions,
+            "updatedAt": activity.updatedAt,
+            "createdAt": activity.createdAt,
+            "userId": activity.userId,
+            "User": {
+                'id': user_info.id,
+                'firstName': user_info.firstName,
+                'lastName': user_info.lastName
+            }
+        })
+
+    return jsonify({'activities': act_data}), 200
 
 
 # create an activity based on location's id
