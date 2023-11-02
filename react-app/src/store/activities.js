@@ -113,10 +113,10 @@ export const deleteActivity = (id) => async dispatch => {
 ;}
 
 // update an activity
-export const updateActivity = (id, activity) => async dispatch => {
+export const updateActivity = (id, formData) => async dispatch => {
     const res = await fetch(`/api/activities/${id}/edit`, {
         method: 'PUT',
-        body: activity
+        body: formData
     });
 
     if (res.ok) {
