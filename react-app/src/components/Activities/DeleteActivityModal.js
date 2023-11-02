@@ -8,11 +8,13 @@ function DeleteActivityModal ({id}) {
     const { closeModal } = useModal();
     const dispatch = useDispatch();
 
+    console.log('iddddd', id)
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(activityActions.deleteActivity(id))
             .then(closeModal)
     };
+
 
     return (
         <div className="delete-modal-container">

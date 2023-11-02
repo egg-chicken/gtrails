@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request
-from app.models import User, Activity, db
+from app.models import User, Activity, act_tag_loc, db
 from app.forms.activity_form import ActivityForm
 from app.api.auth_routes import validation_errors_to_error_messages
 from flask_login import current_user, login_required, login_user
@@ -104,6 +104,9 @@ def delete(id):
 
     if activity.userId != current_user.id:
         return {'errors': ['Forbidden: You don\'t have permission']}, 403
+
+    act_tag_loc_query = act_tag_loc.delete().where(act_tag_loc.c.activityId == id)
+    db.session.execute(act_tag_loc_query)
 
     db.session.delete(activity)
     db.session.commit()

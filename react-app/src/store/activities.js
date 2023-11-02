@@ -104,8 +104,13 @@ export const deleteActivity = (id) => async dispatch => {
         method: 'DELETE'
     });
 
-    if (res.ok) return dispatch(deleteOne(id))
-};
+    if (res.ok) {
+        const ress = await res.json();
+        dispatch(deleteOne(id));
+        console.log('sdfds', res)
+        return ress;
+    }
+;}
 
 // update an activity
 export const updateActivity = (id, activity) => async dispatch => {

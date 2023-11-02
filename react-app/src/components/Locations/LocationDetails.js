@@ -9,6 +9,9 @@ import EditReviewModal from '../Reviews/EditReviewModal';
 import ReviewModal from '../Reviews/CreateReviewModal';
 import DeleteReviewModal from '../Reviews/DeleteReviewModal';
 import CreateActivityModal from '../Activities/CreateActivityModal';
+import DeleteActivityModal from '../Activities/DeleteActivityModal';
+import EditActivityModal from '../Activities/EditActivityModal';
+
 import './css/location-detail.css'
 
 const LocationDetailsPage = () => {
@@ -278,7 +281,7 @@ const LocationDetailsPage = () => {
                         {activity.userId === user?.id &&
                         <>
                           <OpenModalButton
-                            modalComponent={<DeleteReviewModal id={activity.id} locationId={activity.locationId} setIsVisible={setIsVisible}/>}
+                            modalComponent={<DeleteActivityModal id={activity.id} locationId={activity.locationId} setIsVisible={setIsVisible}/>}
                             buttonText="Delete"
                             buttonType="Delete"
                           />
@@ -286,7 +289,7 @@ const LocationDetailsPage = () => {
                         </>
                         }
                         {activity.userId === user?.id && <OpenModalButton
-                          modalComponent={<EditReviewModal id={activity.id} locationId={activity.locationId} setIsVisible={setIsVisible}/>}
+                          modalComponent={<EditActivityModal id={activity.id} locationId={activity.locationId} setIsVisible={setIsVisible}/>}
                           buttonText="Edit"
                           buttonType="edit"
                         />}

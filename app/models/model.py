@@ -138,10 +138,6 @@ class Review(db.Model):
     createdAt = db.Column(db.DateTime, server_default=db.func.now())
     updatedAt = db.Column(db.DateTime, server_default=db.func.now(), server_onupdate=db.func.now())
 
-    # def update_location_avg_rating(self):
-    #     self.location.avgRating = self.location.calculate_average_rating()
-    #     db.session.commit()
-
     def to_dict(self):
         return {
             "id": self.id,
