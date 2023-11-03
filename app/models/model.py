@@ -124,6 +124,11 @@ class Location(db.Model):
         secondary=act_tag_loc,
         back_populates="locations",
     )
+    lists = db.relationship(
+        "List",
+        secondary=list_location,
+        back_populates="locations",
+    )
 
 
 class Review(db.Model):
@@ -185,7 +190,7 @@ class Activity(db.Model):
         secondary=act_tag_loc,
         back_populates="activities",
     )
-    
+
 
 class List(db.Model):
     __tablename__ = "lists"
