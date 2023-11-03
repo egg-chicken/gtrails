@@ -5,7 +5,6 @@ from flask_login import UserMixin
 # join table
 act_tag_loc = db.Table(
     "act_tag_loc",
-    db.Column("tagId", db.Integer, db.ForeignKey(add_prefix_for_prod("tags.id")), primary_key=True),
     db.Column("activityId", db.Integer, db.ForeignKey(add_prefix_for_prod("activities.id")), primary_key=True),
     db.Column("locationId", db.Integer, db.ForeignKey(add_prefix_for_prod("locations.id")), primary_key=True),
 )
@@ -117,11 +116,6 @@ class Location(db.Model):
         secondary=act_tag_loc,
         back_populates="locations",
     )
-    tags = db.relationship(
-        "Tag",
-        secondary=act_tag_loc,
-        back_populates="locations",
-    )
 
 
 class Review(db.Model):
@@ -182,35 +176,4 @@ class Activity(db.Model):
         "Location",
         secondary=act_tag_loc,
         back_populates="activities",
-    )
-    tags = db.relationship(
-        "Tag",
-        secondary=act_tag_loc,
-        back_populates="activities",
-    )
-
-class Tag(db.Model):
-    __tablename__ = "tags"
-
-    if environment == "production":
-        __table_args__ = {"schema": SCHEMA}
-
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(255))
-
-    def to_dict(self):
-        return {
-            "id": self.id,
-            "name": self.name,
-        }
-
-    locations = db.relationship(
-        "Location",
-        secondary=act_tag_loc,
-        back_populates="tags",
-    )
-    activities = db.relationship(
-        "Activity",
-        secondary=act_tag_loc,
-        back_populates="tags",
     )

@@ -39,37 +39,12 @@ def getActivityId(id):
     return activity.to_dict()
 
 
-# create an activity
-@activity_routes.route('/new', methods=['POST'])
-@login_required
-def createActivity():
-
-    form = ActivityForm()
-    form['csrf_token'].data = request.cookies['csrf_token']
-
-    if form.validate_on_submit():
-        activity = Activity(
-            activityType=form.data['activityType'],
-            trailConditions=form.data['trailConditions'],
-            userId=current_user.id,
-        )
-        db.session.add(activity)
-        db.session.commit()
-        return activity.to_dict()
-
-    if form.errors:
-        return {'errors': validation_errors_to_error_messages(form.errors)}, 400
-
-    return {'errors': 'Invalid data received'}, 400
-
-
 # edit an activity
 @activity_routes.route('/<int:id>/edit', methods=['PUT'])
 @login_required
 def updatedActivity(id):
 
     activity = Activity.query.get(id)
-    # location = Location.query.get(id)
 
     location = db.session.query(Location).join(act_tag_loc).filter(act_tag_loc.c.activityId == activity.id).first()
 
@@ -89,15 +64,7 @@ def updatedActivity(id):
         activity.activityType = form.data['activityType']
         activity.trailConditions = form.data['trailConditions']
 
-        # db.session.add(activity)
         db.session.commit()
-
-        # association = act_tag_loc.insert().values(
-        #         activityId=activity.id,
-        #         locationId=location.id
-        # )
-
-        # db.session.execute(association)
         db.session.commit()
         return activity.to_dict()
 

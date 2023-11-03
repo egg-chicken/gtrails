@@ -1,19 +1,16 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useModal } from '../../context/Modal';
-import { useHistory } from "react-router-dom";
 import * as activityActions from '../../store/activities';
 import './css/create-modal.css';
 
-const CreateActivityModal = ({locationId}) => {
+const CreateActivityModal = ({locationId, id}) => {
     const dispatch = useDispatch();
-    const history = useHistory();
     const [activityType, setActivityType] = useState('');
     const [trailConditions, setTrailConditions] = useState('');
     const [errors, setErrors] = useState({});
     const { closeModal } = useModal();
-    // const location = useSelector((state) => state.location[locationId]);
-    // const location = useSelector((state) => state.location[id]);
+
 
     const handleSubmit = async(e) => {
         e.preventDefault();
@@ -23,6 +20,9 @@ const CreateActivityModal = ({locationId}) => {
         const submitErrors = {};
 
         if (!activityType) submitErrors.activityType = 'Please Select an Activity Type';
+        if (activityType === 'Select an activity . . .') {
+            submitErrors.activityType = 'Please Select an Activity Type';
+        }
         if (!trailConditions) submitErrors.trailConditions = 'Please enter the trail conditions';
         if (submitErrors.activityType || submitErrors.trailConditions){
             setErrors(submitErrors);
@@ -51,11 +51,14 @@ const CreateActivityModal = ({locationId}) => {
     return (
         <div className="activity-container">
             <p className="review-title">Post Your Recent Activity</p>
+            <div className="error-message">{errors && errors.trailConditions && <p className="error-message">{errors.trailConditions}</p>}</div>
+            <div className="error-message">{errors && errors.activityType && <p className="error-message">{errors.activityType}</p>}</div>
             <form onSubmit={handleSubmit}>
                 <div className="review-rating-container">
                     <label>
                     <p className="rating-text">Activity type</p>
                     <select value={activityType} onChange={(e) => setActivityType(e.target.value)}>
+                        <option value="Select">Select an activity . . .</option>
                         <option value="Hiking">Hiking</option>
                         <option value="Walking">Walking</option>
                         <option value="Running">Running</option>

@@ -211,9 +211,6 @@ def createReview(id):
         db.session.add(review)
         db.session.commit()
 
-        # location.avgRating = location.calculate_average_rating()
-        # db.session.commit()
-
         return review.to_dict()
 
     return {"message": "Validation Error", "statusCode": 400, 'errors': validation_errors_to_error_messages(form.errors)}, 400
@@ -313,11 +310,11 @@ def createActivity(id):
 
         association = act_tag_loc.insert().values(
             activityId=activity.id,
-            locationId=location.id
+            locationId=location.id,
         )
 
         db.session.execute(association)
         db.session.commit()
-
+        return activity.to_dict()
 
     return {"message": "Validation Error", "statusCode": 400, 'errors': validation_errors_to_error_messages(form.errors)}, 400

@@ -10,12 +10,10 @@ review_routes = Blueprint('reviews', __name__)
 @review_routes.route('/created', methods=['GET'])
 @login_required
 def userReviews():
-    # currentUserReviews = Review.query.filter_by(userId=current_user.id).all()
+
     current_user_id = current_user.id
 
     currentUserReviews = Review.query.filter(Review.userId == current_user_id).all()
-
-    # nameInfo = Location.query.get(current_user.id)
 
     reviewInfo = []
 

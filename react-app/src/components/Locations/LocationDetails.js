@@ -254,7 +254,7 @@ const LocationDetailsPage = () => {
                     </div>
                     <div className='write-review-button-placement'>
                       {isVisible && <OpenModalButton
-                          modalComponent={<CreateActivityModal />}
+                          modalComponent={<CreateActivityModal locationId={location.id}/>}
                           buttonText="Post Your Activity"
                           buttonType="add"
                       />}

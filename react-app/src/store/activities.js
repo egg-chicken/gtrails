@@ -81,8 +81,8 @@ export const getActivitiesDetails = (id) => async dispatch => {
 };
 
 // create an activity
-export const createActivity = (id, activityData) => async dispatch => {
-    const res = await fetch('/api/activities/new', {
+export const createActivity = (locationId, activityData) => async dispatch => {
+    const res = await fetch(`/api/locations/${locationId}/activities/new`, {
         method: 'POST',
         headers: {
             "Content-Type": "application/json",
