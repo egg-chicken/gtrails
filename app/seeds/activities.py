@@ -6,7 +6,7 @@ from datetime import datetime
 def seed_activities():
     r1 = Activity(userId='1', activityType='Hiking', trailConditions='perfect', createdAt=datetime(2023, 4, 21), updatedAt=datetime(2023, 4, 21))
     r2 = Activity(userId='1', activityType='Walking', trailConditions='slippery', createdAt=datetime(2023, 4, 21), updatedAt=datetime(2023, 4, 21))
-    r3 = Activity(userId='1', activityType='Run  ning', trailConditions='warm', createdAt=datetime(2023, 4, 21), updatedAt=datetime(2023, 4, 21))
+    r3 = Activity(userId='1', activityType='Running', trailConditions='warm', createdAt=datetime(2023, 4, 21), updatedAt=datetime(2023, 4, 21))
     r4 = Activity(userId='2', activityType='Hiking', trailConditions='slippery', createdAt=datetime(2023, 4, 21), updatedAt=datetime(2023, 4, 21))
     r5 = Activity(userId='2', activityType='Walking', trailConditions='perfect', createdAt=datetime(2023, 4, 21), updatedAt=datetime(2023, 4, 21))
     r6 = Activity(userId='2', activityType='Running', trailConditions='gloomy', createdAt=datetime(2023, 4, 21), updatedAt=datetime(2023, 4, 21))
