@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request
-from app.models import User, Activity, act_tag_loc, db
+from app.models import User, Activity, act_tag_loc, Location, db
 from app.forms.activity_form import ActivityForm
 from app.api.auth_routes import validation_errors_to_error_messages
 from flask_login import current_user, login_required, login_user
@@ -69,6 +69,12 @@ def createActivity():
 def updatedActivity(id):
 
     activity = Activity.query.get(id)
+    # location = Location.query.get(id)
+
+    location = db.session.query(Location).join(act_tag_loc).filter(act_tag_loc.c.activityId == activity.id).first()
+
+    if location is None:
+        return {'message': "Location couldn't be found", "statusCode": 404}
 
     if activity is None:
         return {'message': "Activity couldn\'t be found", "statusCode": 404}
@@ -83,7 +89,15 @@ def updatedActivity(id):
         activity.activityType = form.data['activityType']
         activity.trailConditions = form.data['trailConditions']
 
-        db.session.add(activity)
+        # db.session.add(activity)
+        db.session.commit()
+
+        # association = act_tag_loc.insert().values(
+        #         activityId=activity.id,
+        #         locationId=location.id
+        # )
+
+        # db.session.execute(association)
         db.session.commit()
         return activity.to_dict()
 

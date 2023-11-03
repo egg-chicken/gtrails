@@ -14,7 +14,7 @@ const ManageActivitiesPage = () => {
 
     useEffect(() => {
         dispatch(activityActions.getCurrentUsersActivities())
-    }, [dispatch]);
+    }, [dispatch, id]);
 
     if(activities.length === 0) {
         return (
