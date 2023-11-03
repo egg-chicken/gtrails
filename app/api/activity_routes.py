@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request
-from app.models import User, Activity, db
+from app.models import User, Activity, act_tag_loc, Location, db
 from app.forms.activity_form import ActivityForm
 from app.api.auth_routes import validation_errors_to_error_messages
 from flask_login import current_user, login_required, login_user
@@ -39,36 +39,17 @@ def getActivityId(id):
     return activity.to_dict()
 
 
-# create an activity
-@activity_routes.route('/new', methods=['POST'])
-@login_required
-def createActivity():
-
-    form = ActivityForm()
-    form['csrf_token'].data = request.cookies['csrf_token']
-
-    if form.validate_on_submit():
-        activity = Activity(
-            activityType=form.data['activityType'],
-            trailConditions=form.data['trailConditions'],
-            userId=current_user.id,
-        )
-        db.session.add(activity)
-        db.session.commit()
-        return activity.to_dict()
-
-    if form.errors:
-        return {'errors': validation_errors_to_error_messages(form.errors)}, 400
-
-    return {'errors': 'Invalid data received'}, 400
-
-
 # edit an activity
 @activity_routes.route('/<int:id>/edit', methods=['PUT'])
 @login_required
 def updatedActivity(id):
 
     activity = Activity.query.get(id)
+
+    location = db.session.query(Location).join(act_tag_loc).filter(act_tag_loc.c.activityId == activity.id).first()
+
+    if location is None:
+        return {'message': "Location couldn't be found", "statusCode": 404}
 
     if activity is None:
         return {'message': "Activity couldn\'t be found", "statusCode": 404}
@@ -83,7 +64,7 @@ def updatedActivity(id):
         activity.activityType = form.data['activityType']
         activity.trailConditions = form.data['trailConditions']
 
-        db.session.add(activity)
+        db.session.commit()
         db.session.commit()
         return activity.to_dict()
 
@@ -104,6 +85,9 @@ def delete(id):
 
     if activity.userId != current_user.id:
         return {'errors': ['Forbidden: You don\'t have permission']}, 403
+
+    act_tag_loc_query = act_tag_loc.delete().where(act_tag_loc.c.activityId == id)
+    db.session.execute(act_tag_loc_query)
 
     db.session.delete(activity)
     db.session.commit()

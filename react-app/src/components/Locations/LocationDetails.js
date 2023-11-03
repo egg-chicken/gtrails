@@ -3,10 +3,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import * as locationActions from '../../store/locations';
 import * as reviewActions from '../../store/reviews';
+import * as activityActions from '../../store/activities';
 import OpenModalButton from '../OpenModalButton';
 import EditReviewModal from '../Reviews/EditReviewModal';
 import ReviewModal from '../Reviews/CreateReviewModal';
 import DeleteReviewModal from '../Reviews/DeleteReviewModal';
+import CreateActivityModal from '../Activities/CreateActivityModal';
+import DeleteActivityModal from '../Activities/DeleteActivityModal';
+import EditActivityModal from '../Activities/EditActivityModal';
+
 import './css/location-detail.css'
 
 const LocationDetailsPage = () => {
@@ -14,6 +19,7 @@ const LocationDetailsPage = () => {
     const dispatch = useDispatch();
     const location = useSelector((state) => state.location[id]);
     const reviews = useSelector((state) => Object.values(state.review));
+    const activities = useSelector((state) => Object.values(state.activity));
     const user = useSelector(state => state.session.user);
     const [isReviewsLoaded, setIsReviewsLoaded] = useState(false);
     const [isLoaded, setIsLoaded] = useState(false);
@@ -27,6 +33,7 @@ const LocationDetailsPage = () => {
         .then(() => setIsLoaded(true))
       dispatch(reviewActions.getAllReviews(id))
         .then(() => setIsReviewsLoaded(true))
+      dispatch(activityActions.getAllActivities(id))
     }, [dispatch, id])
 
     useEffect(() => {
@@ -159,8 +166,8 @@ const LocationDetailsPage = () => {
 
               <div className='block-tabs'>
                 <button className={lowerToggleState === 4 ? 'tabs active-tabs' : 'tabs'} onClick={() => toggleTab(4, false)}><span className='tab-text'>Reviews ({reviews.length})</span></button>
-                <button className={lowerToggleState === 5 ? 'tabs active-tabs' : 'tabs'} onClick={() => toggleTab(5, false)}><span className='tab-text'>Photos (0)</span></button>
-                <button className={lowerToggleState === 6 ? 'tabs active-tabs' : 'tabs'} onClick={() => toggleTab(6, false)}><span className='tab-text'>Activities</span></button>
+                <button className={lowerToggleState === 5 ? 'tabs active-tabs' : 'tabs'} onClick={() => toggleTab(5, false)}><span className='tab-text'>Activities ({activities.length})</span></button>
+                <button className={lowerToggleState === 6 ? 'tabs active-tabs' : 'tabs'} onClick={() => toggleTab(6, false)}><span className='tab-text'>Photos (0)</span></button>
               </div>
 
               <div className='content-tabs'>
@@ -239,12 +246,60 @@ const LocationDetailsPage = () => {
                     </div>
                   }
                 </div>
-
                 <div className={lowerToggleState === 5 ? 'content active-content' : 'content'}>
-                  <span className='tab-text'>Feature Coming Soon</span>
+                  <div className='lower-location-details-bar'>
+                    <div>
+                      <h4 className='activity-title'>People's activities</h4>
+                      <p className='activity-title-2'>Post your recent activities to inspire others to go explore outside</p>
+                    </div>
+                    <div className='write-review-button-placement'>
+                      {isVisible && <OpenModalButton
+                          modalComponent={<CreateActivityModal locationId={location.id}/>}
+                          buttonText="Post Your Activity"
+                          buttonType="add"
+                      />}
+                    </div>
+                  </div>
+                  <div>
+                    {activities?.map(activity => {
+                      const activityMonth = months[new Date(activity.createdAt).getMonth()];
+                      const day = (new Date(activity.createdAt).getDate()) + 1;
+                      const year = new Date(activity.createdAt).getFullYear();
+                      return (
+                      <div key={activity.id} className='each-review'>
+                        <div className='top-review-info'>
+                          <button className='open-menu-button' onClick={handleClick} style={{background:'orange'}}><i className="fas fa-walking" style={{color:'teal'}}></i></button>
+                          <div className='username-date'>
+                            <p className='user-firstname'>{activity.User?.firstName} {activity.User?.lastName}</p>
+                            <p className='date'>{activityMonth} {day}, {year}</p>
+                          </div>
+                        </div>
+                        <div className='text-box'>
+                          <p className='activity-text'><span className='type-text'>Type: </span>{activity.activityType}</p>
+                          <p className='review-text'><span className='type-text'>Trail Conditions: </span>{activity.trailConditions}</p>
+                        </div>
+                        {activity.userId === user?.id &&
+                        <>
+                          <OpenModalButton
+                            modalComponent={<DeleteActivityModal id={activity.id} locationId={activity.locationId} setIsVisible={setIsVisible}/>}
+                            buttonText="Delete"
+                            buttonType="Delete"
+                          />
+                          &#124;
+                        </>
+                        }
+                        {activity.userId === user?.id && <OpenModalButton
+                          modalComponent={<EditActivityModal id={activity.id} locationId={activity.locationId} setIsVisible={setIsVisible}/>}
+                          buttonText="Edit"
+                          buttonType="edit"
+                        />}
+                      </div>
+                      )
+                    })}
+                  </div>
                 </div>
                 <div className={lowerToggleState === 6 ? 'content active-content' : 'content'}>
-                  <span className='tab-text'>Feature Coming Soon</span>
+                  <span className='tab-text'>Feature Coming Soon!</span>
                 </div>
               </div>
 

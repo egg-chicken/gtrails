@@ -35,6 +35,18 @@ const updateOne = activity => ({
     activity
 });
 
+// get all the activities locations
+export const getAllActivities = id => async dispatch => {
+    const response = await fetch(`/api/locations/${id}/activities`)
+
+    if(response.ok){
+        const activities = await response.json();
+        dispatch(loadActivities(activities));
+        return activities;
+    }
+}
+
+
 // get all activities
 export const getActivities = () => async dispatch => {
     const res = await fetch('/api/activities');
@@ -69,16 +81,21 @@ export const getActivitiesDetails = (id) => async dispatch => {
 };
 
 // create an activity
-export const createActivity = (activity) => async dispatch => {
-    const res = await fetch('/api/activities/new', {
+export const createActivity = (locationId, activityData) => async dispatch => {
+    const res = await fetch(`/api/locations/${locationId}/activities/new`, {
         method: 'POST',
-        body: activity
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(activityData)
     });
 
     if (res.ok) {
         const activity = await res.json();
         dispatch(createOne(activity));
+        return
     }
+    return await res.json()
 };
 
 // delete an activity
@@ -87,14 +104,19 @@ export const deleteActivity = (id) => async dispatch => {
         method: 'DELETE'
     });
 
-    if (res.ok) return dispatch(deleteOne(id))
-};
+    if (res.ok) {
+        const ress = await res.json();
+        dispatch(deleteOne(id));
+        console.log('sdfds', res)
+        return ress;
+    }
+;}
 
 // update an activity
-export const updateActivity = (id, activity) => async dispatch => {
+export const updateActivity = (id, formData) => async dispatch => {
     const res = await fetch(`/api/activities/${id}/edit`, {
         method: 'PUT',
-        body: activity
+        body: formData
     });
 
     if (res.ok) {
