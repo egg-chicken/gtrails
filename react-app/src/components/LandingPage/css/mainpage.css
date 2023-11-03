@@ -110,3 +110,14 @@
     align-items: baseline;
 }
 
+.style-butt{
+    position: absolute;
+    color: darkgreen;
+    border: none;
+    background-color: transparent;
+    font-size: 25px;
+}
+
+.style-butt:hover {
+    color: lawngreen;
+}
