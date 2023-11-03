@@ -12,6 +12,14 @@ act_tag_loc = db.Table(
 if environment == "production":
     act_tag_loc.schema = SCHEMA
 
+list_location = db.Table(
+    "list_location",
+    db.Column("listId", db.Integer, db.ForeignKey(add_prefix_for_prod("lists.id")), primary_key=True),
+    db.Column("locationId", db.Integer, db.ForeignKey(add_prefix_for_prod("locations.id")), primary_key=True),
+)
+
+if environment == "production":
+    list_location.schema = SCHEMA
 
 class User(db.Model, UserMixin):
     __tablename__ = "users"
@@ -176,4 +184,32 @@ class Activity(db.Model):
         "Location",
         secondary=act_tag_loc,
         back_populates="activities",
+    )
+    
+
+class List(db.Model):
+    __tablename__ = "lists"
+
+    if environment == "production":
+        __table_args__ = {"schema": SCHEMA}
+
+    id = db.Column(db.Integer, primary_key=True)
+    userId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
+    listName = db.Column(db.String(255), nullable=False)
+    createdAt = db.Column(db.DateTime, server_default=db.func.now())
+    updatedAt = db.Column(db.DateTime, server_default=db.func.now(), server_onupdate=db.func.now())
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "userId": self.userId,
+            "listName": self.listName,
+            "createdAt": self.createdAt,
+            "updatedAt": self.updatedAt,
+        }
+
+    locations = db.relationship(
+        "Location",
+        secondary=list_location,
+        back_populates="lists",
     )
