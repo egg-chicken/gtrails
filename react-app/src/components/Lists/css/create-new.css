@@ -17,6 +17,13 @@
 .list-form {
     display: flex;
     justify-content: center;
+    flex-direction: column;
+}
+
+.list-name-container {
+    padding: 5px 30px;
+    margin: 14px 0px;
+
 }
 
 .list-title {
@@ -32,4 +39,9 @@
     height: 40px;
     display: flex;
     align-items: center;
+}
+.button-activity-align {
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
 }
