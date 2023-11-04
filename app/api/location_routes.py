@@ -1,7 +1,8 @@
 from flask import Blueprint, jsonify, request
-from app.models import User, Location, Review, db
+from app.models import User, Location, Review, Activity, act_tag_loc, db
 from app.forms.location_form import LocationForm
 from app.forms.review_form import ReviewForm
+from app.forms.activity_form import ActivityForm
 from app.api.auth_routes import validation_errors_to_error_messages
 from flask_login import current_user, login_required, login_user
 
@@ -164,7 +165,7 @@ def delete(id):
     if location:
         for review in location.reviews:
             db.session.delete(review)
-            
+
     # user.locations.remove(location)
     db.session.delete(location)
     db.session.commit()
@@ -210,9 +211,6 @@ def createReview(id):
         db.session.add(review)
         db.session.commit()
 
-        # location.avgRating = location.calculate_average_rating()
-        # db.session.commit()
-
         return review.to_dict()
 
     return {"message": "Validation Error", "statusCode": 400, 'errors': validation_errors_to_error_messages(form.errors)}, 400
@@ -224,12 +222,8 @@ def locationReviews(id):
 
     reviews = Review.query.filter_by(locationId=id).all()
 
-    # userInfo = User.query.get(current_user.id)
-
     if reviews is None:
         return {"message": "No reviews found for the location"}, 404
-
-    # reviews_data = [review.to_dict() for review in reviews]
 
     reviews_data = []
 
@@ -255,3 +249,72 @@ def locationReviews(id):
             }
         })
     return jsonify({"Reviews": reviews_data}), 200
+
+
+# get all the activities by locations
+@location_routes.route('/<int:id>/activities', methods=['GET'])
+def locationActivities(id):
+
+    location = Location.query.get(id)
+
+    if location is None:
+        return jsonify({'message': "Location couldn't be found"}), 404
+
+    activities = Activity.query.join(act_tag_loc).filter(
+        act_tag_loc.c.locationId == id).all()
+
+    act_data = []
+
+    for activity in activities:
+        user_info = activity.user
+
+        act_data.append({
+            "id": activity.id,
+            "activityType": activity.activityType,
+            "trailConditions": activity.trailConditions,
+            "updatedAt": activity.updatedAt,
+            "createdAt": activity.createdAt,
+            "userId": activity.userId,
+            "User": {
+                'id': user_info.id,
+                'firstName': user_info.firstName,
+                'lastName': user_info.lastName
+            }
+        })
+
+    return jsonify({'activities': act_data}), 200
+
+
+# create an activity based on location's id
+@location_routes.route('/<int:id>/activities/new', methods=['POST'])
+@login_required
+def createActivity(id):
+
+    location = Location.query.get(id)
+
+    if location is None:
+        return jsonify({'message': "Location couldn't be found"}), 404
+
+    form = ActivityForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+        activity = Activity(
+            userId=current_user.id,
+            activityType=form.data['activityType'],
+            trailConditions=form.data['trailConditions']
+        )
+
+        db.session.add(activity)
+        db.session.commit()
+
+        association = act_tag_loc.insert().values(
+            activityId=activity.id,
+            locationId=location.id,
+        )
+
+        db.session.execute(association)
+        db.session.commit()
+        return activity.to_dict()
+
+    return {"message": "Validation Error", "statusCode": 400, 'errors': validation_errors_to_error_messages(form.errors)}, 400

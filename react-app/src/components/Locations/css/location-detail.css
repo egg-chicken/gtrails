@@ -359,3 +359,28 @@
     border-radius: 5px;
     width: 70%;
   }
+
+.activity-title {
+    padding: 0px;
+    margin: 0px;
+    font-size: 18px;
+}
+
+.activity-title-2 {
+    padding: 0px;
+    margin: 0px;
+    font-size: 16px;
+}
+
+.text-box {
+    padding-top: 10px;
+}
+
+.activity-text {
+    padding: 0px;
+    margin: 0px
+}
+
+.type-text {
+    color: green;
+}

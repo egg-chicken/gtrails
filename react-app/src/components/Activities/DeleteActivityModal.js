@@ -2,17 +2,19 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import * as activityActions from "../../store/activities";
-import './css/delete-modal.css'
+// import './css/delete-modal.css'
 
-function DeleteReviewModal ({id}) {
+function DeleteActivityModal ({id}) {
     const { closeModal } = useModal();
     const dispatch = useDispatch();
 
+    console.log('iddddd', id)
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(activityActions.deleteActivity(id))
             .then(closeModal)
     };
+
 
     return (
         <div className="delete-modal-container">
@@ -30,4 +32,4 @@ function DeleteReviewModal ({id}) {
     )
 }
 
-export default DeleteReviewModal;
+export default DeleteActivityModal;

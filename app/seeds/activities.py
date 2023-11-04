@@ -4,18 +4,18 @@ from datetime import datetime
 
 
 def seed_activities():
-    r1 = Activity(userId='2', activityType='hiking', trailConditions='slippery', createdAt=datetime(2023, 4, 21), updatedAt=datetime(2023, 4, 21))
-    r2 = Activity(userId='2', activityType='hiking', trailConditions='slippery', createdAt=datetime(2023, 4, 21), updatedAt=datetime(2023, 4, 21))
-    r3 = Activity(userId='2', activityType='hiking', trailConditions='slippery', createdAt=datetime(2023, 4, 21), updatedAt=datetime(2023, 4, 21))
-    r4 = Activity(userId='2', activityType='hiking', trailConditions='slippery', createdAt=datetime(2023, 4, 21), updatedAt=datetime(2023, 4, 21))
-    r5 = Activity(userId='2', activityType='hiking', trailConditions='slippery', createdAt=datetime(2023, 4, 21), updatedAt=datetime(2023, 4, 21))
-    r6 = Activity(userId='2', activityType='hiking', trailConditions='slippery', createdAt=datetime(2023, 4, 21), updatedAt=datetime(2023, 4, 21))
-    r7 = Activity(userId='2', activityType='hiking', trailConditions='slippery', createdAt=datetime(2023, 4, 21), updatedAt=datetime(2023, 4, 21))
-    r8 = Activity(userId='2', activityType='hiking', trailConditions='slippery', createdAt=datetime(2023, 4, 21), updatedAt=datetime(2023, 4, 21))
-    r9 = Activity(userId='2', activityType='hiking', trailConditions='slippery', createdAt=datetime(2023, 4, 21), updatedAt=datetime(2023, 4, 21))
-    r10 = Activity(userId='2', activityType='hiking', trailConditions='slippery', createdAt=datetime(2023, 4, 21), updatedAt=datetime(2023, 4, 21))
-    r11 = Activity(userId='2', activityType='hiking', trailConditions='slippery', createdAt=datetime(2023, 4, 21), updatedAt=datetime(2023, 4, 21))
-    r12 = Activity(userId='2', activityType='hiking', trailConditions='slippery', createdAt=datetime(2023, 4, 21), updatedAt=datetime(2023, 4, 21))
+    r1 = Activity(userId='1', activityType='Hiking', trailConditions='perfect', createdAt=datetime(2023, 4, 21), updatedAt=datetime(2023, 4, 21))
+    r2 = Activity(userId='1', activityType='Walking', trailConditions='slippery', createdAt=datetime(2023, 4, 21), updatedAt=datetime(2023, 4, 21))
+    r3 = Activity(userId='1', activityType='Running', trailConditions='warm', createdAt=datetime(2023, 4, 21), updatedAt=datetime(2023, 4, 21))
+    r4 = Activity(userId='2', activityType='Hiking', trailConditions='slippery', createdAt=datetime(2023, 4, 21), updatedAt=datetime(2023, 4, 21))
+    r5 = Activity(userId='2', activityType='Walking', trailConditions='perfect', createdAt=datetime(2023, 4, 21), updatedAt=datetime(2023, 4, 21))
+    r6 = Activity(userId='2', activityType='Running', trailConditions='gloomy', createdAt=datetime(2023, 4, 21), updatedAt=datetime(2023, 4, 21))
+    r7 = Activity(userId='3', activityType='Hiking', trailConditions='slippery', createdAt=datetime(2023, 4, 21), updatedAt=datetime(2023, 4, 21))
+    r8 = Activity(userId='3', activityType='Walking', trailConditions='dry', createdAt=datetime(2023, 4, 21), updatedAt=datetime(2023, 4, 21))
+    r9 = Activity(userId='3', activityType='Running', trailConditions='dry', createdAt=datetime(2023, 4, 21), updatedAt=datetime(2023, 4, 21))
+    # r10 = Activity(userId='3', activityType='Hiking', trailConditions='nice', createdAt=datetime(2023, 4, 21), updatedAt=datetime(2023, 4, 21))
+    # r11 = Activity(userId='1', activityType='Walking', trailConditions='clean', createdAt=datetime(2023, 4, 21), updatedAt=datetime(2023, 4, 21))
+    # r12 = Activity(userId='1', activityType='Running', trailConditions='safe', createdAt=datetime(2023, 4, 21), updatedAt=datetime(2023, 4, 21))
 
     db.session.add(r1)
     db.session.add(r2)
@@ -26,9 +26,9 @@ def seed_activities():
     db.session.add(r7)
     db.session.add(r8)
     db.session.add(r9)
-    db.session.add(r10)
-    db.session.add(r11)
-    db.session.add(r12)
+    # db.session.add(r10)
+    # db.session.add(r11)
+    # db.session.add(r12)
     db.session.commit()
 
 

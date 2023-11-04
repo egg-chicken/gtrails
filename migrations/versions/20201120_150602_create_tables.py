@@ -82,17 +82,9 @@ def upgrade():
         sa.ForeignKeyConstraint(["userId"], ["users.id"]),
     )
     op.create_table(
-        "tags",
-        sa.Column("id", sa.Integer(), nullable=False, autoincrement=True),
-        sa.Column("name", sa.String(length=255), nullable=False),
-        sa.PrimaryKeyConstraint("id"),
-    )
-    op.create_table(
         "act_tag_loc",
-        sa.Column("tagId", sa.Integer(), primary_key=True),
         sa.Column("activityId", sa.Integer(), primary_key=True),
         sa.Column("locationId", sa.Integer(), primary_key=True),
-        sa.ForeignKeyConstraint(["tagId"], ["tags.id"]),
         sa.ForeignKeyConstraint(["activityId"], ["activities.id"]),
         sa.ForeignKeyConstraint(["locationId"], ["locations.id"]),
     )

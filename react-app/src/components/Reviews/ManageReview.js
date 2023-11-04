@@ -1,11 +1,10 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import EditReviewModal from './EditReviewModal';
 import DeleteReviewModal from '../Reviews/DeleteReviewModal';
 import OpenModalButton from '../OpenModalButton';
 import * as reviewActions from '../../store/reviews';
-import { useParams } from 'react-router-dom';
 import './css/manage-review.css';
 
 const ManageReviewsPage = () => {

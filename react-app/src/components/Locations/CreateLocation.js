@@ -17,6 +17,7 @@ const CreateLocationForm = () => {
     const [lng, setLng] = useState('');
     const [length, setLength] = useState('');
     const [description, setDescription] = useState('');
+    const [difficulty, setDifficulty] = useState('');
     const [elevGain, setElevGain] = useState('');
     const [routeType, setRouteType] = useState('');
     const [image, setImage] = useState('');
@@ -43,6 +44,7 @@ const CreateLocationForm = () => {
             errors.length = 'Length is required (Must be a number)';
         }
         if(!description) errors.description = 'Description is required';
+        if(!difficulty) errors.description = 'Difficulty is required';
         if (!elevGain || isNaN(parseFloat(elevGain))) {
             errors.elevGain = 'Elevation Gain is required (Must be a number)';
         }
@@ -62,6 +64,7 @@ const CreateLocationForm = () => {
             formData.append("lat", lat);
             formData.append("lng", lng);
             formData.append("description", description);
+            formData.append("difficulty", difficulty);
             formData.append("length", length);
             formData.append("elevGain", elevGain);
             formData.append("routeType", routeType);
@@ -173,6 +176,17 @@ const CreateLocationForm = () => {
                                 placeholder="Description"
                                 value={description}
                                 onChange={(e) => setDescription(e.target.value)}
+                            />
+                        </div>
+                        <div className="error-message">{errors.difficulty && <p className="error-message">{errors.difficulty}</p>}</div>
+                        <div className="form-container-create">
+                            <p className="sub-text-signup">Difficulty</p>
+                            <input
+                                className="input-create"
+                                type='text'
+                                placeholder="Difficulty"
+                                value={difficulty}
+                                onChange={(e) => setDifficulty(e.target.value)}
                             />
                         </div>
                         <div className="error-message">{errors.length && <p className="error-message">{errors.length}</p>}</div>
