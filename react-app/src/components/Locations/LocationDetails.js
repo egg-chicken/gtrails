@@ -101,7 +101,7 @@ const LocationDetailsPage = () => {
                 <img className='location-image-id' src={location.image} alt={location.image}/>
               </div>
               <div className='title-test-center'>
-                <h1 className='location-name-title'>{location.name}</h1>
+                <span className='location-name-title'>{location.name}</span>
                 <div className='location-direction'>
                   <p className='difficulty'>{location.difficulty} &#8231; </p>
                   <p className='location-rating-main'>
@@ -111,11 +111,11 @@ const LocationDetailsPage = () => {
                 </div>
                 <p onClick={handleClick} className='city-state'>{location.address}</p>
               </div>
-              <div>
+              <div className='bookmark-details'>
               {showButton && <OpenModalButton
                                   modalComponent={<SaveToModal locationId={location.id} />}
                                   buttonText={<i className="far fa-bookmark"></i>}
-                                  buttonType='addtolist'
+                                  buttonType='locdetsave'
                 />}
               </div>
             </div>
