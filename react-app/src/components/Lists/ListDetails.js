@@ -54,10 +54,34 @@ const ListDetailPage = () => {
 
     addMarkersToMap();
 
+    const handleClick = e => {
+        e.preventDefault();
+        alert("Feature Coming Soon!")
+    };
+
     return (
         <div className="list-detail-container">
+            <div className='list-border-card'>
             <div className="list-cover">
                 <h1 className="list-title">{list?.listName}</h1>
+            </div>
+            <div className="list-bar-links location-details-bar-buttons">
+                <div className='detail-bar-button'>
+                    <button className='bar-button' onClick={handleClick}><i className="fas fa-directions" style={{color:'#054A29',}}/></button>
+                    <span className='button-title'>Directions</span>
+                </div>
+                <div className='detail-bar-button'>
+                    <button className='bar-button' onClick={handleClick}><i className="fas fa-print" style={{color:'#054A29',}}/></button>
+                    <span className='button-title'>Print</span>
+                </div>
+                <div className='detail-bar-button'>
+                    <button className='bar-button' onClick={handleClick}><i className="fas fa-share" style={{color:'#054A29',}}/></button>
+                    <span className='button-title'>Share</span>
+                </div>
+                <div className='detail-bar-button'>
+                    <button className='bar-button' onClick={handleClick}><i className="fas fa-ellipsis-h" style={{color:'#054A29',}}/></button>
+                    <span className='button-title'>More</span>
+                </div>
             </div>
             <div className="list-body">
                 <div className="left-side">
@@ -78,6 +102,7 @@ const ListDetailPage = () => {
                         </div>
                     ))}
                 </div>
+            </div>
             </div>
         </div>
     )
