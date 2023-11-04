@@ -1,6 +1,6 @@
 .nav-container {
   display: flex;
-  background: white;
+  background: #054A29;
   height: 80px;
   justify-content: space-between;
   align-items: center;
@@ -18,7 +18,7 @@ a.home.nav-link.active {
 
 .nav-link {
   text-decoration: none;
-  color: black;
+  color: white;
   padding: 10px 15px;
 
 }
@@ -59,6 +59,15 @@ ul.profile-dropdown {
   border-radius: 50%;
   cursor: pointer;
   width: 40px;
+  height: 40px;
+  border: none;
+  background-color: #054A29;
+}
+.open-menu-button-nav {
+  position: relative;
+  border-radius: 50%;
+  cursor: pointer;
+  width: 200px;
   height: 40px;
   border: none;
   background-color: #054A29;

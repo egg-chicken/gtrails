@@ -44,7 +44,7 @@ function ProfileButton({ user }) {
 
   return (
     <div>
-      <button className='open-menu-button' onClick={openMenu}>
+      <button className='open-menu-button-nav' onClick={openMenu}>
         <i className="fas fa-solid fa-tree" style={{color:'#25d066',}}></i>
       </button>
       <ul className={ulClassName} ref={ulRef}>
