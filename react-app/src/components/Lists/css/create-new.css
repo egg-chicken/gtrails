@@ -1,0 +1,48 @@
+.new-create-activity-container {
+    width: 400px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.listname-text {
+    font-size: 18px;
+}
+
+.listname-input {
+    width: 300px;
+}
+
+.list-form {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.list-name-container {
+    padding: 5px 30px;
+    margin: 14px 0px;
+
+}
+
+.list-title {
+    font-size: 40px;
+    justify-content: center;
+    display: flex;
+    margin: 20px 0 0 0;
+}
+
+.each-list {
+    border-top: 1px solid lightgray;
+    padding: 16px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.button-activity-align {
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+}

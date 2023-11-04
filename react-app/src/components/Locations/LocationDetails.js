@@ -8,6 +8,7 @@ import OpenModalButton from '../OpenModalButton';
 import EditReviewModal from '../Reviews/EditReviewModal';
 import ReviewModal from '../Reviews/CreateReviewModal';
 import DeleteReviewModal from '../Reviews/DeleteReviewModal';
+import SaveToModal from "../Lists/SaveToListModal";
 import CreateActivityModal from '../Activities/CreateActivityModal';
 import DeleteActivityModal from '../Activities/DeleteActivityModal';
 import EditActivityModal from '../Activities/EditActivityModal';
@@ -21,6 +22,7 @@ const LocationDetailsPage = () => {
     const reviews = useSelector((state) => Object.values(state.review));
     const activities = useSelector((state) => Object.values(state.activity));
     const user = useSelector(state => state.session.user);
+    const [showButton, setShowButton] = useState(false);
     const [isReviewsLoaded, setIsReviewsLoaded] = useState(false);
     const [isLoaded, setIsLoaded] = useState(false);
     const [isVisible, setIsVisible] = useState(false);
@@ -40,6 +42,7 @@ const LocationDetailsPage = () => {
 
         if(isReviewsLoaded && isLoaded) {
           if(user){
+            setShowButton(true);
             if(user.id !== location.userId){
               let target = true;
               reviews.forEach(el => {
@@ -93,7 +96,7 @@ const LocationDetailsPage = () => {
     return (
         <div className='location-detail-container'>
           <div className='location-border-card'>
-            <div className='cover-container'>
+            < div className='cover-container'>
               <div className='cover-image'>
                 <img className='location-image-id' src={location.image} alt={location.image}/>
               </div>
@@ -107,6 +110,13 @@ const LocationDetailsPage = () => {
                   </p>
                 </div>
                 <p onClick={handleClick} className='city-state'>{location.address}</p>
+              </div>
+              <div>
+              {showButton && <OpenModalButton
+                                  modalComponent={<SaveToModal locationId={location.id} />}
+                                  buttonText={<i className="far fa-bookmark"></i>}
+                                  buttonType='addtolist'
+                />}
               </div>
             </div>
             <div className='bar-links location-details-bar-buttons'>

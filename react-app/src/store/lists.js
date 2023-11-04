@@ -1,6 +1,7 @@
 const LOAD_ALL_LISTS = 'lists/LOAD_ALL_LISTS';
 const LOAD_ONE_LIST = 'lists/LOAD_ONE_LIST'
 const LOAD_USER_LISTS = 'lists/LOAD_USER_LISTS';
+const ADD_LOCATIONS_TO_LIST = "lists/addLocationsToList";
 const UPDATE_LIST = 'lists/UPDATE_LIST';
 const CREATE_LIST = 'lists/CREATE_LIST';
 const DELETE_LIST = 'lists/DELETE_LIST';
@@ -34,6 +35,13 @@ const updateOne = list => ({
     type: UPDATE_LIST,
     list
 });
+
+const addLocationsToListAction = (listId, locationId) => {
+    return {
+      type: ADD_LOCATIONS_TO_LIST,
+      payload: { listId, locationId },
+    };
+};
 
 // get all lists
 // export const getLists = () => async dispatch => {
@@ -104,6 +112,24 @@ export const updateList = (id, list) => async dispatch => {
     }
 };
 
+// Add Location to List
+export const addLocationsToListThunk = (listId, locationId) => async (dispatch) => {
+    const response = await fetch(`/api/lists/${listId}/locations/${locationId}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: {},
+    }
+    );
+
+    if (response.ok) {
+      const addLocationsToList = await response.json();
+      dispatch(addLocationsToListAction(listId, locationId));
+      return addLocationsToList
+    }
+};
+
 const initialState = {};
 
 const listReducer = (state = initialState, action) => {
@@ -134,6 +160,9 @@ const listReducer = (state = initialState, action) => {
             return newState
         case DELETE_LIST:
             delete newState[action.id];
+            return newState;
+        case ADD_LOCATIONS_TO_LIST:
+            newState[action.payload.id] = action.payload;
             return newState;
         default:
             return newState;
