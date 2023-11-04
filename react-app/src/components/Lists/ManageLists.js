@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, Link } from "react-router-dom";
+import OpenModalButton from "../OpenModalButton";
+import CreateListModal from "./CreateNewListModal";
 import * as listActions from '../../store/lists';
 import './css/manage-lists.css'
 
@@ -16,18 +18,25 @@ const ManageListPage = () => {
 
     return (
         <div className="list-container">
-            <p>Lists</p>
-            <button>Create a New List</button>
-            <div>
+            <div className='location-border-card'>
+            <p className='review-title manage-review'>Lists</p>
+            <OpenModalButton
+                modalComponent={<CreateListModal />}
+                buttonText={<><i class="fas fa-plus"></i>
+                            <span>Create a New List</span></>}
+                buttonType='createlist'
+            />
+            <div >
                 {lists?.map(list => (
-                    <div key={list.id}>
-                        <Link to={`/lists/${list.id}`}>
-                            <p>{list.listName}</p>
+                    <div className='each-list' key={list.id}>
+                        <Link className='review-link-location' to={`/lists/${list.id}`}>
+                            <i className="fas fa-list review-location-name"></i>
+                            <span className='review-location-name'>  {list.listName}</span>
                         </Link>
                     </div>
                 ))}
             </div>
-
+            </div>
         </div>
     )
 };
