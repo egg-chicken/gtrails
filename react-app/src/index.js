@@ -9,6 +9,7 @@ import * as locationActions from './store/locations';
 import * as reviewActions from './store/reviews';
 import * as activityActions from './store/activities';
 import * as listActions from './store/lists';
+import 'mapbox-gl/dist/mapbox-gl.css';
 
 import App from "./App";
 
