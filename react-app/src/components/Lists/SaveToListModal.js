@@ -3,6 +3,7 @@ import { useModal } from '../../context/Modal';
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import * as listActions from '../../store/lists';
+import './css/savetolist.css';
 
 const SaveToModal = ({locationId}) => {
     const { closeModal } = useModal();
@@ -25,22 +26,25 @@ const SaveToModal = ({locationId}) => {
     };
 
     return (
-        <div className="create-review-container">
-            <div><p className="review-title">Save to list</p></div>
+        <div className="create-activity-container">
+            <div><p className="act-title">Save to list</p></div>
             <select
+                className="select-list"
                 value={listId}
                 onChange={(e) => setListId(e.target.value)}
                 required
             >
-                <option>Please select a list below</option>
+                <option >Please select a list below</option>
                 {lists?.map((list) => (
                     <option key={list.id} value={list.id}>
                         {list.listName}
                     </option>
                 ))}
             </select>
-
-            <button onClick={handleSubmit}>Done</button>
+            <div className="button-activity-align">
+            <button onClick={handleSubmit} className='activity-submit-button'>
+                <p className='post-text'>Done</p>
+            </button></div>
         </div>
     )
 };

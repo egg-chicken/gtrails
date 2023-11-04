@@ -39,7 +39,7 @@ const LandingPage = () => {
                     {locationsArray.slice(0,4).map((location) => (
                         <div key={location.id}>
                             {showButton && <OpenModalButton
-                                  modalComponent={<SaveToModal locationId={location.id} />}
+                                  modalComponent={<SaveToModal className='modal-test' locationId={location.id} />}
                                   buttonText={<i className="far fa-bookmark"></i>}
                                   buttonType='addtolist'
                               />}
