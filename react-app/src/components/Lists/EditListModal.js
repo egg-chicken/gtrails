@@ -2,15 +2,20 @@ import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useModal } from "../../context/Modal";
 import { useDispatch, useSelector } from 'react-redux';
+import OpenModalButton from "../OpenModalButton";
 import * as listActions from '../../store/lists';
 import './css/create-new.css'
 
-const CreateListModal = () => {
+const EditListModal = ({id}) => {
     const dispatch = useDispatch();
-    const history = useHistory();
+    const listId = useSelector(state => state.list[id]);
     const { closeModal } = useModal();
-    const [listName, setListName] = useState("");
+    const [listName, setListName] = useState(listId?.listName);
     const [errors, setErrors] = useState({});
+
+    useEffect(() => {
+        dispatch(listActions.getListsDetails(id))
+    });
 
     const handleSubmit = async(e) => {
         e.preventDefault();
@@ -22,18 +27,20 @@ const CreateListModal = () => {
 
         setErrors(errors);
 
-        if (Object.keys(errors).length === 0) {
+        if (Object.keys(errors).length > 0) {
+            setErrors(errors);
+        } else {
+            setErrors({});
             const formData = new FormData();
             formData.append("listName", listName);
 
-            try {
-                await dispatch(listActions.createList(formData));
-                history.push("/lists/created");
-                closeModal();
-            } catch (err){
-                setErrors({});
-                console.error("Error creating location:", err);
-            }
+            dispatch(listActions.updateList(id, formData))
+                .then(() => {
+                    closeModal();
+                })
+                .catch((err) => {
+                    setErrors(err)
+                })
         }
     };
 
@@ -62,4 +69,4 @@ const CreateListModal = () => {
     )
 };
 
-export default CreateListModal;
+export default EditListModal;

@@ -39,6 +39,7 @@
     height: 40px;
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
 .button-activity-align {
     display: flex;
