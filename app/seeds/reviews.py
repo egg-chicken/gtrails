@@ -22,12 +22,12 @@ def seed_reviews():
                 createdAt=datetime(2023, 2, 19), updatedAt=datetime(2023, 2, 19))
     r9 = Review(userId=1, locationId=7, review='Nice views.', stars=3,
                 createdAt=datetime(2023, 7, 14), updatedAt=datetime(2023, 7, 14))
-    r10 = Review(userId=1, locationId=8, review='Good walk.', stars=3,
-                 createdAt=datetime(2023, 8, 19), updatedAt=datetime(2023, 8, 19))
-    r11 = Review(userId=1, locationId=9, review='The water is so blue.', stars=3,
-                 createdAt=datetime(2023, 10, 1), updatedAt=datetime(2023, 10, 1))
-    r12 = Review(userId=1, locationId=10, review='Beautiful waterfall. Accessible to everyone.',
-                 stars=3, createdAt=datetime(2023, 9, 9), updatedAt=datetime(2023, 9, 9))
+    # r10 = Review(userId=1, locationId=8, review='Good walk.', stars=3,
+    #              createdAt=datetime(2023, 8, 19), updatedAt=datetime(2023, 8, 19))
+    # r11 = Review(userId=1, locationId=9, review='The water is so blue.', stars=3,
+    #              createdAt=datetime(2023, 10, 1), updatedAt=datetime(2023, 10, 1))
+    # r12 = Review(userId=1, locationId=10, review='Beautiful waterfall. Accessible to everyone.',
+    #              stars=3, createdAt=datetime(2023, 9, 9), updatedAt=datetime(2023, 9, 9))
 
     # db.session.add(r1)
     db.session.add(r2)
@@ -38,9 +38,9 @@ def seed_reviews():
     db.session.add(r7)
     db.session.add(r8)
     db.session.add(r9)
-    db.session.add(r10)
-    db.session.add(r11)
-    db.session.add(r12)
+    # db.session.add(r10)
+    # db.session.add(r11)
+    # db.session.add(r12)
     db.session.commit()
 
 

@@ -17,7 +17,7 @@
     display: flex;
     font-size: 26px;
     margin: 0px;
-    justify-content: center;
+    /* justify-content: center; */
 }
 
 .demo-button {

@@ -74,6 +74,11 @@
     /* top: 50px; */
 }
 
+.difficulty {
+    color: white;
+    font-size: 18px;
+}
+
 .city-state {
     font-size: 18px;
     color: white;
@@ -247,7 +252,7 @@
 
 .rating-count {
     font-weight: bold;
-    font-size: 40px;
+    font-size: 20px;
 }
 
 .location-rating-main {
@@ -262,6 +267,7 @@
 
 .location-direction {
     display: flex;
+    padding-left: 20px;
 }
 
 .fa-star:before {
@@ -353,3 +359,28 @@
     border-radius: 5px;
     width: 70%;
   }
+
+.activity-title {
+    padding: 0px;
+    margin: 0px;
+    font-size: 18px;
+}
+
+.activity-title-2 {
+    padding: 0px;
+    margin: 0px;
+    font-size: 16px;
+}
+
+.text-box {
+    padding-top: 10px;
+}
+
+.activity-text {
+    padding: 0px;
+    margin: 0px
+}
+
+.type-text {
+    color: green;
+}

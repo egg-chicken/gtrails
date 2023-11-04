@@ -100,3 +100,24 @@
 .test2 {
     font-size: 1px;
 }
+
+.diff-rating {
+    display: flex;
+    flex-direction: row;
+    color: gray;
+    margin: 0px;
+    font-size: max(1vw, 16px);
+    align-items: baseline;
+}
+
+.style-butt{
+    position: absolute;
+    color: darkgreen;
+    border: none;
+    background-color: transparent;
+    font-size: 25px;
+}
+
+.style-butt:hover {
+    color: lawngreen;
+}

@@ -1,11 +1,10 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import EditReviewModal from './EditReviewModal';
 import DeleteReviewModal from '../Reviews/DeleteReviewModal';
 import OpenModalButton from '../OpenModalButton';
 import * as reviewActions from '../../store/reviews';
-import { useParams } from 'react-router-dom';
 import './css/manage-review.css';
 
 const ManageReviewsPage = () => {
@@ -13,11 +12,9 @@ const ManageReviewsPage = () => {
     const dispatch = useDispatch();
     const reviews = useSelector((state) => Object.values(state.review));
     const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-    //get locations details by id - if the locationId === the id of the location then return the image if not return previmage
 
     useEffect(() => {
         dispatch(reviewActions.getCurrentUsersReviews())
-        // dispatch(locationActions.getLocationsDetails(id))
     }, [dispatch, id]);
 
     if (reviews.length === 0) {

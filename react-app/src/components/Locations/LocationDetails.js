@@ -3,19 +3,26 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import * as locationActions from '../../store/locations';
 import * as reviewActions from '../../store/reviews';
+import * as activityActions from '../../store/activities';
 import OpenModalButton from '../OpenModalButton';
 import EditReviewModal from '../Reviews/EditReviewModal';
 import ReviewModal from '../Reviews/CreateReviewModal';
 import DeleteReviewModal from '../Reviews/DeleteReviewModal';
+import SaveToModal from "../Lists/SaveToListModal";
+import CreateActivityModal from '../Activities/CreateActivityModal';
+import DeleteActivityModal from '../Activities/DeleteActivityModal';
+import EditActivityModal from '../Activities/EditActivityModal';
+
 import './css/location-detail.css'
-// import AverageRating from './AverageRating';
 
 const LocationDetailsPage = () => {
     const { id } = useParams();
     const dispatch = useDispatch();
     const location = useSelector((state) => state.location[id]);
     const reviews = useSelector((state) => Object.values(state.review));
+    const activities = useSelector((state) => Object.values(state.activity));
     const user = useSelector(state => state.session.user);
+    const [showButton, setShowButton] = useState(false);
     const [isReviewsLoaded, setIsReviewsLoaded] = useState(false);
     const [isLoaded, setIsLoaded] = useState(false);
     const [isVisible, setIsVisible] = useState(false);
@@ -28,12 +35,14 @@ const LocationDetailsPage = () => {
         .then(() => setIsLoaded(true))
       dispatch(reviewActions.getAllReviews(id))
         .then(() => setIsReviewsLoaded(true))
+      dispatch(activityActions.getAllActivities(id))
     }, [dispatch, id])
 
     useEffect(() => {
 
         if(isReviewsLoaded && isLoaded) {
           if(user){
+            setShowButton(true);
             if(user.id !== location.userId){
               let target = true;
               reviews.forEach(el => {
@@ -67,6 +76,19 @@ const LocationDetailsPage = () => {
       }
     });
 
+    const averageRating = (location, decimal=1) => {
+      const review = reviews.filter((review) => review.locationId === location.id);
+      if(review.length > 0){
+        let num = 0;
+        for (let i = 0; i < review.length; i ++){
+          num += review[i].stars;
+        }
+        const average = num / review.length;
+        return average.toFixed(decimal);
+      }
+      return 'No reviews';
+    }
+
     if(!location){
         return 'no location'
     }
@@ -74,19 +96,27 @@ const LocationDetailsPage = () => {
     return (
         <div className='location-detail-container'>
           <div className='location-border-card'>
-            <div className='cover-container'>
+            < div className='cover-container'>
               <div className='cover-image'>
                 <img className='location-image-id' src={location.image} alt={location.image}/>
               </div>
               <div className='title-test-center'>
                 <h1 className='location-name-title'>{location.name}</h1>
                 <div className='location-direction'>
-                  <p onClick={handleClick} className='city-state'>{location.address}</p>
+                  <p className='difficulty'>{location.difficulty} &#8231; </p>
                   <p className='location-rating-main'>
                     <i className="fa fa-solid fa-star" style={{color:'#2ced39',}}/>
-                    {location.avgRating ? (Number.isInteger(location.avgRating) ? location.avgRating.toFixed(1) : location.avgRating.toFixed(1)) : 'New'} ({reviews.length})
+                    {averageRating(location)}
                   </p>
                 </div>
+                <p onClick={handleClick} className='city-state'>{location.address}</p>
+              </div>
+              <div>
+              {showButton && <OpenModalButton
+                                  modalComponent={<SaveToModal locationId={location.id} />}
+                                  buttonText={<i className="far fa-bookmark"></i>}
+                                  buttonType='addtolist'
+                />}
               </div>
             </div>
             <div className='bar-links location-details-bar-buttons'>
@@ -146,8 +176,8 @@ const LocationDetailsPage = () => {
 
               <div className='block-tabs'>
                 <button className={lowerToggleState === 4 ? 'tabs active-tabs' : 'tabs'} onClick={() => toggleTab(4, false)}><span className='tab-text'>Reviews ({reviews.length})</span></button>
-                <button className={lowerToggleState === 5 ? 'tabs active-tabs' : 'tabs'} onClick={() => toggleTab(5, false)}><span className='tab-text'>Photos (0)</span></button>
-                <button className={lowerToggleState === 6 ? 'tabs active-tabs' : 'tabs'} onClick={() => toggleTab(6, false)}><span className='tab-text'>Activities</span></button>
+                <button className={lowerToggleState === 5 ? 'tabs active-tabs' : 'tabs'} onClick={() => toggleTab(5, false)}><span className='tab-text'>Activities ({activities.length})</span></button>
+                <button className={lowerToggleState === 6 ? 'tabs active-tabs' : 'tabs'} onClick={() => toggleTab(6, false)}><span className='tab-text'>Photos (0)</span></button>
               </div>
 
               <div className='content-tabs'>
@@ -166,11 +196,11 @@ const LocationDetailsPage = () => {
                           </div>
                         </div>
                         <div className='total-location-rating-section'>
-                          {/* <AverageRating avgRating={location.avgRating} reviewCount={reviews.length} /> */}
                           <div>
-                            <span className='rating-count'>{location.avgRating ? (Number.isInteger(location.avgRating) ? location.avgRating.toFixed(1) : location.avgRating.toFixed(1)) : 'No Reviews'}</span>
-                            {/* {reviews.avgRating ? (Number.isInteger(location.avgRating) ? reviews.avgRating.toFixed(1) : 'No Reviews'} */}
-                            <i className="fa fa-solid fa-star" style={{ color: '#2ced39' }} />
+                              <span className='rating-count'>
+                                {averageRating(location)}
+                                <i className="fa fa-solid fa-star" style={{ color: '#2ced39' }} />
+                              </span>
                           </div>
                           <p className='total-reviews'>{reviews.length} reviews</p>
                         </div>
@@ -226,12 +256,60 @@ const LocationDetailsPage = () => {
                     </div>
                   }
                 </div>
-
                 <div className={lowerToggleState === 5 ? 'content active-content' : 'content'}>
-                  <span className='tab-text'>Feature Coming Soon</span>
+                  <div className='lower-location-details-bar'>
+                    <div>
+                      <h4 className='activity-title'>People's activities</h4>
+                      <p className='activity-title-2'>Post your recent activities to inspire others to go explore outside</p>
+                    </div>
+                    <div className='write-review-button-placement'>
+                      {isVisible && <OpenModalButton
+                          modalComponent={<CreateActivityModal locationId={location.id}/>}
+                          buttonText="Post Your Activity"
+                          buttonType="add"
+                      />}
+                    </div>
+                  </div>
+                  <div>
+                    {activities?.map(activity => {
+                      const activityMonth = months[new Date(activity.createdAt).getMonth()];
+                      const day = (new Date(activity.createdAt).getDate()) + 1;
+                      const year = new Date(activity.createdAt).getFullYear();
+                      return (
+                      <div key={activity.id} className='each-review'>
+                        <div className='top-review-info'>
+                          <button className='open-menu-button' onClick={handleClick} style={{background:'orange'}}><i className="fas fa-walking" style={{color:'teal'}}></i></button>
+                          <div className='username-date'>
+                            <p className='user-firstname'>{activity.User?.firstName} {activity.User?.lastName}</p>
+                            <p className='date'>{activityMonth} {day}, {year}</p>
+                          </div>
+                        </div>
+                        <div className='text-box'>
+                          <p className='activity-text'><span className='type-text'>Type: </span>{activity.activityType}</p>
+                          <p className='review-text'><span className='type-text'>Trail Conditions: </span>{activity.trailConditions}</p>
+                        </div>
+                        {activity.userId === user?.id &&
+                        <>
+                          <OpenModalButton
+                            modalComponent={<DeleteActivityModal id={activity.id} locationId={activity.locationId} setIsVisible={setIsVisible}/>}
+                            buttonText="Delete"
+                            buttonType="Delete"
+                          />
+                          &#124;
+                        </>
+                        }
+                        {activity.userId === user?.id && <OpenModalButton
+                          modalComponent={<EditActivityModal id={activity.id} locationId={activity.locationId} setIsVisible={setIsVisible}/>}
+                          buttonText="Edit"
+                          buttonType="edit"
+                        />}
+                      </div>
+                      )
+                    })}
+                  </div>
                 </div>
                 <div className={lowerToggleState === 6 ? 'content active-content' : 'content'}>
-                  <span className='tab-text'>Feature Coming Soon</span>
+                  <span className='tab-text'>Feature Coming Soon!</span>
                 </div>
               </div>
 
