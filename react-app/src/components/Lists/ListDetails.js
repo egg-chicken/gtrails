@@ -2,6 +2,8 @@ import React, { useRef, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from 'react-router-dom';
+import OpenModalButton from "../OpenModalButton";
+import DeleteLocationFromListModal from './DeleteLocationFromList';
 import * as listActions from '../../store/lists';
 import './css/list-details.css'
 import mapboxgl from '!mapbox-gl';// eslint-disable-line import/no-webpack-loader-syntax
@@ -13,6 +15,7 @@ const ListDetailPage = () => {
     const { id } = useParams();
     const dispatch = useDispatch();
     const list  = useSelector((state) => state.list[id])
+    const location = useSelector((state => state.location[id]))
 
     const mapContainer = useRef(null);
     const map = useRef(null);
@@ -99,6 +102,11 @@ const ListDetailPage = () => {
                                     {location.avgRating ? (Number.isInteger(location.avgRating) ? location.avgRating.toFixed(1) : location.avgRating.toFixed(1)) : 'No Reviews'}
                                 </p>
                             </Link>
+                            {/* <OpenModalButton
+                                modalComponent={<DeleteLocationFromListModal listId={list.id} locationId={location.id}/>}
+                                buttonText={<i class="far fa-trash-alt"></i>}
+                                buttonType="Delete"
+                            /> */}
                         </div>
                     ))}
                 </div>
