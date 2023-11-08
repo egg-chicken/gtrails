@@ -1,17 +1,20 @@
 import React from "react";
 import { useDispatch } from "react-redux";
+// import { useHistory } from "react-router-dom";
 import { useModal } from "../../context/Modal";
 import * as listActions from "../../store/lists";
 // import './css/delete-modal.css'
 
-function DeleteLocationFromListModal ({id}) {
+function DeleteLocationFromListModal ({listId, locationId}) {
     const { closeModal } = useModal();
+    // const history = useHistory();
     const dispatch = useDispatch();
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(listActions.removeLocationfromList(id))
-            .then(closeModal)
+        dispatch(listActions.removeLocationfromList(listId, locationId))
+        .then(closeModal)
+        window.location.reload()
     };
 
     return (

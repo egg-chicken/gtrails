@@ -102,11 +102,11 @@ const ListDetailPage = () => {
                                     {location.avgRating ? (Number.isInteger(location.avgRating) ? location.avgRating.toFixed(1) : location.avgRating.toFixed(1)) : 'No Reviews'}
                                 </p>
                             </Link>
-                            {/* <OpenModalButton
-                                modalComponent={<DeleteLocationFromListModal listId={list.id} locationId={location.id}/>}
+                            <OpenModalButton
+                                modalComponent={<DeleteLocationFromListModal listId={id} locationId={location.id}/>}
                                 buttonText={<i class="far fa-trash-alt"></i>}
                                 buttonType="Delete"
-                            /> */}
+                            />
                         </div>
                     ))}
                 </div>
