@@ -32,7 +32,8 @@ const ListDetailPage = () => {
         if (map.current) return;
         map.current = new mapboxgl.Map({
         container: mapContainer.current,
-        style: 'mapbox://styles/mapbox/streets-v12',
+        // style: 'mapbox://styles/mapbox/streets-v12',
+        style: "mapbox://styles/eggoreochip/cloqt5zfj006v01r7ewza7naq",
         center: [lng, lat],
         zoom: zoom
         });
