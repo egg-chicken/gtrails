@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import * as locationActions from '../../store/locations';
 import SaveToModal from "../Lists/SaveToListModal";
 import OpenModalButton from "../OpenModalButton";
+import Map from '../Map';
 import './explore.css'
 
 const ExplorePage = () => {
@@ -50,6 +51,9 @@ const ExplorePage = () => {
                         </Link>
                         </div>
                     ))}
+                </div>
+                <div>
+                    <Map />
                 </div>
         </div>
     )
