@@ -23,6 +23,7 @@ function OpenModalButton({
   : buttonType === 'SignUp' ? 'sign-up-button'
   : buttonType === 'addtolist' ? 'style-butt'
   : buttonType === 'createlist' ? 'style-list-create'
+  : buttonType === 'exploreList' ? 'explore-list-button'
   : '';
 
   return (

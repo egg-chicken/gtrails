@@ -14,20 +14,19 @@ const Map = () => {
     const [zoom, setZoom] = useState(4);
     const locations = useSelector((state) => Object.values(state.location));
 
-    console.log('map locations: !!!', locations)
     useEffect(() => {
         if (map.current) return;
         map.current = new mapboxgl.Map({
         container: mapContainer.current,
-        // style: 'mapbox://styles/mapbox/streets-v12',
         style: "mapbox://styles/eggoreochip/cloqt5zfj006v01r7ewza7naq",
         center: [lng, lat],
         zoom: zoom
         });
-        addMarkersToMap();
     }, []);
 
     const addMarkersToMap = () => {
+        if (!map.current || !locations) return;
+
         locations.forEach((location) => {
             const { lat, lng } = location;
             new mapboxgl.Marker({
