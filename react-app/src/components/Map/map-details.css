@@ -1,5 +1,6 @@
-.map-container {
-    height: 400px;
-    width: 400px;
-    border-radius: 10px;
+.map-container-explore {
+    width: 90vh;
+    height: 100vh;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
 }

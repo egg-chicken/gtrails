@@ -65,6 +65,13 @@
     color: black;
     height: 300px
 }
+.location {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: black;
+    justify-content: center;
+}
 
 .location-details{
     display: flex;

@@ -45,7 +45,7 @@ const Map = () => {
     addMarkersToMap();
 
     return (
-        <div ref={mapContainer} className="map-container" />
+        <div ref={mapContainer} className="map-container-explore" />
     )
 
 };

@@ -13,14 +13,12 @@ a.home.nav-link.active {
 
 .home {
   font-size: 28pt;
-
 }
 
 .nav-link {
   text-decoration: none;
   color: white;
   padding: 10px 15px;
-
 }
 
 .sub-link:hover {
@@ -32,15 +30,12 @@ a.home.nav-link.active {
 
 .profile-dropdown {
   position: absolute;
-  /* border: 1px solid grey; */
   background-color: white;
   color: black;
   list-style-type: none;
   border-radius: 10px;
   font-size: 16px;
-  /* width: 100px; */
-  /* align-items: flex-start */
-  /* justify-content: center; */
+  z-index: 100;
 }
 
 ul.profile-dropdown {
@@ -63,6 +58,7 @@ ul.profile-dropdown {
   border: none;
   background-color: #054A29;
 }
+
 .open-menu-button-nav {
   position: relative;
   border-radius: 50%;
@@ -118,14 +114,6 @@ div.c.right-nav-side {
   display: flex;
   justify-content: flex-start;
 }
-/*
-.icon-mount {
-  width: 40px;
-  height: 40px;
-  margin-right: 10px;
-  margin-top: 20px;
-}
-*/
 
 .login-button-container{
   width: 100px;
@@ -140,7 +128,6 @@ div.c.right-nav-side {
   padding: 20px 20px 20px 20px;
   background: none;
   cursor: pointer;
-
 }
 
 .log-in-button:hover,

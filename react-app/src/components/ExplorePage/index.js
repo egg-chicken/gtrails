@@ -28,8 +28,9 @@ const ExplorePage = () => {
 
     return (
         <div className='explore-container'>
-            <h1 className='parks-text'>Explore All Locations</h1>
+
             <div className='scrolling-section'>
+            <h1 className='parks-text'>Explore All Locations</h1>
             <div className='location-grid'>
                 {locationsArray.map((location) => (
                     <div key={location.id} className='explore-test'>
@@ -38,7 +39,7 @@ const ExplorePage = () => {
                             buttonText={<i className="far fa-bookmark"></i>}
                             buttonType='exploreList'
                         />}
-                    <Link key={location.id} to={`/locations/${location.id}`} className='location'>
+                    <Link key={location.id} to={`/locations/${location.id}`} className='location-explore-tile'>
                         <img src={location.image} alt='location' className='image' title={location.name}/>
                         <div className="location-details">
                             <p className='a-detail'>{location.name}</p>

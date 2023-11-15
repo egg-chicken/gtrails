@@ -2,12 +2,11 @@
     display: flex;
     margin: 10px;
     padding: 20px;
+    padding-left: 5%;
 }
 
 .location-grid {
     display: grid;
-    /* grid-template-columns: repeat(4, 1fr); */
-    /* grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); */
     grid-template-columns: repeat(1, minmax(50px, 1fr));
     gap: 10px;
 }
@@ -18,21 +17,21 @@
     padding: 0px;
 }
 
-.location {
+.location-explore-tile {
     display: flex;
     flex-direction: column;
     text-decoration: none;
     color: black;
     align-items: center;
-    /* height: 60%; */
 }
 
+.location-explore-tile:hover {
+    background-color: lightgrey;
+}
 
 .image {
     object-fit: cover;
-    width: 60%;
-    /* max-width: 100%; */
-    /* idk if the height should be 50 or 60% . . . */
+    max-width: 100%;
     height: 60%;
     border-radius: 8px;
 }
@@ -45,11 +44,9 @@
 }
 
 .scrolling-section {
-    width: 80%;
+    width: 50%;
     height: 100vh;
-    /* margin-left: 50%; */
     overflow-y: scroll;
-    border: 1px solid black;
 }
 
 .explore-list-button {
@@ -58,9 +55,5 @@
     border: none;
     background-color: transparent;
     font-size: 25px;
-    /* top: 35px; */
+    top: 35px;
 }
-
-/* .explore-test {
-    width: 60%;
-} */
