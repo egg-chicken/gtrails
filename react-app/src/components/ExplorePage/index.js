@@ -28,9 +28,8 @@ const ExplorePage = () => {
 
     return (
         <div className='explore-container'>
-
             <div className='scrolling-section'>
-            <h1 className='parks-text'>Explore All Locations</h1>
+            <h1 className='explore-text'>Explore All Locations</h1>
             <div className='location-grid'>
                 {locationsArray.map((location) => (
                     <div key={location.id} className='explore-test'>
@@ -41,15 +40,20 @@ const ExplorePage = () => {
                         />}
                     <Link key={location.id} to={`/locations/${location.id}`} className='location-explore-tile'>
                         <img src={location.image} alt='location' className='image' title={location.name}/>
+                        <div className='explore-text-details'>
                         <div className="location-details">
-                            <p className='a-detail'>{location.name}</p>
-                            <p className='location-rating'>
+                            <div className='difficulty-rating'>
+                                <p className='explore-location-rating'>{location.difficulty}</p>
                                 <i className="fa fa-solid fa-star" style={{color:'#2ced39',}}/>
-                                {location.avgRating ? (Number.isInteger(location.avgRating) ? location.avgRating.toFixed(1) : location.avgRating.toFixed(1)) : 'No Reviews'}
-                            </p>
+                                <p className='explore-location-rating'>
+                                    {location.avgRating ? (Number.isInteger(location.avgRating) ? location.avgRating.toFixed(1) : location.avgRating.toFixed(1)) : 'No Reviews'}
+                                </p>
+                            </div>
+                            <p className='a-detail'>{location.name}</p>
                         </div>
                         <p className="b-detail">{location.city}, {location.state}</p>
                         <p className='b-detail'>Length: {location.length} mi &#8231; Type: {location.routeType}</p>
+                        </div>
                     </Link>
                     </div>
                 ))}
