@@ -24,6 +24,7 @@
     font-style: italic;
     font-weight: 900;
     font-size: 38px;
+    text-shadow: 0 1px 2px black;
 }
 
 .main-title {
@@ -62,21 +63,24 @@
 .location-container-m {
     display: grid;
     grid-template-columns: repeat(4, minmax(100px, 1fr));
-    gap: 10px;
+    gap: 20px;
     padding: 0px 10% 0px;
 }
 
-.location {
-    text-decoration: none;
-    color: black;
-    height: 300px
-}
 .location {
     display: flex;
     flex-direction: column;
     text-decoration: none;
     color: black;
     justify-content: center;
+    height: 300px
+}
+
+.location-transition:hover {
+    transform: scale(1.1);
+}
+.location-transition.has-transition {
+    transition: transform 150ms ease-in-out;
 }
 
 .location-details{
@@ -88,7 +92,7 @@
 .a-detail {
     margin: 0px;
     padding-top: 5px;
-    font-size: max(1vw, 16px);
+    font-size: large;
 }
 
 .location-rating {
@@ -101,6 +105,7 @@
     color: gray;
     margin: 0px;
     font-size: max(1vw, 16px);
+    font-weight: 200;
 }
 
 .image-main {
@@ -121,6 +126,7 @@
     margin: 0px;
     font-size: max(1vw, 16px);
     align-items: baseline;
+    font-weight: 200;
 }
 
 .style-butt{

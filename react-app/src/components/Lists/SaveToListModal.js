@@ -19,7 +19,6 @@ const SaveToModal = ({locationId}) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // if(listId === 'Please select a list below') return
         await dispatch(listActions.addLocationsToListThunk(listId, locationId))
         closeModal();
         history.push(`/lists/${listId}`);
@@ -27,14 +26,13 @@ const SaveToModal = ({locationId}) => {
 
     return (
         <div className="create-activity-container">
-            <div><p className="act-title">Save to list</p></div>
+            <div><p className="act-title">Save to your list</p></div>
             <select
                 className="select-list"
                 value={listId}
                 onChange={(e) => setListId(e.target.value)}
                 required
             >
-                <option >Please select a list below</option>
                 {lists?.map((list) => (
                     <option key={list.id} value={list.id}>
                         {list.listName}

@@ -30,6 +30,8 @@ const CreateLocationForm = () => {
         const errors = {};
 
         if(!name) errors.name = 'Name is required';
+        if(name.length > 50) errors.name = 'Name must be less than 30 characters'
+        if(name.length <= 3) errors.name = 'Name must be more than 3 characters'
         if(!address) errors.address = 'Address is required';
         if(!city) errors.city = 'City is required';
         if(!state) errors.state = 'State is required';

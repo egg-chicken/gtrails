@@ -37,7 +37,7 @@ const LandingPage = () => {
                 <p className="sub-heading-text">Parks worth a look</p>
                 <div className="location-container-m">
                     {locationsArray.slice(0,4).map((location) => (
-                        <div key={location.id}>
+                        <div key={location.id} className="location-transition">
                             {showButton && <OpenModalButton
                                   modalComponent={<SaveToModal locationId={location.id} />}
                                   buttonText={<i className="far fa-bookmark"></i>}
@@ -66,7 +66,7 @@ const LandingPage = () => {
                     <p className="sub-heading-text">Locations to explore</p>
                     <div className="location-container-m">
                         {locationsArray.slice(4,8).map((location) => (
-                        <div key={location.id}>
+                        <div key={location.id} className="location-transition">
                             {showButton && <OpenModalButton
                                 modalComponent={<SaveToModal locationId={location.id} />}
                                 buttonText={<i className="far fa-bookmark"></i>}
@@ -95,7 +95,7 @@ const LandingPage = () => {
                     <p className="sub-heading-text">Get away from the city</p>
                     <div className="location-container-m">
                         {locationsArray.slice(8,12).map((location) => (
-                        <div key={location.id}>
+                        <div key={location.id} className="location-transition">
                             {showButton && <OpenModalButton
                                   modalComponent={<SaveToModal locationId={location.id} />}
                                   buttonText={<i className="far fa-bookmark"></i>}
