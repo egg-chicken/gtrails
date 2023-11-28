@@ -65,19 +65,19 @@ class Location(db.Model):
         __table_args__ = {"schema": SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(255), nullable=False)
+    name = db.Column(db.String(50), nullable=False)
     userId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
     address = db.Column(db.String(255), nullable=False)
-    city = db.Column(db.String(255), nullable=False)
-    state = db.Column(db.String(255), nullable=False)
-    country = db.Column(db.String(255), nullable=False)
+    city = db.Column(db.String(50), nullable=False)
+    state = db.Column(db.String(50), nullable=False)
+    country = db.Column(db.String(50), nullable=False)
     lat = db.Column(db.Float, nullable=False)
     lng = db.Column(db.Float, nullable=False)
     description = db.Column(db.String(255), nullable=False)
-    difficulty = db.Column(db.String(255), nullable=False)
+    difficulty = db.Column(db.String(50), nullable=False)
     length = db.Column(db.Float, nullable=False)
     elevGain = db.Column(db.Integer, nullable=False)
-    routeType = db.Column(db.String(255), nullable=False)
+    routeType = db.Column(db.String(50), nullable=False)
     image = db.Column(db.String(255), nullable=False)
     createdAt = db.Column(db.DateTime, server_default=db.func.now())
     updatedAt = db.Column(
@@ -117,7 +117,6 @@ class Location(db.Model):
         }
 
     user = db.relationship("User", back_populates="locations")
-    # review = db.relationship('Review', back_populates='locations')
     reviews = db.relationship("Review", back_populates="location")
     activities = db.relationship(
         "Activity",
@@ -157,7 +156,6 @@ class Review(db.Model):
         }
 
     user = db.relationship("User", back_populates="reviews")
-    # locations = db.relationship('Location', back_populates='review')
     location = db.relationship("Location", back_populates="reviews")
 
 
@@ -169,8 +167,8 @@ class Activity(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     userId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
-    activityType = db.Column(db.String(255), nullable=False)
-    trailConditions = db.Column(db.String(255), nullable=False)
+    activityType = db.Column(db.String(50), nullable=False)
+    trailConditions = db.Column(db.String(100), nullable=False)
     createdAt = db.Column(db.DateTime, server_default=db.func.now())
     updatedAt = db.Column(db.DateTime, server_default=db.func.now(), server_onupdate=db.func.now())
 
@@ -200,7 +198,7 @@ class List(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     userId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
-    listName = db.Column(db.String(255), nullable=False)
+    listName = db.Column(db.String(50), nullable=False)
     createdAt = db.Column(db.DateTime, server_default=db.func.now())
     updatedAt = db.Column(db.DateTime, server_default=db.func.now(), server_onupdate=db.func.now())
 
