@@ -4,6 +4,7 @@ import { Link, useParams } from 'react-router-dom';
 import EditReviewModal from './EditReviewModal';
 import DeleteReviewModal from '../Reviews/DeleteReviewModal';
 import OpenModalButton from '../OpenModalButton';
+import * as locationActions from '../../store/locations';
 import * as reviewActions from '../../store/reviews';
 import './css/manage-review.css';
 
@@ -11,10 +12,12 @@ const ManageReviewsPage = () => {
     const { id } = useParams();
     const dispatch = useDispatch();
     const reviews = useSelector((state) => Object.values(state.review));
+    // const location = useSelector((state) => state.location[id]);
     const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
     useEffect(() => {
         dispatch(reviewActions.getCurrentUsersReviews())
+        dispatch(locationActions.getLocations())
     }, [dispatch, id]);
 
     if (reviews.length === 0) {

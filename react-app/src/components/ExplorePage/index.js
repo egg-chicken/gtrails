@@ -29,7 +29,7 @@ const ExplorePage = () => {
     return (
         <div className='explore-container'>
             <div className='scrolling-section'>
-            <h1 className='explore-text'>Explore All Locations</h1>
+            <div className='bar'></div>
             <div className='location-grid'>
                 {locationsArray.map((location) => (
                     <div key={location.id} className='explore-test'>
