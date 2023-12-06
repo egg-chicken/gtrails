@@ -30,16 +30,16 @@ const LandingPage = () => {
     return (
         <div className="a-container">
             <div className="cover">
-                <h1>Find your outdoors</h1>
+                <h1 className="landing-title-text">Find your outdoors</h1>
                 <NavLink exact to="/explore" className='explore-l'>Explore nearby trails</NavLink>
             </div>
             <div className="parks-text">
                 <p className="sub-heading-text">Parks worth a look</p>
                 <div className="location-container-m">
                     {locationsArray.slice(0,4).map((location) => (
-                        <div key={location.id}>
+                        <div key={location.id} className="location-transition">
                             {showButton && <OpenModalButton
-                                  modalComponent={<SaveToModal className='modal-test' locationId={location.id} />}
+                                  modalComponent={<SaveToModal locationId={location.id} />}
                                   buttonText={<i className="far fa-bookmark"></i>}
                                   buttonType='addtolist'
                               />}
@@ -66,7 +66,7 @@ const LandingPage = () => {
                     <p className="sub-heading-text">Locations to explore</p>
                     <div className="location-container-m">
                         {locationsArray.slice(4,8).map((location) => (
-                        <div key={location.id}>
+                        <div key={location.id} className="location-transition">
                             {showButton && <OpenModalButton
                                 modalComponent={<SaveToModal locationId={location.id} />}
                                 buttonText={<i className="far fa-bookmark"></i>}
@@ -95,7 +95,7 @@ const LandingPage = () => {
                     <p className="sub-heading-text">Get away from the city</p>
                     <div className="location-container-m">
                         {locationsArray.slice(8,12).map((location) => (
-                        <div key={location.id}>
+                        <div key={location.id} className="location-transition">
                             {showButton && <OpenModalButton
                                   modalComponent={<SaveToModal locationId={location.id} />}
                                   buttonText={<i className="far fa-bookmark"></i>}

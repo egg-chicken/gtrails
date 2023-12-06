@@ -25,25 +25,29 @@ const CreateLocationForm = () => {
     const [errors, setErrors] = useState({});
 
     const handleSubmit = async (e) => {
+
         e.preventDefault();
 
         const errors = {};
 
         if(!name) errors.name = 'Name is required';
+        if(name.length > 50) errors.name = 'Name must be less than 30 characters'
+        if(name.length <= 3) errors.name = 'Name must be more than 3 characters'
         if(!address) errors.address = 'Address is required';
         if(!city) errors.city = 'City is required';
         if(!state) errors.state = 'State is required';
         if(!country) errors.country = 'Country is required';
-        if (!lat || isNaN(parseFloat(lat))) {
-            errors.lat = 'Latitude is required (Must be a number)';
+        if (isNaN(parseFloat(lat)) || parseFloat(lat) < -90 || parseFloat(lat) > 90) {
+            errors.lat = 'Invalid latitude. Must be less than -90 degrees or greater than 90 degrees.';
         }
-        if (!lng || isNaN(parseFloat(lng))) {
-            errors.lng = 'Longitude is required (Must be a number)';
+        if (isNaN(parseFloat(lng)) || parseFloat(lng) < -180 || parseFloat(lng) > 180) {
+            errors.lng = 'Invalid longitude. Must be less than -180 degrees or greater than 180 degrees.';
         }
         if (!length || isNaN(parseFloat(length))) {
             errors.length = 'Length is required (Must be a number)';
         }
         if(!description) errors.description = 'Description is required';
+        if(description.length > 250) errors.description = 'Description cannot be more than 250 characters'
         if(!difficulty) errors.description = 'Difficulty is required';
         if (!elevGain || isNaN(parseFloat(elevGain))) {
             errors.elevGain = 'Elevation Gain is required (Must be a number)';
@@ -181,13 +185,15 @@ const CreateLocationForm = () => {
                         <div className="error-message">{errors.difficulty && <p className="error-message">{errors.difficulty}</p>}</div>
                         <div className="form-container-create">
                             <p className="sub-text-signup">Difficulty</p>
-                            <input
-                                className="input-create"
-                                type='text'
-                                placeholder="Difficulty"
-                                value={difficulty}
+                            <select
+                                className="create-loc"
                                 onChange={(e) => setDifficulty(e.target.value)}
-                            />
+                                required
+                            >
+                                <option value="Easy">Easy</option>
+                                <option value="Moderate">Moderate</option>
+                                <option value="Difficult">Difficult</option>
+                            </select>
                         </div>
                         <div className="error-message">{errors.length && <p className="error-message">{errors.length}</p>}</div>
                         <div className="form-container-create">
@@ -214,13 +220,22 @@ const CreateLocationForm = () => {
                         <div className="error-message">{errors.routeType && <p className="error-message">{errors.routeType}</p>}</div>
                         <div className="form-container-create">
                             <p className="sub-text-signup">Route Type</p>
-                            <input
+                            <select
+                                className="create-loc"
+                                onChange={(e) => setRouteType(e.target.value)}
+                                required
+                            >
+                                <option value="Loop">Loop</option>
+                                <option value="Out & Back">Out & Back</option>
+                                <option value="Point to Point">Point to Point</option>
+                            </select>
+                            {/* <input
                                 className="input-create"
                                 type='text'
                                 placeholder="Route Type"
                                 value={routeType}
                                 onChange={(e) => setRouteType(e.target.value)}
-                            />
+                            /> */}
                         </div>
                         <div className="error-message">{errors.image && <p className="error-message">{errors.image}</p>}</div>
                         <div className="form-container-create">

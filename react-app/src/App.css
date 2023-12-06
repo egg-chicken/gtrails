@@ -19,3 +19,8 @@ body {
     font-weight: 500;
     /* font-family: 'Mulish', sans-serif; */
 }
+
+img {
+  max-width: 100%;
+  display: block;
+}

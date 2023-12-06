@@ -24,6 +24,7 @@ function OpenModalButton({
   : buttonType === 'addtolist' ? 'style-butt'
   : buttonType === 'locdetsave' ? 'det-page-butt'
   : buttonType === 'createlist' ? 'style-list-create'
+  : buttonType === 'exploreList' ? 'explore-list-button'
   : '';
 
   return (
