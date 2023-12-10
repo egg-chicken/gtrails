@@ -19,7 +19,8 @@ a.home.nav-link.active {
   font-size: 28pt;
 }
 
-.nav-link {
+.nav-link,
+.dead-nav-link {
   text-decoration: none;
   color: white;
   padding: 10px 15px;

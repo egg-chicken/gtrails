@@ -53,7 +53,6 @@ export const getCurrentUsersReviews = () => async dispatch => {
     if(response.ok){
         const reviews = await response.json();
         dispatch(loadUserReviews(reviews));
-        // console.log('store review:',reviews)
         return reviews;
     }
 }

@@ -38,12 +38,9 @@ const ManageActivitiesPage = () => {
                     <div className='each-review' key={activity.id}>
                         <div className="review-detials">
                             <div className='username-date'>
-                                <Link className='review-link-location' to={`/locations/${activity.locationId}`}>
-                                    {/* <p className='review-location-name'>{activity.locationName}</p> */}
-                                </Link>
                                 <p className='date'>{activityMonth} {day}, {year}</p>
                             </div>
-                            <p className='activity-text'><span className='type-text'>Location: </span>Location Name</p>
+                            <p className='activity-text'><span className='type-text'>Location: </span>{activity.locationName}</p>
                             <p className='activity-text'><span className='type-text'>Type: </span>{activity.activityType}</p>
                             <p className='review-text'><span className='type-text'>Trail Conditions: </span>{activity.trailConditions}</p>
                         </div>

@@ -24,7 +24,21 @@ def userActivities():
 
     currentUserActivities = Activity.query.filter(Activity.userId == current_user_id)
 
-    return jsonify({'activities': [each.to_dict() for each in currentUserActivities]})
+    activityInfo = []
+
+    for activity in currentUserActivities:
+        activityInfo.append({
+            "id": activity.id,
+            "userId": activity.userId,
+            "activityType": activity.activityType,
+            "trailConditions": activity.trailConditions,
+            "createdAt": activity.createdAt,
+            "updatedAt": activity.updatedAt,
+            'locationName': activity.locations.name,
+        })
+
+    # return jsonify({'activities': [each.to_dict() for each in currentUserActivities]})
+    return {'activities': activityInfo}
 
 
 # return the details of the activity based on id

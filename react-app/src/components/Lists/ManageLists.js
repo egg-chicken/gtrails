@@ -13,7 +13,6 @@ const ManageListPage = () => {
     const dispatch = useDispatch();
     const lists = useSelector((state) => Object.values(state.list))
 
-    console.log('lists', lists)
     useEffect(() => {
         dispatch(listActions.getCurrentUsersLists())
     }, [dispatch]);

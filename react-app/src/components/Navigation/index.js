@@ -22,8 +22,8 @@ function Navigation({ isLoaded }){
 			</div>
 			<div className='b'>
 				<NavLink className="nav-link sub-link" exact to="/explore">Explore</NavLink>
-				<NavLink onClick={handleClick} className="nav-link sub-link" exact to="/community">Community</NavLink>
-				<NavLink onClick={handleClick} className="nav-link sub-link" exact to="/saved">Saved</NavLink>
+				<NavLink onClick={handleClick} className="dead-nav-link" exact to="/community">Community</NavLink>
+				<NavLink onClick={handleClick} className="dead-nav-link" exact to="/saved">Saved</NavLink>
 			</div>
 			<div className='c right-nav-side'>
 				{isLoaded && (

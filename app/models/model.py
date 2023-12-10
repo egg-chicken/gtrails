@@ -187,6 +187,7 @@ class Activity(db.Model):
         "Location",
         secondary=act_tag_loc,
         back_populates="activities",
+        uselist=False
     )
 
 

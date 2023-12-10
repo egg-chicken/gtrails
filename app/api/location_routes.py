@@ -28,18 +28,6 @@ def userLocations():
 
     locationInfo = []
 
-    # for location in currentUserLocations:
-
-    #     locationInfo.append({
-    #         'id': location.id,
-    #         'name': location.name,
-    #         'description': location.description,
-    #         'length': location.length,
-    #         'elevGain': location.elevGain,
-    #         'routeType': location.routeType,
-    #         'image': location.image,
-    #         # 'stars': review_info.stars
-    #     })
     for location in currentUserLocations:
         location_info = location.to_dict()
         locationInfo.append(location_info)
@@ -59,20 +47,6 @@ def locationId(id):
     location_info = location.to_dict()
 
     return location_info
-    # reviews = Review.query.filter_by(locationId=id).all()
-
-    # if location is None:
-    #     return {'message': "Location couldn\'t be found", "statusCode": 404}
-
-    # if reviews is None:
-    #     return {'message': 'No reviews found for this location', 'statusCode': 404}
-
-    # reviewsList = [review.to_dict() for review in reviews]
-
-    # location_info = location.to_dict()
-    # location_info['reviews'] = reviewsList
-
-    # return jsonify(location_info)
 
 
 # creates and returns a new location

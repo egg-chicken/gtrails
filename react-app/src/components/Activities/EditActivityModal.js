@@ -33,6 +33,7 @@ const EditActivityModal = ({id}) => {
 
             await dispatch(activityActions.updateActivity(id, formData))
             closeModal();
+            window.location.reload();
         }
     }
 

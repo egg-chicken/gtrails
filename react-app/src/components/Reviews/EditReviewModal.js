@@ -49,6 +49,7 @@ function EditReviewModal({id}) {
             dispatch(reviewActions.editReview(id, formData))
                 .then(() => {
                     closeModal();
+                    window.location.reload();
                 })
                 .catch((err) => {
                     setErrors(err)

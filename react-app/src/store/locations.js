@@ -78,8 +78,6 @@ export const createLocation = (location) => async (dispatch) => {
       if (response.ok) {
           const resPost  = await response.json();
           dispatch(createOne(resPost));
-      } else {
-          console.log("There was an error making your post!")
       }
 };
 
