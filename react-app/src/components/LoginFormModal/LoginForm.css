@@ -17,7 +17,6 @@
     display: flex;
     font-size: 26px;
     margin: 0px;
-    /* justify-content: center; */
 }
 
 .demo-button {
@@ -33,18 +32,6 @@
     display: flex;
     justify-content: center;
 }
-
-/* .errors-login {
-    display: flex;
-    justify-content: center;
-    color: red;
-}
-
-.error-message {
-    display: flex;
-    justify-content: center;
-    color: red;
-} */
 
 .email,
 .password {

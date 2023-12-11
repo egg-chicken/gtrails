@@ -6,9 +6,9 @@
 }
 
 .act-title {
+    display: flex;
     font-size: 40px;
     justify-content: center;
-    display: flex;
     margin: 20px 0;
 }
 
@@ -19,8 +19,8 @@
 }
 
 .activity-submit-button {
-    border-radius: 10% / 50%;
     display: flex;
+    border-radius: 10% / 50%;
     justify-content: center;
     background-color: #137547;
     color: white;

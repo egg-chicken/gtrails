@@ -49,7 +49,7 @@ const LandingPage = () => {
                                     <p className='a-detail'>{location.name}  </p>
                                     <div className="diff-rating">
                                         <p className='location-rating'>{location.difficulty} &#8231; </p>
-                                        <i className="fa fa-solid fa-star test2" style={{color:'#2ced39',}}/>
+                                        <i className="fa fa-solid fa-star" style={{color:'#2ced39',}}/>
                                         {location.avgRating ? (Number.isInteger(location.avgRating) ? location.avgRating.toFixed(1) : location.avgRating.toFixed(1)) : 'No Reviews'}
                                     </div>
                                 </div>

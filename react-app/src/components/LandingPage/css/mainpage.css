@@ -116,10 +116,6 @@
     border-radius: 8px;
 }
 
-.test2 {
-    font-size: 1px;
-}
-
 .diff-rating {
     display: flex;
     flex-direction: row;

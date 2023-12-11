@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import * as listActions from "../../store/lists";
-// import './css/delete-modal.css'
+import './css/delete-list.css';
 
 function DeleteListModal ({id}) {
     const { closeModal } = useModal();

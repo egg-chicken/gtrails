@@ -50,14 +50,14 @@ const EditListModal = ({id}) => {
             <div className="error-message">{errors && errors.listName && <p className="error-message">{errors.listName}</p>}</div>
             <form onSubmit={handleSubmit} className="list-form" >
                 <div className='list-name-container'>
-                        <p className='listname-text'>List Name</p>
-                        <input
-                            type="text"
-                            className='listname-input'
-                            value={listName}
-                            placeholder='Your List Name'
-                            onChange={(e) => setListName(e.target.value)}
-                        />
+                    <p className='listname-text'>List Name</p>
+                    <input
+                        type="text"
+                        className='listname-input'
+                        value={listName}
+                        placeholder='Your List Name'
+                        onChange={(e) => setListName(e.target.value)}
+                    />
                 </div>
                 <div className="button-activity-align">
                     <button type='submit' className='activity-submit-button'>

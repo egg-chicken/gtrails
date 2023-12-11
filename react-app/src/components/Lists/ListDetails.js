@@ -5,9 +5,9 @@ import { Link } from 'react-router-dom';
 import OpenModalButton from "../OpenModalButton";
 import DeleteLocationFromListModal from './DeleteLocationFromList';
 import * as listActions from '../../store/lists';
-import './css/list-details.css'
 import mapboxgl from '!mapbox-gl';// eslint-disable-line import/no-webpack-loader-syntax
 import 'mapbox-gl/dist/mapbox-gl.css';
+import './css/list-details.css'
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN
 
@@ -15,7 +15,6 @@ const ListDetailPage = () => {
     const { id } = useParams();
     const dispatch = useDispatch();
     const list  = useSelector((state) => state.list[id])
-    const location = useSelector((state => state.location[id]))
 
     const mapContainer = useRef(null);
     const map = useRef(null);
@@ -95,17 +94,22 @@ const ListDetailPage = () => {
                 <div className="right-side">
                     {list?.locations?.map((location, index) => (
                         <div key={index}>
-                            <Link to={`/locations/${location.id}`} className='location'>
+                            <Link to={`/locations/${location.id}`} className='list-d-location'>
                                 <img src={location.image} alt='location' className='image' title={location.name}/>
-                                <p>{location.name}</p>
-                                <p className='location-rating'>
+                                <p className='a-detail'>{location.name}</p>
+                                <div className="diff-rating">
+                                    <p className='location-rating'>{location.difficulty} &#8231; </p>
                                     <i className="fa fa-solid fa-star" style={{color:'#2ced39',}}/>
                                     {location.avgRating ? (Number.isInteger(location.avgRating) ? location.avgRating.toFixed(1) : location.avgRating.toFixed(1)) : 'No Reviews'}
-                                </p>
+                                </div>
+                                <div>
+                                    <p className="list-location-detail">{location.city}, {location.state}</p>
+                                    <p className="list-location-detail">Length: {location.length} mi &#8231;  {location.routeType}</p>
+                                </div>
                             </Link>
                             <OpenModalButton
                                 modalComponent={<DeleteLocationFromListModal listId={id} locationId={location.id}/>}
-                                buttonText={<i class="far fa-trash-alt"></i>}
+                                buttonText={<i class="far fa-trash-alt"> remove</i>}
                                 buttonType="Delete"
                             />
                         </div>

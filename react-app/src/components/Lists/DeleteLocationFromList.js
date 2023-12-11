@@ -1,13 +1,11 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-// import { useHistory } from "react-router-dom";
 import { useModal } from "../../context/Modal";
 import * as listActions from "../../store/lists";
-// import './css/delete-modal.css'
+import './css/delete-list.css';
 
 function DeleteLocationFromListModal ({listId, locationId}) {
     const { closeModal } = useModal();
-    // const history = useHistory();
     const dispatch = useDispatch();
 
     const handleSubmit = (e) => {
@@ -20,11 +18,10 @@ function DeleteLocationFromListModal ({listId, locationId}) {
     return (
         <div className="delete-modal-container">
             <div className="delete-form">
-                <p className="delete-title-text">Delete List?</p>
-                <p className="confirmation-delete">Deleting a list will erase it permanently</p>
+                <p className="d-list-title">Remove from your list?</p>
                 <form className='delete-buttons' onSubmit={handleSubmit}>
-                    <button className='yes-delete-list' type='submit'>Delete</button>
-                    <button className='keep-list' onClick={closeModal}>Keep</button>
+                    <button className='yes-delete-list' type='submit'>Remove</button>
+                    <button className='keep-list' onClick={closeModal}>Keep in my list</button>
                 </form>
             </div>
         </div>
