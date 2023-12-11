@@ -89,7 +89,9 @@ const ListDetailPage = () => {
             <div className="list-body">
                 <div className="left-side">
                     <p className="list-description">Explore {list?.listName} - view hand-curated trail maps as well as detailed reviews and photos from hikers, campers and nature lovers like you</p>
+                    <div className="testing-help">
                     <div ref={mapContainer} className="map-container" />
+                    </div>
                 </div>
                 <div className="right-side">
                     {list?.locations?.map((location, index) => (

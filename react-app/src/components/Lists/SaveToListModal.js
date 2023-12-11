@@ -19,7 +19,7 @@ const SaveToModal = ({locationId}) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        await dispatch(listActions.addLocationsToListThunk(listId, locationId))
+        await dispatch(listActions.addLocationsToListThunk(listId, locationId));
         closeModal();
         history.push(`/lists/${listId}`);
     };
@@ -33,6 +33,7 @@ const SaveToModal = ({locationId}) => {
                 onChange={(e) => setListId(e.target.value)}
                 required
             >
+                <option>Please select one below</option>
                 {lists?.map((list) => (
                     <option key={list.id} value={list.id}>
                         {list.listName}

@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import mapboxgl from '!mapbox-gl';// eslint-disable-line import/no-webpack-loader-syntax
 import 'mapbox-gl/dist/mapbox-gl.css';
 import './map-details.css'
@@ -22,6 +22,7 @@ const Map = () => {
         center: [lng, lat],
         zoom: zoom
         });
+
     }, []);
 
     const addMarkersToMap = () => {
