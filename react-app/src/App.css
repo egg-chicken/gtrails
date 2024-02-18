@@ -1,5 +1,4 @@
 /* fonts */
-
 /* default css */
 html {
     scroll-behavior: smooth;
@@ -17,7 +16,10 @@ body {
     box-sizing: border-box;
     font-family: 'Raleway', sans-serif;
     font-weight: 500;
-    /* font-family: 'Mulish', sans-serif; */
+}
+
+p {
+  font-size: 16px;
 }
 
 img {
