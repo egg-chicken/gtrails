@@ -22,7 +22,6 @@ const Map = () => {
         center: [lng, lat],
         zoom: zoom
         });
-
     }, []);
 
     const addMarkersToMap = () => {
@@ -38,7 +37,11 @@ const Map = () => {
                     `<p>${location.name}</p>
                     <a href='/locations/${location.id}'>See locations details</a>
                     `))
-                .addTo(map.current);
+                .addTo(map.current)
+                .on('load', function () {
+                    map.resize();
+                });
+
         });
 
     };
