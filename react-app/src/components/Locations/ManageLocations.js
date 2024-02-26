@@ -38,10 +38,11 @@ const ManageLocationsPage = () => {
                             <img src={location.image} alt='location prev' className='image' title={location.name}/>
                             <div className="location-details">
                                 <p className='loc-name-detail'>{location.name}</p>
-                                <p className='location-rating'>
+                                <div className="diff-rating">
+                                    <p className='location-rating'>{location.difficulty} &#8231; </p>
                                     <i className="fa fa-solid fa-star" style={{color:'#2ced39',}}/>
                                     {location.avgRating ? (Number.isInteger(location.avgRating) ? location.avgRating.toFixed(1) : location.avgRating.toFixed(1)) : 'No Reviews'}
-                                </p>
+                                </div>
                             </div>
                             <p className="b-detail">{location.city}, {location.state}</p>
                         </Link>
