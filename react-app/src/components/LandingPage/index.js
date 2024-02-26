@@ -11,7 +11,6 @@ const LandingPage = () => {
     const dispatch = useDispatch();
     const locations = useSelector((state) => state.location);
     const locationsArray = locations ? Object.values(locations): [];
-    const lists = useSelector(state => state.list)
     const user = useSelector(state => state.session.user);
     const [showButton, setShowButton] = useState(false);
 
@@ -42,8 +41,8 @@ const LandingPage = () => {
                                   modalComponent={<SaveToModal locationId={location.id} />}
                                   buttonText={<i className="far fa-bookmark"></i>}
                                   buttonType='addtolist'
-                              />}
-                        <Link key={location.id} to={`/locations/${location.id}`} className='location'>
+                            />}
+                            <Link key={location.id} to={`/locations/${location.id}`} className='location'>
                                 <img src={location.image} alt='location' className='image-main' title={location.name}/>
                                 <div className="location-details">
                                     <p className='a-detail'>{location.name}  </p>
@@ -57,15 +56,15 @@ const LandingPage = () => {
                                     <p className="b-detail">{location.city}, {location.state}</p>
                                     <p className="b-detail">Length: {location.length} mi &#8231;  {location.routeType}</p>
                                 </div>
-                        </Link>
+                            </Link>
                         </div>
                     ))}
                 </div>
-                </div>
-                <div className="parks-text">
-                    <p className="sub-heading-text">Locations to explore</p>
-                    <div className="location-container-m">
-                        {locationsArray.slice(4,8).map((location) => (
+            </div>
+            <div className="parks-text">
+                <p className="sub-heading-text">Locations to explore</p>
+                <div className="location-container-m">
+                    {locationsArray.slice(4,8).map((location) => (
                         <div key={location.id} className="location-transition">
                             {showButton && <OpenModalButton
                                 modalComponent={<SaveToModal locationId={location.id} />}
@@ -73,28 +72,28 @@ const LandingPage = () => {
                                 buttonType='addtolist'
                             />}
                             <Link key={location.id} to={`/locations/${location.id}`} className='location'>
-                                    <img src={location.image} alt='location' className='image-main' title={location.name}/>
-                                    <div className="location-details">
-                                        <p className='a-detail'>{location.name}  </p>
-                                        <div className="diff-rating">
-                                            <p className='location-rating'>{location.difficulty} &#8231; </p>
-                                            <i className="fa fa-solid fa-star" style={{color:'#2ced39',}}/>
-                                            {location.avgRating ? (Number.isInteger(location.avgRating) ? location.avgRating.toFixed(1) : location.avgRating.toFixed(1)) : 'No Reviews'}
-                                        </div>
+                                <img src={location.image} alt='location' className='image-main' title={location.name}/>
+                                <div className="location-details">
+                                    <p className='a-detail'>{location.name}  </p>
+                                    <div className="diff-rating">
+                                        <p className='location-rating'>{location.difficulty} &#8231; </p>
+                                        <i className="fa fa-solid fa-star" style={{color:'#2ced39',}}/>
+                                        {location.avgRating ? (Number.isInteger(location.avgRating) ? location.avgRating.toFixed(1) : location.avgRating.toFixed(1)) : 'No Reviews'}
                                     </div>
-                                    <div>
-                                        <p className="b-detail">{location.city}, {location.state}</p>
-                                        <p className="b-detail">Length: {location.length} mi &#8231;  {location.routeType}</p>
-                                    </div>
+                                </div>
+                                <div>
+                                    <p className="b-detail">{location.city}, {location.state}</p>
+                                    <p className="b-detail">Length: {location.length} mi &#8231;  {location.routeType}</p>
+                                </div>
                             </Link>
                         </div>
-                        ))}
-                    </div>
+                    ))}
                 </div>
-                <div className="parks-text">
-                    <p className="sub-heading-text">Get away from the city</p>
-                    <div className="location-container-m">
-                        {locationsArray.slice(8,12).map((location) => (
+            </div>
+            <div className="parks-text">
+                <p className="sub-heading-text">Get away from the city</p>
+                <div className="location-container-m">
+                    {locationsArray.slice(8,12).map((location) => (
                         <div key={location.id} className="location-transition">
                             {showButton && <OpenModalButton
                                   modalComponent={<SaveToModal locationId={location.id} />}
@@ -102,24 +101,24 @@ const LandingPage = () => {
                                   buttonType='addtolist'
                               />}
                             <Link key={location.id} to={`/locations/${location.id}`} className='location'>
-                                    <img src={location.image} alt='location' className='image-main' title={location.name}/>
-                                    <div className="location-details">
-                                        <p className='a-detail'>{location.name}  </p>
-                                        <div className="diff-rating">
-                                            <p className='location-rating'>{location.difficulty} &#8231; </p>
-                                            <i className="fa fa-solid fa-star" style={{color:'#2ced39',}}/>
-                                            {location.avgRating ? (Number.isInteger(location.avgRating) ? location.avgRating.toFixed(1) : location.avgRating.toFixed(1)) : 'No Reviews'}
-                                        </div>
+                                <img src={location.image} alt='location' className='image-main' title={location.name}/>
+                                <div className="location-details">
+                                    <p className='a-detail'>{location.name}  </p>
+                                    <div className="diff-rating">
+                                        <p className='location-rating'>{location.difficulty} &#8231; </p>
+                                        <i className="fa fa-solid fa-star" style={{color:'#2ced39',}}/>
+                                        {location.avgRating ? (Number.isInteger(location.avgRating) ? location.avgRating.toFixed(1) : location.avgRating.toFixed(1)) : 'No Reviews'}
                                     </div>
-                                    <div>
-                                        <p className="b-detail">{location.city}, {location.state}</p>
-                                        <p className="b-detail">Length: {location.length} mi &#8231;  {location.routeType}</p>
-                                    </div>
+                                </div>
+                                <div>
+                                    <p className="b-detail">{location.city}, {location.state}</p>
+                                    <p className="b-detail">Length: {location.length} mi &#8231;  {location.routeType}</p>
+                                </div>
                             </Link>
                         </div>
-                        ))}
-                    </div>
+                    ))}
                 </div>
+            </div>
         </div>
     )
 }
