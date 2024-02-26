@@ -31,7 +31,7 @@ const ManageLocationsPage = () => {
                     </button>
                 </div>
             </div>
-            <div className='location-grid'>
+            <div className='location-grid-manage'>
                 {locationsArray.map((location) => (
                     <div key={location.id}>
                         <Link to={`/locations/${location.id}`} className='location-img-link'>
@@ -57,7 +57,6 @@ const ManageLocationsPage = () => {
                                 Edit
                         </button>
                     </div>
-
                 ))}
             </div>
         </div>

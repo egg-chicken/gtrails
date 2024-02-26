@@ -1,6 +1,17 @@
 .manage-locations-container {
-    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    margin: 20px 20px 20px 20px;
     padding: 20px;
+    border-radius: 40px;
+    background-color: white;
+    box-shadow: 2px 2px 15px 2px grey;
+}
+
+.location-grid-manage {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(100px, 1fr));
+    gap: 10px;
 }
 
 .add-box {
@@ -15,7 +26,6 @@
 .loc-name-detail {
     margin: 0px;
 }
-
 
 .location-img-link {
     display: flex;
