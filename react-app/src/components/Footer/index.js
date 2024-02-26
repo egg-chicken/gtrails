@@ -11,12 +11,10 @@ const Footer = () => {
 
     return (
         <footer>
-            <div className='abc'>
-              <NavLink className="footer-home nav-link" exact to="/">
-                          <i className="fa fa-hiking" style={{color:'#25d066'}}></i>
+            <NavLink className="footer-home nav-link-f" exact to="/">
+                <i className="fa fa-hiking" style={{color:'#25d066'}}></i>
                 <span className='fh' style={{color:'#efefec'}}>GTrails</span>
-              </NavLink>
-			      </div>
+            </NavLink>
             <div className="footer-content">
                 <NavLink className='f-links' exact to="/explore">Explore</NavLink>
                 <NavLink className='f-links' onClick={handleClick} to='/'>Maps</NavLink>

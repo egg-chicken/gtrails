@@ -5,8 +5,9 @@ footer {
     text-align: center;
   }
 
-a.footer-home.nav-link.active {
+a.footer-home.nav-link-f.active {
   display: flex;
+  justify-content: flex-start;
   padding: 0px;
   padding-bottom: 30px;
   font-size: 30px;
