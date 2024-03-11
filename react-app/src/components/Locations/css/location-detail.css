@@ -2,11 +2,7 @@
 .location-detail-container {
     display: flex;
     justify-content: space-around;
-    margin: 20px 20px 20px 150px;
-    padding-left: 100px;
-    padding-right: 100px;
-    min-width: 500px;
-    max-width: 1000px;
+    margin: 20px;
 }
 
 /** the cover **/
@@ -71,7 +67,6 @@
     padding-left: 20px;
     align-items: center;
     display: flex;
-    /* top: 50px; */
 }
 
 .difficulty {
@@ -90,7 +85,6 @@
 }
 
 /** the button bar links **/
-
 .bar-links {
     background-color: green;
 }
@@ -108,7 +102,6 @@
 
 .location-details-bar {
     display: flex;
-    /* padding: 20px; */
     gap: 10px;
     justify-content: space-around;
     padding-left: 20px;
@@ -129,13 +122,10 @@
 
 .location-details-bar-buttons {
     display: flex;
-    /* padding: 20px; */
     gap: 10px;
     justify-content: space-around;
     padding-left: 20px;
-    /* padding-bottom: 10px; */
     padding-right: 20px;
-    /* padding-top: 10px; */
 }
 
 .button-title{
@@ -234,11 +224,6 @@
     border: none;
 }
 
-/* .write-review-button-placement {
-    margin-left: auto;
-    padding: 10px;
-} */
-
 .total-location-rating-section {
     display: flex;
     flex-direction: column;
@@ -329,7 +314,6 @@
 
 /* total stars rating */
 .star-rating-bar-graph {
-    /* margin-top: 20px; */
     display: flex;
     flex-direction: column;
   }
@@ -401,7 +385,6 @@
     background-color: transparent;
     font-size: 45px;
     bottom: 80px;
-    left: 800px;
 }
 
 
