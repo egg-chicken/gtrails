@@ -67,6 +67,12 @@
     padding: 0px 10% 0px;
 }
 
+@media (max-width: 1200px) {
+    .location-container-m {
+        grid-template-columns: repeat(2, minmax(100px, 1fr));
+    }
+}
+
 .location {
     display: flex;
     flex-direction: column;
